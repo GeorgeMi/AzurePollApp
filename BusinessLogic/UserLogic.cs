@@ -57,9 +57,17 @@ namespace BusinessLogic
 
         public void AddUser(UserRegistrationDTO userDTO)
         {
-            //adauga un user
-            User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" };
-            _dataAccess.UserRepository.Add(user);
+            if (string.IsNullOrWhiteSpace(userDTO.Username) || string.IsNullOrWhiteSpace(userDTO.Password) || string.IsNullOrWhiteSpace(userDTO.Email))
+            {
+                throw new System.Exception("failed");
+            }
+            else
+            {
+                //adauga un user
+                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" };
+                _dataAccess.UserRepository.Add(user);
+            }
+           
         }
         public UserDetailDTO GetUser(int id)
         {

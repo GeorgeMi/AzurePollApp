@@ -50,45 +50,50 @@
 
         //------------------register-----------------------
         vm.registerUser = function () {
+           
+            if (vm.userDataRegistration.password != ''
+                && vm.userDataRegistration.username != ''
+                 && vm.userDataRegistration.password != '') {
+                
+                if (vm.confirm_password == vm.userDataRegistration.password) {
+                    
+                    userAccount.registration.registerUser(vm.userDataRegistration,
 
-            if (vm.confirm_password == vm.userDataRegistration.password) {
+                        function (data) {
+                            //inregistrarea a avut succes
+                            vm.messageRegistration = data.success;
+                            vm.userData.username = vm.userDataRegistration.username;
+                            vm.userData.password = vm.userDataRegistration.password;
+                            vm.login();
+                        },
 
-                userAccount.registration.registerUser(vm.userDataRegistration,
+                        function (response) {
+                            //inregistrarea nu a avut succes
+                            vm.isLoggedIn = false;
 
-                    function (data) {
-                        //inregistrarea a avut succes
-                        vm.messageRegistration = data;
-                        vm.userData.username = vm.userDataRegistration.username;
-                        vm.userData.password = vm.userDataRegistration.password;
-                        vm.login();
-                    },
-
-                    function (response) {
-                        //inregistrarea nu a avut succes
-                        vm.isLoggedIn = false;
-
-                        if (response.data.error) {
-                            vm.messageRegistration = response.data.error;
-                        }
-
-                        //validation errors
-                        if (response.data.modelState) {
-
-                            for (var key in response.data.modelState) {
-                                vm.messageRegistration += response.data.modelState[key] + "\r\n";
+                            if (response.data.error) {
+                                vm.messageRegistration = response.data.error;
                             }
-                        }
-                    });
-            }
-            else {
 
-                vm.messageRegistration = "Passwords don't match";
+                            //validation errors
+                            if (response.data.modelState) {
+
+                                for (var key in response.data.modelState) {
+                                    vm.messageRegistration += response.data.modelState[key] + "\r\n";
+                                }
+                            }
+                        });
+                }
+                else {
+
+                    vm.messageRegistration = "Passwords don't match";
+                }
             }
         }
 
         //-----------------login with username and password-----------------------
         vm.login = function () {
-           
+
             userAccount.login.loginUser(vm.userData,
 
                 function (data) {
@@ -111,7 +116,7 @@
                         $cookies.put("role", vm.role, { 'expires': expireDate });
 
                     }
-            
+
                 }, function (response) {
                     //inregistrarea nu a avut succes
                     vm.isLoggedIn = false;
@@ -183,8 +188,8 @@
             vm.pages.manage_categories = false;
             vm.pages.vote_poll = false;
             vm.pages.voted_polls = false;
-         
-           
+
+
             if (mypage == 'home') {
                 vm.pages.home = true;
             }
@@ -207,7 +212,7 @@
                 vm.pages.manage_categories = true;
             }
             else if (mypage == 'vote_poll') {
-               vm.pages.vote_poll = true;
+                vm.pages.vote_poll = true;
             }
             else if (mypage == 'my_poll_result') {
                 vm.pages.my_poll_result = true;
@@ -218,8 +223,8 @@
             else if (mypage == 'category_forms') {
                 vm.pages.category_forms = true;
             }
-           
-            
+
+
         }
 
 

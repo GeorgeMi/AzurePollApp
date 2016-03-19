@@ -4,7 +4,8 @@
         .module("common.services", ["ngResource"])
         .constant("appSettings",
         {
-            serverPath: "http://pollwebapi.azurewebsites.net"
+              serverPath: "http://pollwebapi.azurewebsites.net"
+           // serverPath: "http://localhost:19692"
         });
 
 }());

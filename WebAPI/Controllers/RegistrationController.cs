@@ -13,6 +13,7 @@ namespace WebAPI.Controllers
          public HttpResponseMessage Post(UserRegistrationDTO user)
         {
             UsersModel userModel = new UsersModel();
+
             bool add = userModel.AddUser(user);
             HttpResponseMessage response;
             
@@ -27,7 +28,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Registration failed! Username or email already exists");
+                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email ");
 
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
                 return response;
