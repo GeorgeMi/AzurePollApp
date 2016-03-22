@@ -2,9 +2,24 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", MainController]);
+        .controller("MainController", ["userAccount", "$cookies", MainController])
+        .config(function ($routeProvider) {
+            $routeProvider.
+                when('/home', {
+                    templateUrl: 'index.html',
+                    controller: 'mainController'
+                }).
+                when('/about', {
+                    templateUrl: 'embedded.about.html',
+                    controller: 'AboutController'
+                }).
+                otherwise({
+                    redirectTo: '/home'
+                });
+        });
 
     function MainController(userAccount, $cookies) {
+
         var vm = this;
         vm.isLoggedIn = false;
         vm.messageRegistration = '';
@@ -50,13 +65,13 @@
 
         //------------------register-----------------------
         vm.registerUser = function () {
-           
+
             if (vm.userDataRegistration.password != ''
                 && vm.userDataRegistration.username != ''
                  && vm.userDataRegistration.password != '') {
-                
+
                 if (vm.confirm_password == vm.userDataRegistration.password) {
-                    
+
                     userAccount.registration.registerUser(vm.userDataRegistration,
 
                         function (data) {

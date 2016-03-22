@@ -3,11 +3,11 @@
     angular
         .module("formManagement")
         .controller("FormCategoryController", ["formResource", "$cookies", FormCategoryController]);
+       
 
     function FormCategoryController(formResource, $cookies) {
         var vm = this;
-
-
+       
         var param = { category_id: $cookies.get('category_id') };
 
         formResource.getCategoryForms.getCategoryForms(param,function (data) {
