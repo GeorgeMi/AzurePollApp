@@ -24,8 +24,8 @@ namespace ConsoleApplicationClient
                 Console.WriteLine(DateTime.Now.ToString());
                 Console.WriteLine(DateTime.Now.AddHours(2));
             }
-
-            bl.AuthLogic.send_email("1123xzzxcasdsad","george", "george.miron2003@gmail.com");
+            bl.UserLogic.DeleteUser(5);
+          //  bl.AuthLogic.send_email("1123xzzxcasdsad","george", "george.miron2003@gmail.com");
         }
     }
 }

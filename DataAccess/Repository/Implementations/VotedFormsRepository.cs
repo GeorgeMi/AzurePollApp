@@ -15,7 +15,7 @@ using DataAccess.Context;
 
 namespace DataAccess.Repository.Implementations
 {
-    public class VotedFormsRepository:GenericRepository<VotedForms>, IVotedFormsRepository
+    public class VotedFormsRepository:GenericRepository<VotedForm>, IVotedFormsRepository
     {
         public VotedFormsRepository(PollAppDBContext context) : base(context)
         {

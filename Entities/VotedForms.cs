@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities
 {
-    public partial class VotedForms
+    public partial class VotedForm
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        [Column(Order = 1)]
         public int UserID { get; set; }
-        [Key, Column(Order = 1)]
+        [Key]
+        [Column(Order = 2)]
         public int FormID { get; set; }
-        public virtual User User { get; set; }
         public virtual Form Form { get; set; }
     }
 }

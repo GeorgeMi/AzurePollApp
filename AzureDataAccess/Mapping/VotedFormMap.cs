@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace AzureDataAccess.Mapping
 {
-    public class VotedFormMap : EntityTypeConfiguration<VotedForms>
+    public class VotedFormMap : EntityTypeConfiguration<VotedForm>
     {
         public VotedFormMap()
         {
@@ -22,6 +22,12 @@ namespace AzureDataAccess.Mapping
             this.ToTable("VotedForms");
             this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.FormID).HasColumnName("FormID");
+
+            // Relationships
+            this.HasRequired(t => t.Form)
+                .WithMany(t => t.VotedForms)
+                .HasForeignKey(d => d.FormID);
+
         }
     }
 }

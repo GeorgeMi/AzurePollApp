@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace DataAccess.Mapping
 {
-    public class VotedFormMap : EntityTypeConfiguration<VotedForms>
+    public class VotedFormMap : EntityTypeConfiguration<VotedForm>
     {
         public VotedFormMap()
         {

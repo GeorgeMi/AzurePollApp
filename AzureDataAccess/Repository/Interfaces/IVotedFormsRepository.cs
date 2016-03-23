@@ -10,7 +10,7 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
-    public interface IVotedFormsRepository : IGenericRepository<VotedForms>
+    public interface IVotedFormsRepository : IGenericRepository<VotedForm>
     {
  
     }

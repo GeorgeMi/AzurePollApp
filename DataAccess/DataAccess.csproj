@@ -60,6 +60,7 @@
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\VotedFormMap.cs" />
     <Compile Include="Context\PollAppDBContext.cs" />
+    <Compile Include="Models\Mapping\database_firewall_rulesMap.cs" />
     <Compile Include="Repository\Implementations\AnswerRepository.cs" />
     <Compile Include="Repository\Implementations\CategoryRepository.cs" />
     <Compile Include="Repository\Implementations\FormRepository.cs" />

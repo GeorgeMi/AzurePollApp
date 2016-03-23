@@ -15,7 +15,7 @@ using AzureDataAccess.Context;
 
 namespace AzureDataAccess.Repository.Implementations
 {
-    public class VotedFormsRepository:GenericRepository<VotedForms>, IVotedFormsRepository
+    public class VotedFormsRepository:GenericRepository<VotedForm>, IVotedFormsRepository
     {
         public VotedFormsRepository(AzurePollAppDBContext context) : base(context)
         {

@@ -104,7 +104,7 @@ namespace WebAPI.Models
                 bl.UserLogic.DeleteUser(userID);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

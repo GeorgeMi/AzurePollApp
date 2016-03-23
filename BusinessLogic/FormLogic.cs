@@ -121,12 +121,12 @@ namespace BusinessLogic
             //returneaza toate formurile votate de catre un user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
             List<Form> formList=new List<Form>();
-            List<VotedForms> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted=>voted.UserID == userID).ToList();
+            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted=>voted.UserID == userID).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
             Form form;
 
-            foreach (VotedForms votedForm in votedFormsList)
+            foreach (VotedForm votedForm in votedFormsList)
             {
                 form = _dataAccess.FormRepository.FindFirstBy(f => f.FormID == votedForm.FormID);
                 formList.Add(form);
@@ -397,7 +397,7 @@ namespace BusinessLogic
                     voteResult.Questions.Add(voteQuestionResult);
                 }
 
-                VotedForms voted = new VotedForms();
+                VotedForm voted = new VotedForm();
                 voted.UserID = userID;
                 voted.FormID = formID;
                 
