@@ -16,6 +16,7 @@ namespace Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public string Verified { get; set; }
         public virtual ICollection<Form> Forms { get; set; }
         public virtual ICollection<Token> Tokens { get; set; }
         

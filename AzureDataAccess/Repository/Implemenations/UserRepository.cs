@@ -30,5 +30,18 @@ namespace AzureDataAccess.Repository.Implementations
 
             Context.SaveChanges();
         }
+
+        public void ScheduleDeleteUsers()
+        {
+            Context.Database.ExecuteSqlCommand("delete from [dbo].[User] where Verified = 'no'");
+        }
+
+        public void Verified(int userID)
+        {
+            User u = Context.Users.Find(userID);
+            u.Verified = "true";
+
+            Context.SaveChanges();
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace AzureDataAccess.Repository.Interfaces
     public interface IUserRepository : IGenericRepository<User>
     {
         void ChangeRole(int userID, string role);
+        void ScheduleDeleteUsers();
+        void Verified(int userID);
 
     }
 }

@@ -219,6 +219,7 @@
   <ItemGroup>
     <Compile Include="ActionFilters\RequireAdminToken.cs" />
     <Compile Include="ActionFilters\RequireAdminTokenOrUsername.cs" />
+    <Compile Include="ActionFilters\RequirePasswordForScheduler.cs" />
     <Compile Include="ActionFilters\RequireToken.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />

@@ -109,5 +109,10 @@ namespace WebAPI.Models
                 return false;
             }
         }
+
+        public void ScheduleUpdates()
+        {
+            bl.UserLogic.ScheduledJobs();
+        }
     }
 }

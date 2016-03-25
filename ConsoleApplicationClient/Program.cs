@@ -16,15 +16,18 @@ namespace ConsoleApplicationClient
             User u = new User { Email = "email", Username = "geo", Password = "p", Role = "user" };
             try
             {
-               // bl.UserLogic.AddUser(u);
+
+                DataTransferObject.UserRegistrationDTO x = new DataTransferObject.UserRegistrationDTO() { Email = "email", Username = "geo", Password = "p" };
+                bl.UserLogic.AddUser(x);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.InnerException.InnerException.Message);
-                Console.WriteLine(DateTime.Now.ToString());
-                Console.WriteLine(DateTime.Now.AddHours(2));
+              
             }
-            bl.UserLogic.DeleteUser(5);
+
+           // bl.UserLogic.ScheduledJobs();
+       //     bl.UserLogic.DeleteUser(5);
           //  bl.AuthLogic.send_email("1123xzzxcasdsad","george", "george.miron2003@gmail.com");
         }
     }

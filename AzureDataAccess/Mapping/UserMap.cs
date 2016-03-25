@@ -27,6 +27,10 @@ namespace AzureDataAccess.Mapping
                 .IsRequired()
                 .HasMaxLength(50);
 
+            this.Property(t => t.Verified)
+               .IsRequired()
+               .HasMaxLength(10);
+
             // Table & Column Mappings
             this.ToTable("User");
             this.Property(t => t.UserID).HasColumnName("UserID");
@@ -34,6 +38,7 @@ namespace AzureDataAccess.Mapping
             this.Property(t => t.Password).HasColumnName("Password");
             this.Property(t => t.Email).HasColumnName("Email");
             this.Property(t => t.Role).HasColumnName("Role");
+            this.Property(t => t.Verified).HasColumnName("Verified");
         }
     }
 }

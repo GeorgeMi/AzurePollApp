@@ -36,7 +36,31 @@ namespace WebAPI.Controllers
             }
         }
 
+        public HttpResponseMessage Get(string id)
+        {
+            AuthModel authModel = new AuthModel();
 
+            bool verify = authModel.VerifyMailToken(id);
+            HttpResponseMessage response;
+
+
+            if (verify)
+            {
+                SuccessMessage msg = new SuccessMessage("Success!");
+
+                response = Request.CreateResponse(HttpStatusCode.OK, msg);
+                return response;
+
+            }
+            else
+            {
+                ErrorMessage msg = new ErrorMessage("Mail token is invalid!");
+
+                response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
+                return response;
+
+            }
+        }
 
     }
 }

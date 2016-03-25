@@ -12,5 +12,7 @@ namespace AzureDataAccess.Repository.Interfaces
 {
     public interface IFormRepository : IGenericRepository<Form>
     {
+        void ScheduleUpdateForms();
+       
     }
 }

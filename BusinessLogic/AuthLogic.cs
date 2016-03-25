@@ -13,8 +13,7 @@
 using AzureDataAccess;
 using Entities;
 using System;
-using System.Net;
-using System.Net.Mail;
+
 
 namespace BusinessLogic
 {
@@ -37,7 +36,7 @@ namespace BusinessLogic
             //verifica daca in baza de date exista un tuplu ce corespunde cu datele introduse
             try
             {
-                return _dataAccess.UserRepository.FindFirstBy(user => user.Username == username && user.Password == password).UserID;
+                return _dataAccess.UserRepository.FindFirstBy(user => user.Username == username && user.Password == password && user.Verified == "yes").UserID;
             }
             catch (Exception ex)
             {
@@ -61,6 +60,33 @@ namespace BusinessLogic
             }
         }
 
+        public bool VerifyMailToken(string token)
+        {
+            int userID;
+            
+            //verifica daca tokenul corespunde cu cel trimis prin mail
+            try
+            {
+                bool verify = VerifyTokenDate(token);
+
+                if (verify)
+                {
+                    //se updateaza contul userului, verified => true
+                    userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString == token).UserID;
+                    _dataAccess.UserRepository.Verified(userID);
+                    return true;
+                }
+                else
+                {
+                    //tokenul nu corespunde
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public string Register(string username, string password, string email)
         {
@@ -139,34 +165,6 @@ namespace BusinessLogic
         }
 
 
-
-        public void send_email(string token, string username, string email)
-        {
-            //trimite mail de confirmare
-
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("votemypoll@gmail.com");
-            mail.To.Add(email);
-            mail.Subject = "Welcome to VoteMyPoll";
-            mail.Body = "<h3>Hello "+ username + ", </h3>";
-            mail.Body += "<p>Thanks for signing up! Before you start, please verify your email address by clicking <a href=\"http://www.example.com/"+token+"\">here</a>.</p>";
-            mail.Body += "<p>This link will expire in 24 hours if it's not activated.</p>";
-            mail.Body += "<h5>The VoteMyPoll team</h5>";
-            mail.IsBodyHtml = true;
-
-
-            // System.Net.Mail.Attachment attachment;
-            // attachment = new System.Net.Mail.Attachment("c:/textfile.txt");
-            // mail.Attachments.Add(attachment);
-
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("votemypoll@gmail.com", "votemypollteam1234");
-            SmtpServer.EnableSsl = true;
-
-            SmtpServer.Send(mail);
-
-        }
 
     }
 }

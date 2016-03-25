@@ -43,6 +43,10 @@ namespace WebAPI.Models
         {
             return bl.AuthLogic.VerifyAdminToken(token);
         }
+        public bool VerifyMailToken(string token)
+        {
+            return bl.AuthLogic.VerifyMailToken(token);
+        }
 
-     }
+    }
 }

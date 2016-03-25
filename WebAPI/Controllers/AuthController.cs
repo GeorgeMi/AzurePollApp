@@ -35,5 +35,29 @@ namespace WebAPI.Controllers
 
             return responseMessage;
         }
+        public HttpResponseMessage Get(string id)
+        {
+            AuthModel auth = new AuthModel();
+
+            bool add = auth.VerifyMailToken(id);
+            HttpResponseMessage response;
+            
+            if (add)
+            {
+                SuccessMessage msg = new SuccessMessage("Registration successful!");
+
+                response = Request.CreateResponse(HttpStatusCode.OK, msg);
+                return response;
+
+            }
+            else
+            {
+                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email ");
+
+                response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
+                return response;
+
+            }
+        }
     }
 }

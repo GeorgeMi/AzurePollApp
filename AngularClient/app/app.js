@@ -7,6 +7,15 @@
 
     var app = angular.module("app", ["userManagement", "formManagement", "categoryManagement", "ngRoute"]);
 
-  
+    app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+     
+        $routeProvider.when('/:home', {
+            templateURL: 'index.html',
+            controller: 'mainController'
+        });
+      
+
+    }]);
+
 
 }());

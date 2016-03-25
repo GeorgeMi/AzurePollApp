@@ -21,5 +21,10 @@ namespace AzureDataAccess.Repository.Implementations
         {
 
         }
+        public void ScheduleUpdateForms()
+        {
+
+            Context.Database.ExecuteSqlCommand("update [dbo].[Form] set State = 'closed' where Deadline < SYSDATETIME()");
+        }
     }
 }

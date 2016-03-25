@@ -2,25 +2,18 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", MainController])
-        .config(function ($routeProvider) {
-            $routeProvider.
-                when('/home', {
-                    templateUrl: 'index.html',
-                    controller: 'mainController'
-                }).
-                when('/about', {
-                    templateUrl: 'embedded.about.html',
-                    controller: 'AboutController'
-                }).
-                otherwise({
-                    redirectTo: '/home'
-                });
-        });
+        .controller("MainController", ["userAccount", "$cookies", "$routeParams","$location", MainController])
 
-    function MainController(userAccount, $cookies) {
 
+
+    function MainController(userAccount, $cookies, $routeParams, $location) {
+       
         var vm = this;
+       
+        if ($location.search().verifymail)
+        {
+            alert("asdasd");
+        }
         vm.isLoggedIn = false;
         vm.messageRegistration = '';
         vm.messageLogIn = '';

@@ -14,6 +14,7 @@ using DataTransferObject;
 using Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 
 namespace BusinessLogic
 {
@@ -64,8 +65,14 @@ namespace BusinessLogic
             else
             {
                 //adauga un user
-                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" };
+                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" ,Verified="no"};
                 _dataAccess.UserRepository.Add(user);
+
+                //trimite mail de verificare
+                int userID = _dataAccess.UserRepository.FindFirstBy(u => u.Username == userDTO.Username).UserID;
+                string token = _dataAccess.TokenRepository.FindFirstBy(t => t.UserID == userID).TokenString;
+                Send_email(token, userDTO.Username, userDTO.Email);
+                               
             }
            
         }
@@ -120,9 +127,35 @@ namespace BusinessLogic
             _dataAccess.UserRepository.ChangeRole(id, "user");
         }
 
+        public void Send_email(string token, string username, string email)
+        {
+            //trimite mail de confirmare
+
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            mail.From = new MailAddress("votemypoll@gmail.com");
+            mail.To.Add(email);
+            mail.Subject = "Welcome to VoteMyPoll";
+            mail.Body = "<h3>Hello " + username + ", </h3>";
+            mail.Body += "<p>Thanks for signing up! Before you start, please verify your email address by clicking <a href=\"http://votemypoll.azurewebsite.net/?verifymail=" + token + "\">here</a>.</p>";
+            mail.Body += "<p>This link will expire in 24 hours if it's not activated.</p>";
+            mail.Body += "<h5>The VoteMyPoll team</h5>";
+            mail.IsBodyHtml = true;
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("votemypoll@gmail.com", "votemypollteam1234");
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
+
+        }
 
 
-
+        public void ScheduledJobs()
+        {
+            _dataAccess.UserRepository.ScheduleDeleteUsers();
+            _dataAccess.FormRepository.ScheduleUpdateForms();
+        }
 
 
 

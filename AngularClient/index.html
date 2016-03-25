@@ -8,10 +8,13 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/sidebar.css" rel="stylesheet" />
     <link href="Content/angular-chart.css" rel="stylesheet" />
-
+    <base href="/">
 </head>
 <body ng-app="app" ng-controller="MainController as vm" data-ng-init="vm.registerToken()">
-
+    <div ng-view>
+        <h1>{{vm.t}}</h1>
+    </div>
+    
     <!-- Navbar -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -86,19 +89,19 @@
         <!-- sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li ng-click="vm.changePage('home')"><a href="#">Home</a></li>
-                <li ng-click="vm.changePage('my_polls')"><a href="#my_polls">My polls</a></li>
-                <li ng-click="vm.changePage('voted_polls')"><a href="#voted_polls">Voted polls</a></li>
-                <li ng-click="vm.changePage('categories')"><a href="#categories">Categories</a></li>
-                <li ng-click="vm.changePage('new_poll')"><a href="#new_poll">Add new poll</a></li>
+                <li ng-click="vm.changePage('home')"><a href="/#">Home</a></li>
+                <li ng-click="vm.changePage('my_polls')"><a href="/#/my_polls">My polls</a></li>
+                <li ng-click="vm.changePage('voted_polls')"><a href="/#/voted_polls">Voted polls</a></li>
+                <li ng-click="vm.changePage('categories')"><a href="/#/categories">Categories</a></li>
+                <li ng-click="vm.changePage('new_poll')"><a href="/#/new_poll">Add new poll</a></li>
             </ul>
 
             <ul ng-if="vm.role == 'admin'" class="sidebar-nav">
                 <li><hr></li>
                 <li><h4>Admin</h4></li>
-                <li ng-click="vm.changePage('manage_categories')"><a href="#manage_categories">Manage Categories</a></li>
-                <li ng-click="vm.changePage('manage_users')"><a href="#manage_users">Manage Users</a></li>
-                <li ng-click="vm.changePage('manage_polls')"><a href="#manage_polls">Manage Polls</a></li>
+                <li ng-click="vm.changePage('manage_categories')"><a href="/#/manage_categories">Manage Categories</a></li>
+                <li ng-click="vm.changePage('manage_users')"><a href="/#/manage_users">Manage Users</a></li>
+                <li ng-click="vm.changePage('manage_polls')"><a href="/#/manage_polls">Manage Polls</a></li>
 
             </ul>
         </div>
