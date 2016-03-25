@@ -31,10 +31,15 @@ namespace WebAPI.Models
         {
             try
             {
-                bl.UserLogic.AddUser(userDTO);
+                int id = bl.UserLogic.AddUser(userDTO);
+                //creeaza un nou token
+                string token = bl.TokenLogic.UpdateToken(id, userDTO.Username, userDTO.Password);
+                //trimite mail de verificare
+                bl.UserLogic.Send_email(token, userDTO.Username, userDTO.Email);
+
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -57,7 +62,7 @@ namespace WebAPI.Models
             {
                 return false;
             }
-           
+
         }
 
         public bool DemoteUser(int id)
@@ -104,7 +109,7 @@ namespace WebAPI.Models
                 bl.UserLogic.DeleteUser(userID);
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }

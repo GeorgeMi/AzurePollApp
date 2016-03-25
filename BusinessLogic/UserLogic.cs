@@ -56,7 +56,7 @@ namespace BusinessLogic
             return _dataAccess.UserRepository.FindFirstBy(u => u.Username == username).Role;
         }
 
-        public void AddUser(UserRegistrationDTO userDTO)
+        public int AddUser(UserRegistrationDTO userDTO)
         {
             if (string.IsNullOrWhiteSpace(userDTO.Username) || string.IsNullOrWhiteSpace(userDTO.Password) || string.IsNullOrWhiteSpace(userDTO.Email))
             {
@@ -68,11 +68,9 @@ namespace BusinessLogic
                 User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" ,Verified="no"};
                 _dataAccess.UserRepository.Add(user);
 
-                //trimite mail de verificare
-                int userID = _dataAccess.UserRepository.FindFirstBy(u => u.Username == userDTO.Username).UserID;
-                string token = _dataAccess.TokenRepository.FindFirstBy(t => t.UserID == userID).TokenString;
-                Send_email(token, userDTO.Username, userDTO.Email);
-                               
+               
+                return _dataAccess.UserRepository.FindFirstBy(u => u.Username == userDTO.Username).UserID;
+                 
             }
            
         }
@@ -137,7 +135,7 @@ namespace BusinessLogic
             mail.To.Add(email);
             mail.Subject = "Welcome to VoteMyPoll";
             mail.Body = "<h3>Hello " + username + ", </h3>";
-            mail.Body += "<p>Thanks for signing up! Before you start, please verify your email address by clicking <a href=\"http://votemypoll.azurewebsite.net/?verifymail=" + token + "\">here</a>.</p>";
+            mail.Body += "<p>Thanks for signing up! Before you start, please verify your email address by clicking <a href=\"http://votemypoll.azurewebsites.net/#/?verifymail=" + token + "\">here</a>.</p>";
             mail.Body += "<p>This link will expire in 24 hours if it's not activated.</p>";
             mail.Body += "<h5>The VoteMyPoll team</h5>";
             mail.IsBodyHtml = true;

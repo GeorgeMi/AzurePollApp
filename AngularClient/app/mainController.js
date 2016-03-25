@@ -2,20 +2,17 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", "$routeParams","$location", MainController])
+        .controller("MainController", ["userAccount", "$cookies", "$routeParams", "$location", MainController])
 
 
 
     function MainController(userAccount, $cookies, $routeParams, $location) {
-       
+
         var vm = this;
-       
-        if ($location.search().verifymail)
-        {
-            alert("asdasd");
-        }
+
         vm.isLoggedIn = false;
-        vm.messageRegistration = '';
+        vm.messageSuccessRegistration = '';
+        vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
         vm.message = '';
         vm.role = '';
@@ -53,9 +50,6 @@
         vm.tokenDataRegistration = $cookies.get('token');
 
 
-
-
-
         //------------------register-----------------------
         vm.registerUser = function () {
 
@@ -69,10 +63,10 @@
 
                         function (data) {
                             //inregistrarea a avut succes
-                            vm.messageRegistration = data.success;
+                            vm.messageSuccessRegistration = data.success;
                             vm.userData.username = vm.userDataRegistration.username;
                             vm.userData.password = vm.userDataRegistration.password;
-                            vm.login();
+                            //  vm.login();
                         },
 
                         function (response) {
@@ -80,21 +74,21 @@
                             vm.isLoggedIn = false;
 
                             if (response.data.error) {
-                                vm.messageRegistration = response.data.error;
+                                vm.messageFailedRegistration = response.data.error;
                             }
 
                             //validation errors
                             if (response.data.modelState) {
 
                                 for (var key in response.data.modelState) {
-                                    vm.messageRegistration += response.data.modelState[key] + "\r\n";
+                                    vm.messageFailedRegistration += response.data.modelState[key] + "\r\n";
                                 }
                             }
                         });
                 }
                 else {
 
-                    vm.messageRegistration = "Passwords don't match";
+                    vm.messageFailedRegistration = "Passwords don't match";
                 }
             }
         }
@@ -184,6 +178,7 @@
         }
 
         //------------------change page-----------------------
+
         vm.changePage = function (mypage) {
             vm.pages.home = false;
             vm.pages.categories = false;
@@ -234,6 +229,36 @@
 
 
         }
+
+        //------------------verify mail---------------------
+        if ($location.search().verifymail) {
+            var param = { user_id: $location.search().verifymail };
+
+            userAccount.verifyMail.verifyMail(param,
+
+                        function (data) {
+                            //validarea a avut succes
+                            vm.messageSuccessRegistration = data.success;
+
+                        },
+
+                        function (response) {
+
+                            //validarea nu a avut succes
+                            if (response.data.error) {
+                                vm.messageFailedRegistration = response.data.error;
+                            }
+
+                        });
+
+
+        }
+            //change page using url
+        else if ($location.url()) {
+            vm.changePage($location.url());
+        }
+
+
 
 
 

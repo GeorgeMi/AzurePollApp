@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
             
             if (add)
             {
-                SuccessMessage msg = new SuccessMessage("Registration successful!");
+                SuccessMessage msg = new SuccessMessage("Your account has been successfully verified!");
 
                 response = Request.CreateResponse(HttpStatusCode.OK, msg);
                 return response;
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email ");
+                ErrorMessage msg = new ErrorMessage("Invalid verification link!");
 
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
                 return response;

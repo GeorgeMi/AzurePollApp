@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
 
             if (add)
             {
-                SuccessMessage msg = new SuccessMessage("Registration successful!");
+                SuccessMessage msg = new SuccessMessage("Registration successful! Please, verify your mail address.");
                 
                 response = Request.CreateResponse(HttpStatusCode.OK, msg);
                 return response;
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email ");
+                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email. ");
 
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
                 return response;

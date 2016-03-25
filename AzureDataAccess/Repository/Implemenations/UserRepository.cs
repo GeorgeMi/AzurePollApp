@@ -39,7 +39,7 @@ namespace AzureDataAccess.Repository.Implementations
         public void Verified(int userID)
         {
             User u = Context.Users.Find(userID);
-            u.Verified = "true";
+            u.Verified = "yes";
 
             Context.SaveChanges();
         }

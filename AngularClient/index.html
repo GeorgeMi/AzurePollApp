@@ -8,13 +8,10 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/sidebar.css" rel="stylesheet" />
     <link href="Content/angular-chart.css" rel="stylesheet" />
-    <base href="/">
+
 </head>
 <body ng-app="app" ng-controller="MainController as vm" data-ng-init="vm.registerToken()">
-    <div ng-view>
-        <h1>{{vm.t}}</h1>
-    </div>
-    
+
     <!-- Navbar -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -80,9 +77,10 @@
                     <button type="submit" class="btn btn-default" ng-click="vm.registerUser()">Register</button>
                 </div>
             </div>
-            <div ng-show="vm.messageRegistration" class="alert alert-danger" role="alert">{{vm.messageRegistration}}</div>
+            <div ng-show="vm.messageFailedRegistration" class="alert alert-danger" role="alert">{{vm.messageFailedRegistration}}</div>
+            <div ng-show="vm.messageSuccessRegistration" class="alert alert-success" role="alert">{{vm.messageSuccessRegistration}}</div>
         </form>
-   </div>
+    </div>
 
     <!-- Wrapper -->
     <div ng-if="vm.isLoggedIn" id="wrapper">
@@ -120,7 +118,7 @@
                         <div ng-if="vm.pages.vote_poll" ng-include="'app/formVote/formVoteView.html'">vote_poll</div>
                         <div ng-if="vm.pages.voted_polls" ng-include="'app/formVoted/formVotedListView.html'">voted_polls</div>
                         <div ng-if="vm.pages.manage_users" ng-include="'app/user/userListView.html'"></div>
-                        <div ng-if="vm.pages.manage_polls"  ng-include="'app/form/formListAdminView.html'">manage_polls</div>
+                        <div ng-if="vm.pages.manage_polls" ng-include="'app/form/formListAdminView.html'">manage_polls</div>
                         <div ng-if="vm.pages.manage_categories" ng-include="'app/category/categoryAdminListView.html'">manage_categories</div>
                     </div>
                 </div>
