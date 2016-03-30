@@ -1,4 +1,5 @@
 ﻿using DataTransferObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,10 +18,41 @@ namespace WebAPI.Controllers
         [RequireToken]
         public IEnumerable<FormDTO> Get()
         {
+            // get forms 
+            int page_nr = 0;
+            int per_page = 10;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
-           
+
+            try
+            {
+                //daca exista query si este valid se schimba valorile implicite ale paginii si al numarului elementelor de pe pagina
+                var queryString = this.Request.GetQueryNameValuePairs();
+                foreach (KeyValuePair<string, string> pair in queryString)
+                {
+                    if (pair.Key == "page")
+                    {
+                        page_nr = Int32.Parse(pair.Value);
+                    }
+                    if (pair.Key == "per_page")
+                    {
+                        per_page = Int32.Parse(pair.Value);
+                    }
+                }
+
+                if (page_nr < 0 || per_page < 0)
+                {
+                    page_nr = 0;
+                    per_page = 10;
+                }
+            }
+            catch
+            {
+                page_nr = 0;
+                per_page = 10;
+            }
+
             List<FormDTO> list = new List<FormDTO>();
-            list = formModel.GetAllForms(token);
+            list = formModel.GetAllForms(token, page_nr, per_page);
             return list;
         }
 
@@ -48,7 +80,7 @@ namespace WebAPI.Controllers
         [ActionName("getForm")]
         public FormDetailDTO GetForm(int id)
         {
-           return formModel.GetContentForm(id);
+            return formModel.GetContentForm(id);
         }
 
         [RequireToken]
@@ -56,8 +88,40 @@ namespace WebAPI.Controllers
         [ActionName("voted")]
         public IEnumerable<FormDTO> Voted(string id) //returneaza lista sondajelor votate de catre un user
         {
+            // get forms 
+            int page_nr = 0;
+            int per_page = 10;
+          
+            try
+            {
+                //daca exista query si este valid se schimba valorile implicite ale paginii si al numarului elementelor de pe pagina
+                var queryString = this.Request.GetQueryNameValuePairs();
+                foreach (KeyValuePair<string, string> pair in queryString)
+                {
+                    if (pair.Key == "page")
+                    {
+                        page_nr = Int32.Parse(pair.Value);
+                    }
+                    if (pair.Key == "per_page")
+                    {
+                        per_page = Int32.Parse(pair.Value);
+                    }
+                }
+
+                if (page_nr < 0 || per_page < 0)
+                {
+                    page_nr = 0;
+                    per_page = 10;
+                }
+            }
+            catch
+            {
+                page_nr = 0;
+                per_page = 10;
+            }
+
             List<FormDTO> list = new List<FormDTO>();
-            list = formModel.GetVotedForms(id);
+            list = formModel.GetVotedForms(id, page_nr, per_page);
             return list;
         }
 
@@ -66,10 +130,44 @@ namespace WebAPI.Controllers
         [ActionName("category")]
         public IEnumerable<FormDTO> Category(int id) //returneaza lista sondajelor dintr-o categorie
         {
+            // get forms 
+            int page_nr = 0;
+            int per_page = 10;
+          
+            try
+            {
+                //daca exista query si este valid se schimba valorile implicite ale paginii si al numarului elementelor de pe pagina
+                var queryString = this.Request.GetQueryNameValuePairs();
+
+                foreach (KeyValuePair<string, string> pair in queryString)
+                {
+                    if (pair.Key == "page")
+                    {
+                        page_nr = Int32.Parse(pair.Value);
+                    }
+                    if (pair.Key == "per_page")
+                    {
+                        per_page = Int32.Parse(pair.Value);
+                    }
+                }
+
+                if (page_nr < 0 || per_page < 0)
+                {
+                    page_nr = 0;
+                    per_page = 10;
+                }
+            }
+            catch
+            {
+                page_nr = 0;
+                per_page = 10;
+            }
+
+
             List<FormDTO> list = new List<FormDTO>();
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
 
-            list = formModel.GetCategoryForms(id, token);
+            list = formModel.GetCategoryForms(id, token, page_nr, per_page);
             return list;
         }
 
@@ -77,7 +175,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post([FromBody] FormDetailDTO formDTO)
         {
             HttpResponseMessage responseMessage;
-  
+
             bool response = formModel.AddForm(formDTO);
             if (response)
             {
@@ -85,7 +183,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                 responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
             }
 
             return responseMessage;

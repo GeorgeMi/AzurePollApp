@@ -7,7 +7,7 @@
     function formResource($resource, appSettings, $cookies) {
         return {
             //all forms
-            get: $resource(appSettings.serverPath + "/api/form", null,
+            get: $resource(appSettings.serverPath + "/api/form?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
                       {
                           'getForms': {
                               method: 'GET',
@@ -38,7 +38,7 @@
                          }
                      }),
             //voted forms
-            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username'), null,
+            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username')+"?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
                      {
                          'getVotedForms': {
                              method: 'GET',
@@ -54,7 +54,7 @@
                          }
                      }),
             //forms from category
-            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id", { category_id: '@id' },
+            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id?page=:page_nr&per_page=:per_page", { category_id: '@id',page_nr: '@id', per_page:'@id' },
                      {
                          'getCategoryForms': {
                              method: 'GET',

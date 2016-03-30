@@ -56,7 +56,7 @@ namespace BusinessLogic
 
             VoteQuestionResultDetailDTO questionDTO;
             VoteAnswerDetailResultDTO answerDTO;
-            
+
             foreach (Question q in questionList)
             {
                 questionDTO = new VoteQuestionResultDetailDTO();
@@ -75,14 +75,14 @@ namespace BusinessLogic
                 voteResult.NrVotes = Decimal.ToInt32(q.NrVotes);
                 voteResult.Questions.Add(questionDTO);
             }
-           
+
             return voteResult;
         }
 
-        public List<FormDTO> GetCategoryForms(int categoryID, string token)
+        public List<FormDTO> GetCategoryForms(int categoryID, string token, int page, int per_page)
         {
             //returneaza toate formurile dintr-o categorie
-            List<Form> formList = _dataAccess.FormRepository.FindAllBy(f=>f.CategoryID == categoryID).ToList();
+            List<Form> formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
@@ -113,15 +113,15 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-            return formDtoList;
+            return formDtoList.Skip(page * per_page).Take(per_page).ToList(); 
         }
 
-        public List<FormDTO> GetVotedForms(string username)
+        public List<FormDTO> GetVotedForms(string username, int page, int per_page)
         {
             //returneaza toate formurile votate de catre un user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
-            List<Form> formList=new List<Form>();
-            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted=>voted.UserID == userID).ToList();
+            List<Form> formList = new List<Form>();
+            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
             Form form;
@@ -131,7 +131,7 @@ namespace BusinessLogic
                 form = _dataAccess.FormRepository.FindFirstBy(f => f.FormID == votedForm.FormID);
                 formList.Add(form);
             }
-          
+
             foreach (Form f in formList)
             {
                 formDTO = new FormDTO();
@@ -143,14 +143,14 @@ namespace BusinessLogic
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
                 formDTO.Voted = true;
-                                                
+
                 formDtoList.Add(formDTO);
             }
 
-            return formDtoList;
+            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
         }
 
-        public List<FormDTO> GetAllForms(string token)
+        public List<FormDTO> GetAllForms(string token, int page, int per_page)
         {
             //returneaza toate formurile 
             List<Form> formList = _dataAccess.FormRepository.GetAll().ToList();
@@ -158,7 +158,7 @@ namespace BusinessLogic
             FormDTO formDTO;
 
             int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID;
-           
+
             foreach (Form f in formList)
             {
                 formDTO = new FormDTO();
@@ -173,10 +173,10 @@ namespace BusinessLogic
 
                 try
                 {
-                  userID = _dataAccess.VotedFormsRepository.FindFirstBy(voted => voted.FormID == f.FormID && voted.UserID == userID).UserID;
+                    userID = _dataAccess.VotedFormsRepository.FindFirstBy(voted => voted.FormID == f.FormID && voted.UserID == userID).UserID;
                 }
                 catch
-                { 
+                {
                     //daca userul a votat sondajul deja, nu il va mai putea vota
                     formDTO.Voted = false;
                 }
@@ -184,7 +184,7 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-            return formDtoList;
+            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
 
         }
 
@@ -351,11 +351,11 @@ namespace BusinessLogic
         {
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == voteListDTO.Username).UserID;
             int questionID;
-            
+
             //testeaza daca tokenul si userul care a votat coincid
             if (userID == _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID)
             {
-                questionID= voteListDTO.Answers[0].Question;
+                questionID = voteListDTO.Answers[0].Question;
 
                 int formID = _dataAccess.QuestionRepository.FindFirstBy(question => question.QuestionID == questionID).FormID;
 
@@ -400,7 +400,7 @@ namespace BusinessLogic
                 VotedForm voted = new VotedForm();
                 voted.UserID = userID;
                 voted.FormID = formID;
-                
+
                 //adauga sondajul in lista sondajelor votate de userul respectiv
                 _dataAccess.VotedFormsRepository.Add(voted);
                 return voteResult;
@@ -408,6 +408,6 @@ namespace BusinessLogic
             else throw new Exception("Poll already voted!");
 
         }
-          
+
     }
 }

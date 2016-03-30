@@ -27,11 +27,11 @@ namespace WebAPI.Models
             bl = objContainer.Resolve<BusinessLogic.BusinessLogic>();
         }
 
-        public List<FormDTO> GetAllForms(string token)
+        public List<FormDTO> GetAllForms(string token, int page, int per_page)
         {
             try
             {
-                return bl.FormLogic.GetAllForms(token);
+                return bl.FormLogic.GetAllForms(token, page, per_page);
             }
             catch(Exception ex)
             {
@@ -63,11 +63,11 @@ namespace WebAPI.Models
             }
         }
 
-        public List<FormDTO> GetVotedForms(string username)
+        public List<FormDTO> GetVotedForms(string username,int page_nr, int per_page)
         {
             try
             {
-                return bl.FormLogic.GetVotedForms(username);
+                return bl.FormLogic.GetVotedForms(username, page_nr, per_page);
             }
             catch
             {
@@ -89,11 +89,11 @@ namespace WebAPI.Models
             }
         }
 
-        internal List<FormDTO> GetCategoryForms(int categoryID,string token)
+        internal List<FormDTO> GetCategoryForms(int categoryID,string token, int page_nr, int per_page)
         {
             try
             {
-                return bl.FormLogic.GetCategoryForms(categoryID, token);
+                return bl.FormLogic.GetCategoryForms(categoryID, token, page_nr, per_page);
             }
             catch
             {
