@@ -10,7 +10,7 @@
 
         var vm = this;
 
-        vm.isLoggedIn = false;
+        vm.isLoggedIn = true;
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
@@ -258,10 +258,7 @@
             vm.changePage($location.url());
         }
 
-
-
-
-
+     
 
     };
 })();

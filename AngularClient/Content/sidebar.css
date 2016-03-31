@@ -8,7 +8,6 @@
 #sidebar-wrapper {
     z-index: 1;
     position: absolute;
-    width: 20%;
     height: 100%;
     overflow-y: hidden;
     background: #2C3E50;
@@ -48,3 +47,84 @@
     width: 10%;
 }
 
+
+
+.desktopHidden {
+    display: none;
+}
+
+.mobileNav {
+    display: inline-block;
+}
+
+
+.mobileSideBarVisible {
+    width: 20%;
+    display: inline-block;
+}
+
+.sideBarHidden {
+    display: none;
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+    .navbar-brand {
+        width: 80%;
+        text-align: center;
+        float: right;
+        display: inline-block;
+    }
+
+    .navbar-form {
+        width: 100%;
+        margin: 0px 0px;
+        text-align: center;
+    }
+
+    #loginBtn {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    #registerBtn {
+        text-align: center;
+    }
+
+    .mobileHidden {
+        display: none !important;
+    }
+
+
+    #page-content-wrapper {
+        padding-left: 0%;
+    }
+
+    .glyphicon {
+        width: 20%;
+        float: left;
+    }
+
+    .mobileNav {
+        padding-top: 15px;
+        display: block;
+        width: 100%;
+    }
+
+    .desktopHidden {
+        display: inline-block;
+    }
+
+    .mobileSideBarVisible {
+        width: 100%;
+    }
+}
+
+/*desktop */
+@media only screen and (min-width : 350px) {
+    .mobileSideBarVisible {
+        width: 20%;
+        display: inline-block;
+    }
+}
