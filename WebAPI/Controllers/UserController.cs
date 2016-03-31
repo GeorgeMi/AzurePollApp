@@ -1,4 +1,5 @@
 ﻿using DataTransferObject;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -17,8 +18,39 @@ namespace WebAPI.Controllers
         [RequireAdminToken]
         public IEnumerable<UserDetailDTO> Get()
         {
+            // get forms 
+            int page_nr = 0;
+            int per_page = 10;
+           
+            try
+            {
+                //daca exista query si este valid se schimba valorile implicite ale paginii si al numarului elementelor de pe pagina
+                var queryString = this.Request.GetQueryNameValuePairs();
+                foreach (KeyValuePair<string, string> pair in queryString)
+                {
+                    if (pair.Key == "page")
+                    {
+                        page_nr = Int32.Parse(pair.Value);
+                    }
+                    if (pair.Key == "per_page")
+                    {
+                        per_page = Int32.Parse(pair.Value);
+                    }
+                }
+
+                if (page_nr < 0 || per_page < 0)
+                {
+                    page_nr = 0;
+                    per_page = 10;
+                }
+            }
+            catch
+            {
+                page_nr = 0;
+                per_page = 10;
+            }
             List<UserDetailDTO> list = new List<UserDetailDTO>();
-            list = userModel.GetAllUsers();
+            list = userModel.GetAllUsers(page_nr,per_page);
             return list;
         }
 

@@ -9,7 +9,7 @@
 
         vm.created = false;
         vm.page_nr = 0; //numarul paginii
-        vm.per_page = 1; //numarul de elemente de pe pagina
+        vm.per_page = 10; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = true; // se afiseaza "next page" la paginare
         //data form to send

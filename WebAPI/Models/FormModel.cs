@@ -33,7 +33,7 @@ namespace WebAPI.Models
             {
                 return bl.FormLogic.GetAllForms(token, page, per_page);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -51,11 +51,11 @@ namespace WebAPI.Models
             }
         }
 
-        public List<FormDTO> GetUserForms(string username)
+        public List<FormDTO> GetUserForms(string username, int page, int per_page)
         {
             try
             {
-                return bl.FormLogic.GetUserForms(username);
+                return bl.FormLogic.GetUserForms(username, page, per_page);
             }
             catch
             {
@@ -63,7 +63,7 @@ namespace WebAPI.Models
             }
         }
 
-        public List<FormDTO> GetVotedForms(string username,int page_nr, int per_page)
+        public List<FormDTO> GetVotedForms(string username, int page_nr, int per_page)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace WebAPI.Models
             {
                 FormDetailDTO formDTO = bl.FormLogic.GetContentForm(id);
                 return formDTO;
-                
+
             }
             catch
             {
@@ -89,7 +89,7 @@ namespace WebAPI.Models
             }
         }
 
-        internal List<FormDTO> GetCategoryForms(int categoryID,string token, int page_nr, int per_page)
+        internal List<FormDTO> GetCategoryForms(int categoryID, string token, int page_nr, int per_page)
         {
             try
             {
@@ -109,11 +109,11 @@ namespace WebAPI.Models
                 return true;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
-          
+
         }
 
         public bool DeleteForm(int formID)
@@ -149,7 +149,7 @@ namespace WebAPI.Models
         {
             try
             {
-               return bl.FormLogic.Vote(voteDTO,token);
+                return bl.FormLogic.Vote(voteDTO, token);
             }
             catch (Exception ex)
             {

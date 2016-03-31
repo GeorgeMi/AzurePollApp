@@ -10,7 +10,8 @@
 
         var vm = this;
 
-        vm.isLoggedIn = true;
+        vm.isLoggedIn = false;
+        
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
@@ -109,6 +110,8 @@
                         vm.password = "";
                         vm.token = data.token;
                         vm.role = data.role;
+                        //always load on home page
+                        vm.changePage('home');
 
                         var expireDate = new Date();
                         expireDate.setDate(expireDate.getDate() + 1);
@@ -141,6 +144,9 @@
                     } else {
                         //token acceptat
                         vm.isLoggedIn = true;
+
+                        //always load on home page
+                        vm.changePage('home');
 
                         var expireDate = new Date();
                         expireDate.setDate(expireDate.getDate() + 1);
@@ -180,6 +186,9 @@
         //------------------change page-----------------------
 
         vm.changePage = function (mypage) {
+            //inchide sideBar la smartphone
+            $(".mobileSideBarVisible").addClass("sideBarHidden");
+
             vm.pages.home = false;
             vm.pages.categories = false;
             vm.pages.category_forms = false;
@@ -230,6 +239,7 @@
 
         }
 
+             
         //------------------verify mail---------------------
         if ($location.search().verifymail) {
             var param = { user_id: $location.search().verifymail };

@@ -20,7 +20,7 @@ namespace BusinessLogic
             _dataAccess = objDataAccess;
         }
 
-        public List<FormDTO> GetUserForms(string username)
+        public List<FormDTO> GetUserForms(string username, int page, int per_page)
         {
             //returnez toate formurile unui user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
@@ -41,7 +41,7 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-            return formDtoList;
+            return formDtoList.Skip(page * per_page).Take(per_page).ToList(); 
         }
 
         public VoteResultDetailDTO GetDetailResultForm(int id)

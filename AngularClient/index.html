@@ -17,11 +17,13 @@
     <!-- Navbar -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            
-            <div class="mobileNav">
-                <button type="button" class="btn btn-default btn-lg desktopHidden glyphBtn">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true" ng-click="vm.viewSideBar()"></span>
+
+            <div class="mobileNav" ng-click="vm.viewSideBar()">
+               
+                <button  type="button"  class="btn btn-default btn-lg desktopHidden glyphBtn">
+                    <span ng-if="vm.isLoggedIn" class="glyphicon glyphicon-th-list" aria-hidden="true" ></span>
                 </button>
+
                 <div class="navbar-brand">Poll Application</div>
             </div>
             <div class="nav navbar-nav navbar-right">
@@ -93,13 +95,14 @@
     <!-- Wrapper -->
     <div ng-if="vm.isLoggedIn" id="wrapper">
         <!-- sidebar -->
-        <div id="sidebar-wrapper" class="mobileSideBarVisible">
+        <div id="sidebar-wrapper" class="mobileSideBarVisible sideBarHidden">
             <ul class="sidebar-nav">
                 <li ng-click="vm.changePage('home')"><a href="/#">Home</a></li>
                 <li ng-click="vm.changePage('my_polls')"><a href="/#/my_polls">My polls</a></li>
                 <li ng-click="vm.changePage('voted_polls')"><a href="/#/voted_polls">Voted polls</a></li>
                 <li ng-click="vm.changePage('categories')"><a href="/#/categories">Categories</a></li>
                 <li ng-click="vm.changePage('new_poll')"><a href="/#/new_poll">Add new poll</a></li>
+                <li ng-click="vm.logout()"><a href="">Log out</a></li>
             </ul>
 
             <ul ng-if="vm.role == 'admin'" class="sidebar-nav">
@@ -169,13 +172,16 @@
 <script>
 
     $(".glyphBtn").click(function () {
-        if ($(".mobileSideBarVisible").hasClass("sideBarHidden"))
-        {
+
+        if ($(".mobileSideBarVisible").hasClass("sideBarHidden")) {
             $(".mobileSideBarVisible").removeClass("sideBarHidden");
         }
-        else
-        {
+        else {
             $(".mobileSideBarVisible").addClass("sideBarHidden");
+
         }
     });
+
+
+
 </script>

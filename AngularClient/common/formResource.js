@@ -88,13 +88,19 @@
 
               }),
             //all forms from user
-            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username'), null,
+            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username')+"?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
                       {
                           'getForms': {
-                              method: 'POST',
+                              method: 'GET',
                               isArray: true,
                               headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
-
+                              transformRequest: function (data, headersGetter) {
+                                  var str = [];
+                                  for (var d in data) {
+                                      str.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+                                  }
+                                  return str.join("&");
+                              }
                           }
                       }),
             //result detail for specific form

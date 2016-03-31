@@ -69,7 +69,7 @@
 
 
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
+@media only screen and (max-width : 500px) {
     .navbar-brand {
         width: 80%;
         text-align: center;
@@ -119,10 +119,32 @@
     .mobileSideBarVisible {
         width: 100%;
     }
+
+    #question {
+        width: 80%;
+         display: inline-block;
+         padding-right:2%;
+    }
+
+    #questionDelete {
+        width: 15%;
+         display: inline-block;
+    }
+
+     #answer {
+        width: 80%;
+         display: inline-block;
+         padding-right:2%;
+    }
+
+    #answerDelete {
+        width: 15%;
+         display: inline-block;
+    }
 }
 
 /*desktop */
-@media only screen and (min-width : 350px) {
+@media only screen and (min-width : 510px) {
     .mobileSideBarVisible {
         width: 20%;
         display: inline-block;

@@ -78,11 +78,11 @@ namespace WebAPI.Models
                 return false;
             }
         }
-        public List<UserDetailDTO> GetAllUsers()
+        public List<UserDetailDTO> GetAllUsers(int page_nr,int per_page)
         {
             try
             {
-                return bl.UserLogic.GetAllUsers();
+                return bl.UserLogic.GetAllUsers(page_nr, per_page);
             }
             catch
             {

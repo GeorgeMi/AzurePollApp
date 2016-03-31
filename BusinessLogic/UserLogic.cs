@@ -29,7 +29,7 @@ namespace BusinessLogic
 
             _dataAccess = objDataAccess;
         }
-        public List<UserDetailDTO> GetAllUsers()
+        public List<UserDetailDTO> GetAllUsers(int page, int per_page)
         {
             //returneaza lista cu toti userii
             List<User> userList = _dataAccess.UserRepository.GetAll().ToList();
@@ -48,7 +48,7 @@ namespace BusinessLogic
                 userDtoList.Add(userDTO);
             }
 
-            return userDtoList;
+            return userDtoList.Skip(page * per_page).Take(per_page).ToList(); 
         }
 
         public string GetUserRole(string username)

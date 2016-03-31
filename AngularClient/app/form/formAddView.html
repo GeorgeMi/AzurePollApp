@@ -32,21 +32,20 @@
                 <div data-ng-repeat="question in ctrl.sendForm.questions">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="pwd">Question no. {{question.id}}:</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" id="question">
                             <input type="text" class="form-control" ng-model="question.question" placeholder="Enter a question" required>
-
                         </div>
-                        <div class="btn btn-default" title="Delete question" ng-click="ctrl.deleteQuestion(question.id)"> x </div>
+                        <div class="btn btn-default" title="Delete question"  id="questionDelete" ng-click="ctrl.deleteQuestion(question.id)"> x </div>
                     </div>
 
                     <div data-ng-repeat="answer in question.answers">
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="pwd">Answer no. {{answer.id}}:</label>
-                            <div class="col-sm-7">
+                            <div class="col-sm-7"  id="answer">
                                 <input type="text" class="form-control" ng-model="answer.answer" placeholder="Enter an answer" required>
 
                             </div>
-                            <div class="btn btn-default" title="Delete answer" ng-click="ctrl.deleteAnswer(question.id,answer.id)"> x </div>
+                            <div class="btn btn-default" title="Delete answer" id="answerDelete" ng-click="ctrl.deleteAnswer(question.id,answer.id)"> x </div>
                         </div>
                     </div>
 
@@ -74,8 +73,6 @@
                  </div>
                 <div ng-if="ctrl.created" class="alert alert-success" role="alert">{{ctrl.messageForm}}</div>
             </div>
-           
-             {{ ctrl.sendForm }}
         </div>
     </div>
 </div>
