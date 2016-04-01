@@ -67,7 +67,9 @@
     display: none;
 }
 
-
+textarea {
+    resize: none; 
+}
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 500px) {
     .navbar-brand {

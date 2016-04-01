@@ -107,7 +107,7 @@
 
         vm.addForm = function () {
             // alert(vm.sendForm);
-            var x = JSON.stringify(vm.sendForm)
+            var x = JSON.stringify(vm.sendForm);
 
             formResource.add.addForm(x,
                 //s-a creat cu succes

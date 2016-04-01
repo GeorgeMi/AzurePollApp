@@ -35,7 +35,7 @@ namespace WebAPI.Models
                 //creeaza un nou token
                 string token = bl.TokenLogic.UpdateToken(id, userDTO.Username, userDTO.Password);
                 //trimite mail de verificare
-                bl.UserLogic.Send_email(token, userDTO.Username, userDTO.Email);
+                bl.UserLogic.SendAuthEmail(token, userDTO.Username, userDTO.Email);
 
                 return true;
             }

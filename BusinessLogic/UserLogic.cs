@@ -125,7 +125,7 @@ namespace BusinessLogic
             _dataAccess.UserRepository.ChangeRole(id, "user");
         }
 
-        public void Send_email(string token, string username, string email)
+        public void SendAuthEmail(string token, string username, string email)
         {
             //trimite mail de confirmare
 

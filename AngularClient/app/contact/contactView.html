@@ -1,0 +1,38 @@
+﻿<div ng-controller="ContactController as ctrl">
+    <div class="panel panel-default" ng-controller="CategoryController as cat">
+        <div class="panel-heading">Contact Us</div>
+        <div class="panel-body">
+
+            <form class="form-horizontal">
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Category:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model="ctrl.contact.category" required>
+                            <option value="Message">Message</option>
+                            <option value="Report abuse">Report abuse</option>
+                            <option value="Request admin role">Request admin role</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Message:</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" rows="8" ng-model="ctrl.contact.message" required></textarea>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" type="submit" ng-click="ctrl.sendMessage()">Send message</button>
+                    </div>
+                </div>
+                <div ng-if="ctrl.created" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
+            </div>
+        </div>
+        {{ ctrl.contact}}
+    </div>
+</div>

@@ -44,6 +44,7 @@
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="CategoryLogic.cs" />
     <Compile Include="FormLogic.cs" />
+    <Compile Include="MessageLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenLogic.cs" />
     <Compile Include="UserLogic.cs" />

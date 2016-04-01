@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AnswerDTO.cs" />
     <Compile Include="CategoryDTO.cs" />
+    <Compile Include="ContactMessageDTO.cs" />
     <Compile Include="FormDetailDTO.cs" />
     <Compile Include="FormDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

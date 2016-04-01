@@ -229,6 +229,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Messages\TokenMessage.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ControllerModel.cs" />
     <Compile Include="Models\FormModel.cs" />
     <Compile Include="Models\UsersModel.cs" />

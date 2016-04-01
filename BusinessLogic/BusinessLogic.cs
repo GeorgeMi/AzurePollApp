@@ -22,6 +22,7 @@ namespace BusinessLogic
         public UserLogic UserLogic;
         public AuthLogic AuthLogic;
         public CategoryLogic CategoryLogic;
+        public MessageLogic MessageLogic;
 
         public BusinessLogic(IAzureDataAccess _dataAccess)
         {
@@ -30,6 +31,7 @@ namespace BusinessLogic
             UserLogic = new UserLogic(_dataAccess);
             AuthLogic = new AuthLogic(_dataAccess);
             CategoryLogic = new CategoryLogic(_dataAccess);
+            MessageLogic = new MessageLogic(_dataAccess);
         }
 
 

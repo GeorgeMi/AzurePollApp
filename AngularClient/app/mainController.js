@@ -43,7 +43,8 @@
             manage_categories: false,
             vote_poll: false,
             voted_polls: false,
-            category_forms: false
+            category_forms: false,
+            contact: false
         };
 
         vm.confirm_password = '';
@@ -180,6 +181,7 @@
             vm.pages.vote_poll = false;
             vm.pages.voted_polls = false;
             vm.pages.category_forms = false;
+            vm.pages.contact = false;
 
         }
 
@@ -200,6 +202,7 @@
             vm.pages.manage_categories = false;
             vm.pages.vote_poll = false;
             vm.pages.voted_polls = false;
+            vm.pages.contact = false;
 
 
             if (mypage == 'home') {
@@ -234,6 +237,9 @@
             }
             else if (mypage == 'category_forms') {
                 vm.pages.category_forms = true;
+            }
+            else if (mypage == 'contact') {
+                 vm.pages.contact = true;
             }
 
 
