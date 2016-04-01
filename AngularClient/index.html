@@ -9,6 +9,7 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/sidebar.css" rel="stylesheet" />
     <link href="Content/angular-chart.css" rel="stylesheet" />
+    <link href="Content/loadingGif.css" rel="stylesheet" />
 
 </head>
 <body ng-app="app" ng-controller="MainController as vm" data-ng-init="vm.registerToken()">
@@ -17,13 +18,16 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
 
-            <div class="mobileNav" ng-click="vm.viewSideBar()">
-               
-                <button  type="button"  class="btn btn-default btn-lg desktopHidden glyphBtn">
-                    <span ng-if="vm.isLoggedIn" class="glyphicon glyphicon-th-list" aria-hidden="true" ></span>
-                </button>
+            <div class="mobileNav">
 
-                <div class="navbar-brand">Poll Application</div>
+                <div class="glyphBtn desktopHidden">
+                    <button ng-if="vm.isLoggedIn" type="button" class="btn btn-default btn-lg ">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <div ng-if="vm.isLoggedIn" class="navbar-brand ">Poll Application</div>
+                <div ng-hide="vm.isLoggedIn" class="navbar-brand brandName">Poll Application</div>
             </div>
             <div class="nav navbar-nav navbar-right">
                 <form ng-hide="vm.isLoggedIn" class="navbar-form navbar-right">
@@ -105,8 +109,8 @@
                 <li ng-click="vm.changePage('voted_polls')"><a href="/#/voted_polls">Voted polls</a></li>
                 <li ng-click="vm.changePage('categories')"><a href="/#/categories">Categories</a></li>
                 <li ng-click="vm.changePage('new_poll')"><a href="/#/new_poll">Add new poll</a></li>
-                
-               
+
+
             </ul>
 
             <ul ng-if="vm.role == 'admin'" class="sidebar-nav">
@@ -138,6 +142,26 @@
                         <div ng-if="vm.pages.manage_categories" ng-include="'app/category/categoryAdminListView.html'">manage_categories</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="$root.isLoading" class="col-sm-12 loadingGif">
+        <div class="windows8">
+            <div class="wBall" id="wBall_1">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_2">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_3">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_4">
+                <div class="wInnerBall"></div>
+            </div>
+            <div class="wBall" id="wBall_5">
+                <div class="wInnerBall"></div>
             </div>
         </div>
     </div>

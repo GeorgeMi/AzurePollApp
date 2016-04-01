@@ -22,16 +22,22 @@
                         <textarea class="form-control" rows="8" ng-model="ctrl.contact.message" required></textarea>
                     </div>
                 </div>
-            </form>
 
-            <div class="col-sm-6 col-sm-offset-3">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-default" type="submit" ng-click="ctrl.sendMessage()">Send message</button>
+
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-default" type="submit" ng-click="ctrl.sendMessage()">Send message</button>
+                            </div>
+                        </div>
+                        <div ng-if="ctrl.sent" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
                     </div>
                 </div>
-                <div ng-if="ctrl.sent" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
-            </div>
+                
+            </form>
+
+           
         </div>
     </div>
 </div>

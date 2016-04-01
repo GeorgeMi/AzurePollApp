@@ -2,11 +2,12 @@
     "use strict";
     angular
         .module("contactManagement")
-        .controller("ContactController", ["contactResource", "$cookies", ContactController]);
+        .controller("ContactController", ["contactResource", "$cookies", "$rootScope", ContactController]);
 
-    function ContactController(contactResource, $cookies) {
+    function ContactController(contactResource, $cookies,  $rootScope) {
         var vm = this;
         vm.sent = false;
+        $rootScope.isLoading = false;
 
         vm.contact = {
             category: "Message",
@@ -15,29 +16,36 @@
         var x = JSON.stringify(vm.contact);
 
         vm.sendMessage = function () {
+            
+            if (vm.contact.message != '') {
 
-            var x = JSON.stringify(vm.contact);
+                $rootScope.isLoading = true;
 
-            contactResource.send.sendMessage(x,
-               //s-a trimis cu succes
-               function (data) {
+                var x = JSON.stringify(vm.contact);
 
-                   vm.contact.message = '';
-                   vm.contact.category = '';
-                   vm.messageContact = 'Message sent successfully';
-                   vm.sent = true;
+                contactResource.send.sendMessage(x,
+                   //s-a trimis cu succes
+                   function (data) {
 
-               },
+                       vm.contact.message = '';
+                       vm.contact.category = '';
+                       vm.messageContact = 'Message sent successfully';
+                       vm.sent = true;
 
-              //nu s-a trimis
-               function (response) {
-                   if (response.data.error) {
-                       vm.messageContact = response.data.error;
-                   }
-                   else {
+                   },
 
-                   }
-               });
+                  //nu s-a trimis
+                   function (response) {
+                       if (response.data.error) {
+                           vm.messageContact = response.data.error;
+                       }
+                       else {
+
+                       }
+                   });
+
+                $rootScope.isLoading = false;
+            }
         }
 
     }

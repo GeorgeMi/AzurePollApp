@@ -2,16 +2,16 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", "$routeParams", "$location", MainController])
+        .controller("MainController", ["userAccount", "$cookies", "$routeParams" ,"$location","$rootScope", MainController])
 
 
 
-    function MainController(userAccount, $cookies, $routeParams, $location) {
+    function MainController(userAccount, $cookies, $routeParams, $location, $rootScope) {
 
         var vm = this;
 
-        vm.isLoggedIn = false;
-        
+        vm.isLoggedIn = true;
+        $rootScope.isLoading = false; //loading gif
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
@@ -55,11 +55,23 @@
         //------------------register-----------------------
         vm.registerUser = function () {
 
-            if (vm.userDataRegistration.password != ''
+
+            if (vm.userDataRegistration.email != ''
+               && vm.userDataRegistration.username != ''
+                && vm.userDataRegistration.password != '') {
+
+                vm.userDataRegistration.email = vm.userDataRegistration.email.replace(/ /g, '');
+                vm.userDataRegistration.username = vm.userDataRegistration.username.replace(/ /g, '');
+                vm.userDataRegistration.password = vm.userDataRegistration.username.replace(/ /g, '');
+            }
+            
+            if (vm.userDataRegistration.email != ''
                 && vm.userDataRegistration.username != ''
                  && vm.userDataRegistration.password != '') {
 
                 if (vm.confirm_password == vm.userDataRegistration.password) {
+                    //start loading
+                    $rootScope.isLoading = true;
 
                     userAccount.registration.registerUser(vm.userDataRegistration,
 
@@ -69,11 +81,14 @@
                             vm.userData.username = vm.userDataRegistration.username;
                             vm.userData.password = vm.userDataRegistration.password;
                             //  vm.login();
+
+                            $rootScope.isLoading = false;
                         },
 
                         function (response) {
                             //inregistrarea nu a avut succes
                             vm.isLoggedIn = false;
+                            $rootScope.isLoading = false;
 
                             if (response.data.error) {
                                 vm.messageFailedRegistration = response.data.error;
@@ -98,37 +113,53 @@
         //-----------------login with username and password-----------------------
         vm.login = function () {
 
-            userAccount.login.loginUser(vm.userData,
+            if (vm.userData.password != '' && vm.userData.username != '') {
 
-                function (data) {
-                    if (data.error) {
+                vm.userData.password = vm.userData.password.replace(/ /g, '');
+                vm.userData.username = vm.userData.username.replace(/ /g, '');
+            }
+
+            if (vm.userData.password != '' && vm.userData.username != '') {
+
+                //start loading
+                $rootScope.isLoading = true;
+                userAccount.login.loginUser(vm.userData,
+
+                    function (data) {
+                        if (data.error) {
+                            vm.isLoggedIn = false;
+                            vm.password = "";
+                            vm.messageLogIn = data.error;
+
+                        } else {
+                            vm.isLoggedIn = true;
+                            vm.password = "";
+                            vm.token = data.token;
+                            vm.role = data.role;
+                            //always load on home page
+                            vm.changePage('home');
+
+                            var expireDate = new Date();
+                            expireDate.setDate(expireDate.getDate() + 1);
+
+                            $cookies.put("token", data.token, { 'expires': expireDate });
+                            $cookies.put("username", vm.userData.username, { 'expires': expireDate });
+                            $cookies.put("role", vm.role, { 'expires': expireDate });
+
+                        }
+                        //stop loading
+                        $rootScope.isLoading = false;
+
+                    }, function (response) {
+                        //inregistrarea nu a avut succes
                         vm.isLoggedIn = false;
                         vm.password = "";
-                        vm.messageLogIn = data.error;
+                        vm.messageLogIn = response.data.error;
 
-                    } else {
-                        vm.isLoggedIn = true;
-                        vm.password = "";
-                        vm.token = data.token;
-                        vm.role = data.role;
-                        //always load on home page
-                        vm.changePage('home');
-
-                        var expireDate = new Date();
-                        expireDate.setDate(expireDate.getDate() + 1);
-
-                        $cookies.put("token", data.token, { 'expires': expireDate });
-                        $cookies.put("username", vm.userData.username, { 'expires': expireDate });
-                        $cookies.put("role", vm.role, { 'expires': expireDate });
-
-                    }
-
-                }, function (response) {
-                    //inregistrarea nu a avut succes
-                    vm.isLoggedIn = false;
-                    vm.password = "";
-                    vm.messageLogIn = response.data.error;
-                })
+                        //stop loading
+                        $rootScope.isLoading = false;
+                    })
+            }
         }
 
         //------------------login with token-----------------------
@@ -239,15 +270,18 @@
                 vm.pages.category_forms = true;
             }
             else if (mypage == 'contact') {
-                 vm.pages.contact = true;
+                vm.pages.contact = true;
             }
 
 
         }
 
-             
+
         //------------------verify mail---------------------
         if ($location.search().verifymail) {
+            //start loading
+            $rootScope.isLoading = true;
+
             var param = { user_id: $location.search().verifymail };
 
             userAccount.verifyMail.verifyMail(param,
@@ -267,14 +301,15 @@
 
                         });
 
-
+            //stop loading
+            $rootScope.isLoading = false;
         }
             //change page using url
         else if ($location.url()) {
             vm.changePage($location.url());
         }
 
-     
 
+    
     };
 })();

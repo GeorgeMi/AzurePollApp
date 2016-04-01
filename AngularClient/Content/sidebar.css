@@ -68,14 +68,18 @@
 }
 
 textarea {
-    resize: none; 
+    resize: none;
 }
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 500px) {
+
+
     .navbar-brand {
         width: 80%;
         text-align: center;
         float: right;
+        // margin: 0 auto;
         display: inline-block;
     }
 
@@ -86,7 +90,7 @@ textarea {
     }
 
     #loginBtn {
-        width: 60%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -108,6 +112,10 @@ textarea {
         float: left;
     }
 
+    .navbar-form {
+        margin-top: 30px;
+    }
+
     .mobileNav {
         padding-top: 15px;
         display: block;
@@ -124,24 +132,35 @@ textarea {
 
     #question {
         width: 80%;
-         display: inline-block;
-         padding-right:2%;
+        display: inline-block;
+        padding-right: 2%;
     }
 
     #questionDelete {
         width: 15%;
-         display: inline-block;
+        display: inline-block;
     }
 
-     #answer {
+    #answer {
         width: 80%;
-         display: inline-block;
-         padding-right:2%;
+        display: inline-block;
+        padding-right: 2%;
     }
 
     #answerDelete {
         width: 15%;
-         display: inline-block;
+        display: inline-block;
+    }
+
+    .brandName {
+        width: 100%;
+    }
+
+
+    .loadingGif {
+        position: fixed;
+        top: 30%;
+        left: 40%;
     }
 }
 
