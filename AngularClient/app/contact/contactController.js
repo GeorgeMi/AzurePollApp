@@ -6,6 +6,7 @@
 
     function ContactController(contactResource, $cookies) {
         var vm = this;
+        vm.sent = false;
 
         vm.contact = {
             category: "Message",
@@ -21,9 +22,10 @@
                //s-a trimis cu succes
                function (data) {
 
-                   vm.contact.title = '';
+                   vm.contact.message = '';
                    vm.contact.category = '';
                    vm.messageContact = 'Message sent successfully';
+                   vm.sent = true;
 
                },
 
