@@ -63,6 +63,18 @@ namespace WebAPI.Models
             }
         }
 
+        internal List<FormDTO> GetAllForms(string token, string searchedName, int page_nr, int per_page)
+        {
+            try
+            {
+                return bl.FormLogic.GetAllForms(token, searchedName, page_nr, per_page);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public List<FormDTO> GetVotedForms(string username, int page_nr, int per_page)
         {
             try

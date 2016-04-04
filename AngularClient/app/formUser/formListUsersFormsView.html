@@ -13,14 +13,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Search poll</div>
-        <div class="panel-body">
-            <input type="text" ng-model="searchText" class="form-control" placeholder="Search">
-        </div>
-    </div>
-
-    <div ng-repeat="form in ctrl.userForms | filter:searchText">
+    <div ng-repeat="form in ctrl.userForms">
        
             <div class="panel panel-default">
                 <div class="panel-heading">

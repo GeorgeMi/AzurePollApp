@@ -69,6 +69,13 @@
                 else {
                     vm.Next = true;
                 }
+
+                if (vm.page_nr <= 0) {
+                    vm.Prev = false;
+                }
+                else {
+                    vm.Prev = true;
+                }
             });
         }
 

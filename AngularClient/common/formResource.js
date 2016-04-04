@@ -7,7 +7,7 @@
     function formResource($resource, appSettings, $cookies) {
         return {
             //all forms
-            get: $resource(appSettings.serverPath + "/api/form?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
+            get: $resource(appSettings.serverPath + "/api/form?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
                       {
                           'getForms': {
                               method: 'GET',
@@ -38,7 +38,7 @@
                          }
                      }),
             //voted forms
-            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username')+"?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
+            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username') + "?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
                      {
                          'getVotedForms': {
                              method: 'GET',
@@ -54,7 +54,7 @@
                          }
                      }),
             //forms from category
-            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id?page=:page_nr&per_page=:per_page", { category_id: '@id',page_nr: '@id', per_page:'@id' },
+            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id?page=:page_nr&per_page=:per_page", { category_id: '@id', page_nr: '@id', per_page: '@id' },
                      {
                          'getCategoryForms': {
                              method: 'GET',
@@ -88,7 +88,7 @@
 
               }),
             //all forms from user
-            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username')+"?page=:page_nr&per_page=:per_page",  { page_nr: '@id', per_page:'@id'},
+            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username') + "?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
                       {
                           'getForms': {
                               method: 'GET',
@@ -132,7 +132,24 @@
                            return str.join("&");
                        }
                    }
-               })
+               }),
+
+            //search forms
+            search: $resource(appSettings.serverPath + "/api/search/:searchedText?page=:page_nr&per_page=:per_page", { searchedText: '@id', page_nr: '@id', per_page: '@id' },
+                      {
+                          'searchForms': {
+                              method: 'GET',
+                              isArray: true,
+                              headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
+                              transformRequest: function (data, headersGetter) {
+                                  var str = [];
+                                  for (var d in data) {
+                                      str.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+                                  }
+                                  return str.join("&");
+                              }
+                          }
+                      }),
         }
     }
 

@@ -140,6 +140,7 @@
                         <div ng-if="vm.pages.manage_users" ng-include="'app/user/userListView.html'"></div>
                         <div ng-if="vm.pages.manage_polls" ng-include="'app/form/formListAdminView.html'">manage_polls</div>
                         <div ng-if="vm.pages.manage_categories" ng-include="'app/category/categoryAdminListView.html'">manage_categories</div>
+                        <div ng-if="vm.pages.search_polls" ng-include="'app/formSearch/formSearchView.html'">search_polls</div>
                     </div>
                 </div>
             </div>
@@ -197,6 +198,7 @@
     <script src="app/formVoted/formVotedController.js"></script>
     <script src="app/formCategory/formCategoryController.js"></script>
     <script src="app/contact/contactController.js"></script>
+    <script src="app/formSearch/formSearchController.js"></script>
 </body>
 
 </html>

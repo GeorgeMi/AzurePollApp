@@ -10,7 +10,7 @@
 
         var vm = this;
 
-        vm.isLoggedIn = true;
+        vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
@@ -44,7 +44,8 @@
             vote_poll: false,
             voted_polls: false,
             category_forms: false,
-            contact: false
+            contact: false,
+            search_polls: false
         };
 
         vm.confirm_password = '';
@@ -213,6 +214,7 @@
             vm.pages.voted_polls = false;
             vm.pages.category_forms = false;
             vm.pages.contact = false;
+            vm.pages.search_polls = false;
 
         }
 
@@ -234,6 +236,7 @@
             vm.pages.vote_poll = false;
             vm.pages.voted_polls = false;
             vm.pages.contact = false;
+            vm.pages.search_polls = false;
 
 
             if (mypage == 'home') {
@@ -271,6 +274,9 @@
             }
             else if (mypage == 'contact') {
                 vm.pages.contact = true;
+            }
+            else if (mypage == 'search_polls') {
+                vm.pages.search_polls = true;
             }
 
 
