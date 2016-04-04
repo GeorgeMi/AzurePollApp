@@ -10,7 +10,7 @@
     function CategoryController(categoryResource, $cookies) {
         var vm = this;
 
-        vm.category = {
+        vm.category =  {
             name: ''
         };
 
