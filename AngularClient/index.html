@@ -124,7 +124,7 @@
         </div>
 
         <!-- page content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" class="contentVisible">
             <div class="container-fluid">
                 <div class="row">
                     <div ng-if="vm.isLoggedIn" class="col-lg-12">
@@ -209,12 +209,16 @@
 
         if ($(".mobileSideBarVisible").hasClass("sideBarHidden")) {
             $(".mobileSideBarVisible").removeClass("sideBarHidden");
+          
         }
         else {
             $(".mobileSideBarVisible").addClass("sideBarHidden");
+ 
+
 
         }
     });
+    
 
 
 
