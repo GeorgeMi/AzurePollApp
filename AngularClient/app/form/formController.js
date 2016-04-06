@@ -214,7 +214,7 @@
             //schimba numarul paginii
             $rootScope.isLoading = true;
             vm.page_nr = id;
-            var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+            var param = { page_nr: 0, per_page: vm.itemsPerPage };
 
             if (vm.page_nr <= 0) {
                 vm.Prev = false;
@@ -222,9 +222,9 @@
             else {
                 vm.Prev = true;
             }
+            
+            formResource.get.getForms(param, function (data) {
 
-
-            formResource.search.searchForms(param, function (data) {
                 vm.forms = data;
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;

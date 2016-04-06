@@ -23,8 +23,8 @@
             else {
                 vm.Next = true;
             }
-            $rootScope.isLoading = false;
-        });
+           
+        },  $rootScope.isLoading = false);
 
         vm.deleteUser = function (userID) {
             var r = confirm("Are you sure that you want to permanently delete this user?");
@@ -148,8 +148,9 @@
                 }
 
             });
+            $rootScope.isLoading = false;
         }
-        $rootScope.isLoading = false;
+     
 
     }
 }());
