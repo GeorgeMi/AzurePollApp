@@ -12,6 +12,8 @@
 
         vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
+        $rootScope.isLoadingRegister = false; //loading gif
+        
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
@@ -72,7 +74,7 @@
 
                 if (vm.confirm_password == vm.userDataRegistration.password) {
                     //start loading
-                    $rootScope.isLoading = true;
+                    $rootScope.isLoadingRegister = true;
 
                     userAccount.registration.registerUser(vm.userDataRegistration,
 
@@ -83,13 +85,13 @@
                             vm.userData.password = vm.userDataRegistration.password;
                             //  vm.login();
 
-                            $rootScope.isLoading = false;
+                            $rootScope.isLoadingRegister = false;
                         },
 
                         function (response) {
                             //inregistrarea nu a avut succes
                             vm.isLoggedIn = false;
-                            $rootScope.isLoading = false;
+                            $rootScope.isLoadingRegister = false;
 
                             if (response.data.error) {
                                 vm.messageFailedRegistration = response.data.error;
@@ -123,8 +125,8 @@
             if (vm.userData.password != '' && vm.userData.username != '') {
 
                 //start loading
-                $rootScope.isLoading = true;
-                userAccount.login.loginUser(vm.userData,
+                $rootScope.isLoadingRegister = true;
+                 userAccount.login.loginUser(vm.userData,
 
                     function (data) {
                         if (data.error) {
@@ -149,7 +151,7 @@
 
                         }
                         //stop loading
-                        $rootScope.isLoading = false;
+                        $rootScope.isLoadingRegister = false;
 
                     }, function (response) {
                         //inregistrarea nu a avut succes
@@ -158,7 +160,7 @@
                         vm.messageLogIn = response.data.error;
 
                         //stop loading
-                        $rootScope.isLoading = false;
+                        $rootScope.isLoadingRegister = false;
                     })
             }
         }
@@ -281,12 +283,12 @@
 
 
         }
-
+        vm.changePage('home');
 
         //------------------verify mail---------------------
         if ($location.search().verifymail) {
             //start loading
-            $rootScope.isLoading = true;
+            $rootScope.isLoadingRegister = true;
 
             var param = { user_id: $location.search().verifymail };
 
@@ -308,7 +310,7 @@
                         });
 
             //stop loading
-            $rootScope.isLoading = false;
+            $rootScope.isLoadingRegister;
         }
             //change page using url
         else if ($location.url()) {
