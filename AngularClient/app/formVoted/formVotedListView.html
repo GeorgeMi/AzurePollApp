@@ -2,12 +2,12 @@
     <div class="panel panel-default">
         <div class="panel-heading">Polls per page</div>
         <div class="panel-body">
-            <select class="form-control" placeholder="Polls per page">
-                <option ng-click="ctrl.chosePerPage(1)">1</option>
-                <option ng-click="ctrl.chosePerPage(5)">5</option>
-                <option ng-click="ctrl.chosePerPage(10)">10</option>
-                <option ng-click="ctrl.chosePerPage(15)">15</option>
-                <option ng-click="ctrl.chosePerPage(20)">20</option>
+            <select class="form-control" ng-model="ctrl.itemsPerPage" ng-click="ctrl.chosePerPage()" placeholder="Polls per page">
+                <option>1</option>
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
             </select>
         </div>
     </div>

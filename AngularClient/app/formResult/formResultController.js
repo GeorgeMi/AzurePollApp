@@ -2,12 +2,13 @@
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormResultController", ["formResource", "$cookies", FormResultController]);
+        .controller("FormResultController", ["formResource", "$cookies","$rootScope", FormResultController]);
 
-    function FormResultController(formResource, $cookies, RadarCtrl) {
+    function FormResultController(formResource, $cookies, RadarCtrl, $rootScope) {
         var vm = this;
 
         var param = { form_id: $cookies.get('my_poll_result') };
+        $rootScope.isLoading = true; //loading gif
 
         formResource.getFormResult.getFormResult(param,
             function (data) {
@@ -38,6 +39,8 @@
               
 
             });
+
+        $rootScope.isLoading = false;
 
 
     }

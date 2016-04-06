@@ -16,7 +16,7 @@
         var x = JSON.stringify(vm.contact);
 
         vm.sendMessage = function () {
-            
+           
             if (vm.contact.message != '') {
 
                 $rootScope.isLoading = true;
@@ -26,7 +26,7 @@
                 contactResource.send.sendMessage(x,
                    //s-a trimis cu succes
                    function (data) {
-
+                      
                        vm.contact.message = '';
                        vm.contact.category = '';
                        vm.messageContact = 'Message sent successfully';

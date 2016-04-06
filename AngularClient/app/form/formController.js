@@ -1,10 +1,10 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormController", ["formResource", "$cookies", FormController]);
+        .controller("FormController", ["formResource", "$cookies", "$rootScope", FormController]);
 
-    function FormController(formResource, $cookies) {
+    function FormController(formResource, $cookies, $rootScope) {
         var vm = this;
 
         vm.created = false;
@@ -12,6 +12,8 @@
         vm.per_page = 10; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = true; // se afiseaza "next page" la paginare
+        $rootScope.isLoading = false; //loading gif
+
         //data form to send
         vm.sendForm = {
             username: $cookies.get('username'),
@@ -97,7 +99,7 @@
             }
         }
 
-        var param = { page_nr: vm.page_nr ,per_page: vm.per_page };
+        var param = { page_nr: vm.page_nr, per_page: vm.per_page };
         formResource.get.getForms(param, function (data) {
 
             vm.forms = data;
@@ -107,35 +109,50 @@
 
         vm.addForm = function () {
             // alert(vm.sendForm);
-            var x = JSON.stringify(vm.sendForm);
 
-            formResource.add.addForm(x,
-                //s-a creat cu succes
-                function (data) {
-                    vm.sendForm.title = '';
-                    vm.sendForm.category = '';
-                    vm.sendForm.createdDate = '';
-                    vm.sendForm.deadline = '';
-                    vm.sendForm.questions = [{ id: 1, question: '', answers: [{ id: 1, answer: '' }] }];
-                    vm.messageForm = 'Poll created successfully';
+            if (vm.sendForm.title != '' && vm.sendForm.category != '' && vm.sendForm.deadline != '') {
 
-                    vm.created = true;
-                },
+                vm.sendForm.title = vm.sendForm.title.replace(/ /g, '');
+                vm.sendForm.category = vm.sendForm.category.replace(/ /g, '');
+                vm.sendForm.deadline = vm.sendForm.deadline.replace(/ /g, '');
+            }
 
-               //nu s-a creat
-                function (response) {
-                    if (response.data.error) {
-                        vm.messageForm = response.data.error;
-                    }
-                    else {
+            if (vm.sendForm.title != '' && vm.sendForm.category != '' && vm.sendForm.deadline != '') {
+                $rootScope.isLoading = true;
+                var x = JSON.stringify(vm.sendForm);
 
-                    }
-                });
+                formResource.add.addForm(x,
+                    //s-a creat cu succes
+                    function (data) {
+                        vm.sendForm.title = '';
+                        vm.sendForm.category = '';
+                        vm.sendForm.createdDate = '';
+                        vm.sendForm.deadline = '';
+                        vm.sendForm.questions = [{ id: 1, question: '', answers: [{ id: 1, answer: '' }] }];
+                        vm.messageForm = 'Poll created successfully';
+
+                        vm.created = true;
+                    },
+
+                   //nu s-a creat
+                    function (response) {
+                        if (response.data != null) {
+                            if (response.data.error) {
+                                vm.messageForm = response.data.error;
+                            }
+                            else {
+
+                            }
+                        }
+                    });
+                $rootScope.isLoading = false;
+            }
         }
 
         vm.deleteForm = function (formID) {
             var r = confirm("Are you sure that you want to permanently delete this form?");
             if (r == true) {
+                $rootScope.isLoading = true;
 
                 var param = { form_id: formID };
                 var i;
@@ -151,6 +168,7 @@
                             }
                         }
                     });
+                $rootScope.isLoading = false;
             }
         }
 
@@ -160,15 +178,54 @@
             return 'my_poll_result';
         }
 
-        vm.chosePerPage = function (id) {
+        vm.itemsPerPage = vm.per_page;
+        vm.chosePerPage = function () {
             //schimba numarul de elemente de pe pagina
-            vm.per_page = id;
-            vm.page_nr = 0;
-            var param = { page_nr: 0, per_page: id };
-            formResource.get.getForms(param, function (data) {
 
+            if (vm.itemsPerPage != vm.per_page) {
+
+                $rootScope.isLoading = true;
+                vm.per_page = vm.itemsPerPage;
+                vm.page_nr = 0;
+                var param = { page_nr: 0, per_page: vm.itemsPerPage };
+                formResource.get.getForms(param, function (data) {
+
+                    vm.forms = data;
+
+                    if (vm.forms.length < vm.per_page) {
+                        vm.Next = false;
+                    }
+                    else {
+                        vm.Next = true;
+                    }
+
+                    if (vm.page_nr <= 0) {
+                        vm.Prev = false;
+                    }
+                    else {
+                        vm.Prev = true;
+                    }
+                });
+                $rootScope.isLoading = false;
+            }
+        }
+
+        vm.chosePageNr = function (id) {
+            //schimba numarul paginii
+            $rootScope.isLoading = true;
+            vm.page_nr = id;
+            var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+
+            if (vm.page_nr <= 0) {
+                vm.Prev = false;
+            }
+            else {
+                vm.Prev = true;
+            }
+
+
+            formResource.search.searchForms(param, function (data) {
                 vm.forms = data;
-
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -182,35 +239,10 @@
                 else {
                     vm.Prev = true;
                 }
+
             });
         }
-
-        vm.chosePageNr = function (id) {
-            //schimba numarul paginii
-            vm.page_nr=id;
-            var param = { page_nr: id, per_page: vm.per_page };
-           
-            if (vm.page_nr <= 0)
-            {
-                vm.Prev = false;
-            }
-            else
-            {
-                vm.Prev = true;
-            }
-            formResource.get.getForms(param, function (data) {
-                vm.forms = data;
-
-                if (vm.forms.length < vm.per_page) {
-                    vm.Next = false;
-                }
-                else {
-                    vm.Next = true;
-                }
-
-                
-            });
-        }
+        $rootScope.isLoading = false;
 
     }
 }());

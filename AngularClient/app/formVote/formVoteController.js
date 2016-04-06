@@ -2,9 +2,9 @@
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormVoteController", ["formResource", "$cookies", FormVoteController]);
+        .controller("FormVoteController", ["formResource", "$cookies","$rootScope", FormVoteController]);
 
-    function FormVoteController(formResource, $cookies, RadarCtrl) {
+    function FormVoteController(formResource, $cookies,$rootScope, RadarCtrl) {
         var vm = this;
 
         vm.formID = $cookies.get('last_poll');
@@ -28,6 +28,7 @@
 
         if (vm.formID) {
             //  alert("asdasd");
+            $rootScope.isLoading = true;
             $cookies.remove('last_poll');
             formResource.getForm.getForm(param,
                 function (data) {
@@ -50,16 +51,18 @@
                         }
                     }
                 });
+            $rootScope.isLoading = false;
         }
 
         //vote
         vm.vote = function () {
             // alert(vm.sendForm);
+           
             var x = JSON.stringify(vm.voteForm)
 
             //s-au votat toate intrebarile
             if (x.indexOf(":0") == -1) {
-
+                $rootScope.isLoading = true;
                 formResource.vote.voteForm(x,
                     //s-a creat cu succes
                     function (data) {
@@ -85,6 +88,7 @@
 
                         }
                     });
+                $rootScope.isLoading = false;
             }
         }
 
