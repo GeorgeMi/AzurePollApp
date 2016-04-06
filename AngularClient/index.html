@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poll App</title>
+    <title>Vote my poll</title>
 
     <!-- Style sheets -->
     <link href="Content/bootstrap.css" rel="stylesheet" />
@@ -26,8 +26,8 @@
                     </button>
                 </div>
 
-                <div ng-if="vm.isLoggedIn" class="navbar-brand ">Poll Application</div>
-                <div ng-hide="vm.isLoggedIn" class="navbar-brand brandName">Poll Application</div>
+                <div ng-if="vm.isLoggedIn" class="navbar-brand ">Vote my poll</div>
+                <div ng-hide="vm.isLoggedIn" class="navbar-brand brandName">Vote my poll</div>
             </div>
             <div class="nav navbar-nav navbar-right">
                 <form ng-hide="vm.isLoggedIn" class="navbar-form navbar-right">
@@ -45,10 +45,8 @@
                     <div ng-show="vm.messageLogIn" class="alert alert-danger" role="alert">{{vm.messageLogIn}}</div>
                 </form>
                 <ul class="nav navbar-nav mobileHidden" ng-if="vm.isLoggedIn">
-
                     <li><p class="navbar-text">Hello, {{vm.userData.username}}</p></li>
                     <li><p class="navbar-text" ng-click="vm.logout()"><a href="">Logout</a></p></li>
-
                 </ul>
             </div>
         </div>
@@ -143,8 +141,6 @@
                 </div>
             </div>
 
-
-
             <div ng-if="$root.isLoading" class="col-sm-12 loadingGif">
                 <div class="windows8">
                     <div class="wBall" id="wBall_1">
@@ -166,6 +162,7 @@
             </div>
         </div>
     </div>
+
     <!-- Library Scripts -->
     <script src="Scripts/jquery-2.2.1.js"></script>
     <script src="scripts/angular.js"></script>
@@ -208,17 +205,11 @@
 
         if ($(".mobileSideBarVisible").hasClass("sideBarHidden")) {
             $(".mobileSideBarVisible").removeClass("sideBarHidden");
-          
+
         }
         else {
             $(".mobileSideBarVisible").addClass("sideBarHidden");
- 
-
-
         }
     });
-    
-
-
 
 </script>
