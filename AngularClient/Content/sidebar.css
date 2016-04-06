@@ -13,6 +13,9 @@
     width: 20%;
 }
 
+#messageLogIn {
+    z-index:1;
+}
 .contentHidden {
     display: none;
 }

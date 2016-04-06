@@ -57,17 +57,16 @@
 
         //------------------register-----------------------
         vm.registerUser = function () {
-
-
+            
             if (vm.userDataRegistration.email != ''
                && vm.userDataRegistration.username != ''
                 && vm.userDataRegistration.password != '') {
 
                 vm.userDataRegistration.email = vm.userDataRegistration.email.replace(/ /g, '');
                 vm.userDataRegistration.username = vm.userDataRegistration.username.replace(/ /g, '');
-                vm.userDataRegistration.password = vm.userDataRegistration.username.replace(/ /g, '');
+                vm.userDataRegistration.password = vm.userDataRegistration.password.replace(/ /g, '');
             }
-            
+           
             if (vm.userDataRegistration.email != ''
                 && vm.userDataRegistration.username != ''
                  && vm.userDataRegistration.password != '') {
