@@ -95,25 +95,25 @@
                 $rootScope.isLoading = true;
                 vm.per_page = vm.itemsPerPage;
                 vm.page_nr = 0;
-                var param = { page_nr: 0, per_page: vm.itemsPerPage };
-                formResource.get.getForms(param, function (data) {
+                var param = { page_nr: vm.page_nr, per_page: vm.per_page };
+       
+                userResource.get.getUsers(param,function (data) {
+                    vm.users = data;
 
-                    vm.forms = data;
-
-                    if (vm.forms.length < vm.per_page) {
+                    if (vm.users.length < vm.per_page) {
                         vm.Next = false;
                     }
                     else {
                         vm.Next = true;
                     }
-
                     if (vm.page_nr <= 0) {
                         vm.Prev = false;
                     }
                     else {
                         vm.Prev = true;
                     }
-                });
+                  
+               });
                 $rootScope.isLoading = false;
             }
         }
@@ -122,7 +122,7 @@
             //schimba numarul paginii
             $rootScope.isLoading = true;
             vm.page_nr = id;
-            var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+            var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
             if (vm.page_nr <= 0) {
                 vm.Prev = false;
@@ -130,17 +130,16 @@
             else {
                 vm.Prev = true;
             }
+            
+            userResource.get.getUsers(param, function (data) {
+                vm.users = data;
 
-
-            formResource.search.searchForms(param, function (data) {
-                vm.forms = data;
-                if (vm.forms.length < vm.per_page) {
+                if (vm.users.length < vm.per_page) {
                     vm.Next = false;
                 }
                 else {
                     vm.Next = true;
                 }
-
                 if (vm.page_nr <= 0) {
                     vm.Prev = false;
                 }

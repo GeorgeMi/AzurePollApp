@@ -16,7 +16,7 @@
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
         vm.message = '';
-        vm.role = '';
+        vm.role = 'admin';
 
         //data for login
         vm.userData = {

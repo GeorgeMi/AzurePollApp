@@ -239,10 +239,10 @@
                 else {
                     vm.Prev = true;
                 }
-
-            });
+             
+            },   $rootScope.isLoading = false);
         }
-        $rootScope.isLoading = false;
+       
 
     }
 }());
