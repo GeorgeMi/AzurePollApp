@@ -27,9 +27,9 @@
                 vm.Next = true;
             }
            
-        }, $rootScope.isLoading = false);
+        });
 
-
+        $rootScope.isLoading = false;
         vm.deleteForm = function (formID) {
             $rootScope.isLoading = true;
 
@@ -72,7 +72,7 @@
 
                     vm.userForms = data;
 
-                    if (vm.forms.length < vm.per_page) {
+                    if (vm.userForms.length < vm.per_page) {
                         vm.Next = false;
                     }
                     else {
@@ -106,7 +106,7 @@
             formResource.getForms.getForms(param, function (data) {
 
                 vm.userForms = data;
-                if (vm.forms.length < vm.per_page) {
+                if (vm.userForms.length < vm.per_page) {
                     vm.Next = false;
                 }
                 else {
@@ -119,8 +119,9 @@
                 else {
                     vm.Prev = true;
                 }
-
-            }, $rootScope.isLoading = false);
+               $rootScope.isLoading = false;
+            });
+          
         }
        
 

@@ -10,13 +10,13 @@
 
         var vm = this;
 
-        vm.isLoggedIn = true;
+        vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
         vm.message = '';
-        vm.role = 'admin';
+        vm.role = '';
 
         //data for login
         vm.userData = {

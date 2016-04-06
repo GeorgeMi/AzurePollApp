@@ -103,6 +103,12 @@
         formResource.get.getForms(param, function (data) {
 
             vm.forms = data;
+            if (vm.forms.length < vm.per_page) {
+                vm.Next = false;
+            }
+            else {
+                vm.Next = true;
+            }
         });
 
 
@@ -214,7 +220,7 @@
             //schimba numarul paginii
             $rootScope.isLoading = true;
             vm.page_nr = id;
-            var param = { page_nr: 0, per_page: vm.itemsPerPage };
+            var param = { page_nr: id, per_page: vm.itemsPerPage };
 
             if (vm.page_nr <= 0) {
                 vm.Prev = false;

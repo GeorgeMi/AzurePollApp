@@ -19,8 +19,8 @@
             vm.categories = data;
             
            
-        },$rootScope.isLoading = false);
-
+        });
+        $rootScope.isLoading = false;
         vm.addCategory = function () {
             $rootScope.isLoading = true;
 

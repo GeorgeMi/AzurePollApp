@@ -37,6 +37,41 @@
             }
            
         }
+
+        vm.viewResults = function (id) {
+            //alert("cookie");
+            $cookies.put('my_poll_result', id);
+            return 'my_poll_result';
+        }
+
+        vm.deleteForm = function (formID) {
+            var r = confirm("Are you sure that you want to permanently delete this form?");
+            if (r == true) {
+                $rootScope.isLoading = true;
+
+                var param = { form_id: formID };
+                var i;
+                // alert(formID);
+
+                formResource.delete.deleteForm(param,
+                    function (data) {
+
+                        for (i = 0; i < vm.forms.length ; i++) {
+
+                            if (vm.forms[i].Id === formID) {
+                                vm.forms.splice(i, 1);
+                            }
+                        }
+                        if (vm.forms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
+                    });
+                $rootScope.isLoading = false;
+            }
+        }
         
         vm.itemsPerPage = vm.per_page;
         vm.chosePerPage = function () {
@@ -101,8 +136,9 @@
                 }
 
             });
+            $rootScope.isLoading = false;
         }
-        $rootScope.isLoading = false;
+       
 
     }
 }());

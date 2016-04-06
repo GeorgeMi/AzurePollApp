@@ -4,7 +4,7 @@
         .module("formManagement")
         .controller("FormResultController", ["formResource", "$cookies","$rootScope", FormResultController]);
 
-    function FormResultController(formResource, $cookies, RadarCtrl, $rootScope) {
+    function FormResultController(formResource, $cookies, $rootScope) {
         var vm = this;
 
         var param = { form_id: $cookies.get('my_poll_result') };
