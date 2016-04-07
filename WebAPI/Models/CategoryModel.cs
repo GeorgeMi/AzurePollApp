@@ -2,12 +2,6 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Written by Miron George <george.miron2003@gmail.com>, 2016
- *
- * Role:
- *  Category Model.
- *
- * History:
- * 25.02.2016    Miron George       Created class and implemented methods.
  */
 using DataTransferObject;
 using Microsoft.Practices.Unity;
@@ -15,9 +9,16 @@ using System.Collections.Generic;
 
 namespace WebAPI.Models
 {
+
+    /// <summary>
+    /// encapsulate category model
+    /// </summary>
     public class CategoryModel
     {
         private BusinessLogic.BusinessLogic bl;
+        /// <summary>
+        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// </summary>
         public CategoryModel()
         {
             IUnityContainer objContainer = new UnityContainer();
@@ -26,6 +27,9 @@ namespace WebAPI.Models
             bl = objContainer.Resolve<BusinessLogic.BusinessLogic>();
         }
 
+        /// <summary>
+        /// ask business logic to get all categories from database
+        /// </summary>
         public List<CategoryDTO> GetAllCategories()
         {
             try
@@ -37,13 +41,18 @@ namespace WebAPI.Models
                 return null;
             }
         }
+
+        /// <summary>
+        ///  ask business logic to add new category todatabase
+        /// </summary>
+        /// <param name="categoryDTO">category ID and category name</param>
+        /// <returns>true or false</returns>
         public bool AddCategory(CategoryDTO categoryDTO)
         {
             try
             {
                 bl.CategoryLogic.AddCategory(categoryDTO);
                 return true;
-
             }
             catch
             {
@@ -51,13 +60,17 @@ namespace WebAPI.Models
             }
         }
 
+        /// <summary>
+        ///  ask business logic to delete category from database
+        /// </summary>
+        /// <param name="categoryID">category ID</param>
+        /// <returns>true or false</returns>
         public bool DeleteCategory(int categoryID)
         {
             try
             {
                 bl.CategoryLogic.DeleteCategory(categoryID);
                 return true;
-
             }
             catch
             {

@@ -2,12 +2,6 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Written by Miron George <george.miron2003@gmail.com>, 2016
- *
- * Role:
- *  User Model.
- *
- * History:
- * 14.02.2016    Miron George       Created class and implemented methods.
  */
 using DataTransferObject;
 using Microsoft.Practices.Unity;
@@ -18,7 +12,14 @@ namespace WebAPI.Models
 {
     public class UsersModel
     {
+        /// <summary>
+        /// encapsulate user model
+        /// </summary>
         private BusinessLogic.BusinessLogic bl;
+
+        /// <summary>
+        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// </summary>
         public UsersModel()
         {
             IUnityContainer objContainer = new UnityContainer();
@@ -27,14 +28,18 @@ namespace WebAPI.Models
             bl = objContainer.Resolve<BusinessLogic.BusinessLogic>();
         }
 
+        /// <summary>
+        /// ask business logic to add new user to database
+        /// </summary>
+        /// <param name="userDTO">user's details</param>
         public bool AddUser(UserRegistrationDTO userDTO)
         {
             try
             {
                 int id = bl.UserLogic.AddUser(userDTO);
-                //creeaza un nou token
+                //create new token
                 string token = bl.TokenLogic.UpdateToken(id, userDTO.Username, userDTO.Password);
-                //trimite mail de verificare
+                //send verification mail
                 bl.UserLogic.SendAuthEmail(token, userDTO.Username, userDTO.Email);
 
                 return true;
@@ -44,9 +49,12 @@ namespace WebAPI.Models
                 return false;
             }
         }
+        /// <summary>
+        /// ask business logic to get username's id
+        /// </summary>
+        /// <param name="username">username</param>
         public int GetUserID(string username)
         {
-            //cauta id-ul userului dupa username
             return bl.UserLogic.GetUserID(username);
         }
 

@@ -1,31 +1,56 @@
-﻿using DataTransferObject;
+﻿/* Copyright (C) Miron George - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Miron George <george.miron2003@gmail.com>, 2016
+ */
+using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using WebAPI.ActionFilters;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// handles HTTP register requests
+    /// </summary>
     public class SearchController: ApiController
     {
         FormModel formModel = new FormModel();
 
-     //   [RequireToken]
+        /// <summary>
+        /// get list of all forms that contains specific string
+        /// </summary>
+        /// <param name="id">string to search</param>
+        [RequireToken]
         public IEnumerable<FormDTO> Get(string id)
         {
-            // get forms 
-            int page_nr = 0;
-            int per_page = 10;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
+            int[] pageVal = GetPageNumberAndElementNumber();
+            int page_nr = pageVal[0];
+            int per_page = pageVal[1];
 
+            List<FormDTO> list = new List<FormDTO>();
+            list = formModel.GetAllForms(token, id, page_nr, per_page);
+            return list;
+        }
+
+        /// <summary>
+        /// parse query from request and get page number and number of elements per page
+        /// </summary>
+        /// <returns>page number and number of elements per page</returns>
+        private int[] GetPageNumberAndElementNumber()
+        {
+            int[] result = new int[2];
+            int page_nr = 0, per_page = 10;
             try
             {
-                //daca exista query si este valid se schimba valorile implicite ale paginii si al numarului elementelor de pe pagina
+                //if query exists and it is valid, default page number and number of elements per page values are changing 
                 var queryString = this.Request.GetQueryNameValuePairs();
+
                 foreach (KeyValuePair<string, string> pair in queryString)
                 {
                     if (pair.Key == "page")
@@ -50,9 +75,10 @@ namespace WebAPI.Controllers
                 per_page = 10;
             }
 
-            List<FormDTO> list = new List<FormDTO>();
-            list = formModel.GetAllForms(token, id, page_nr, per_page);
-            return list;
+            result[0] = page_nr;
+            result[1] = per_page;
+
+            return result;
         }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataTransferObject
+﻿namespace DataTransferObject
 {
-   public class CategoryDTO
+    public class CategoryDTO
     {
         public int CategoryID { get; set; }
         public string Name { get; set; }

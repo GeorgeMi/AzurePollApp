@@ -1,65 +1,70 @@
-﻿using DataTransferObject;
+﻿/* Copyright (C) Miron George - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Miron George <george.miron2003@gmail.com>, 2016
+ */
+using DataTransferObject;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// handles HTTP register requests
+    /// </summary>
     public class RegistrationController : ApiController
     {
-         public HttpResponseMessage Post(UserRegistrationDTO user)
+        /// <summary>
+        /// get user's details, verify their uniqueness and add user to database 
+        /// </summary>
+        /// <param name="user">user's details</param>
+        /// <returns></returns>
+        public HttpResponseMessage Post(UserRegistrationDTO user)
         {
             UsersModel userModel = new UsersModel();
-
-            bool add = userModel.AddUser(user);
             HttpResponseMessage response;
-            
+            bool add = userModel.AddUser(user);
 
             if (add)
             {
                 SuccessMessage msg = new SuccessMessage("Registration successful! Please, verify your mail address.");
-                
                 response = Request.CreateResponse(HttpStatusCode.OK, msg);
-                return response;
-
             }
             else
             {
                 ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email. ");
-
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
-                return response;
-
             }
+
+            return response;
         }
 
+        /// <summary>
+        /// receive token sent in registration mail and activate account
+        /// </summary>
+        /// <param name="id">token</param>
+        /// <returns>success message or error message </returns>
         public HttpResponseMessage Get(string id)
         {
-            AuthModel authModel = new AuthModel();
-
-            bool verify = authModel.VerifyMailToken(id);
+            AuthModel auth = new AuthModel();
+            bool verify = auth.VerifyMailToken(id);
             HttpResponseMessage response;
-
 
             if (verify)
             {
-                SuccessMessage msg = new SuccessMessage("Success!");
-
+                SuccessMessage msg = new SuccessMessage("Your account has been successfully verified!");
                 response = Request.CreateResponse(HttpStatusCode.OK, msg);
-                return response;
-
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Mail token is invalid!");
-
+                ErrorMessage msg = new ErrorMessage("Invalid verification link!");
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
-                return response;
-
             }
+
+            return response;
         }
 
     }

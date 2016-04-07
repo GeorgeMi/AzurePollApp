@@ -1,4 +1,9 @@
-﻿using System.Linq;
+﻿/* Copyright (C) Miron George - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Miron George <george.miron2003@gmail.com>, 2016
+ */
+using System.Linq;
 using System.Web.Http;
 using WebAPI.ActionFilters;
 using WebAPI.Messages;
@@ -6,8 +11,16 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// handles HTTP index requests
+    /// </summary>
     public class IndexController:ApiController
     {
+       
+        /// <summary>
+        /// get token from request and returns user's role
+        /// </summary>
+        /// <returns>string: user or admin</returns>
         [RequireToken]
         public MyMessage Get()
         {
