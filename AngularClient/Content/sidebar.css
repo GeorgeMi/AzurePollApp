@@ -14,7 +14,8 @@
 }
 
 #messageLogIn {
-    z-index:1;
+    position:absolute;
+    width:91%;
 }
 .contentHidden {
     display: none;
