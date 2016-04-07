@@ -31,23 +31,27 @@
 
         $rootScope.isLoading = false;
         vm.deleteForm = function (formID) {
-            $rootScope.isLoading = true;
+            var r = confirm("Are you sure that you want to permanently delete this form?");
+          
+            if (r == true) {
+                $rootScope.isLoading = true;
 
-            var param = { form_id: formID };
-            var i;
-            // alert(formID);
+                var param = { form_id: formID };
+                var i;
+                // alert(formID);
 
-            formResource.delete.deleteForm(param,
-                function (data) {
+                formResource.delete.deleteForm(param,
+                    function (data) {
 
-                    for (i = 0; i < vm.userForms.length ; i++) {
+                        for (i = 0; i < vm.userForms.length ; i++) {
 
-                        if (vm.userForms[i].Id === formID) {
-                            vm.userForms.splice(i, 1);
+                            if (vm.userForms[i].Id === formID) {
+                                vm.userForms.splice(i, 1);
+                            }
                         }
-                    }
-                });
-            $rootScope.isLoading = false;
+                    });
+                $rootScope.isLoading = false;
+            }
         }
 
         vm.changeID = function (id) {

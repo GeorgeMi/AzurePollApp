@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         [RequireToken]
         [HttpGet]
         [ActionName("user")]
-        public IEnumerable<FormDTO> User(string id)
+        public new IEnumerable<FormDTO> User(string id)
         {
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];

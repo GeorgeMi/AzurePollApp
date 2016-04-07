@@ -199,6 +199,11 @@ textarea {
         top: 30%;
         left: 40%;
     }
+
+    #messageLogIn {
+        position: relative;
+        width: 100%;
+    }
 }
 
 /*desktop */
