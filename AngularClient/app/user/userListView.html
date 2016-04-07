@@ -29,20 +29,20 @@
             <table class="table">
                 <thead>
                     <tr >
-                        <td>ID</td>
+                        <td class="mobileHidden">ID</td>
                         <td>Username</td>
-                        <td>Password</td>
-                        <td>Email</td>
+                        <td class="mobileHidden">Password</td>
+                        <td class="mobileHidden">Email</td>
                         <td>Role</td>
                         <td>Actions</td>
                     </tr>
                 </thead>
                 <tbody >
                     <tr ng-repeat="user in ctrl.users  | filter:searchText">
-                        <td>{{ user.UserID}}</td>
+                        <td class="mobileHidden">{{ user.UserID}}</td>
                         <td>{{ user.Username }}</td>
-                        <td>{{ user.Password }}</td>
-                        <td>{{ user.Email }}</td>
+                        <td class="mobileHidden">{{ user.Password }}</td>
+                        <td class="mobileHidden">{{ user.Email }}</td>
                         <td>{{ user.Role }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="...">

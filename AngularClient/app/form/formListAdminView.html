@@ -30,9 +30,9 @@
                     <tr>
                         <td>User</td>
                         <td>Title</td>
-                        <td>Category</td>
-                        <td>Created Date</td>
-                        <td>Deadline</td>
+                        <td class="mobileHidden">Category</td>
+                        <td class="mobileHidden">Created Date</td>
+                        <td class="mobileHidden">Deadline</td>
                         <td>State</td>
                         <td>Action</td>
                     </tr>
@@ -41,9 +41,9 @@
                     <tr ng-repeat="form in ctrl.forms  | filter:searchText">
                         <td>{{ form.Username}}</td>
                         <td>{{ form.Title}}</td>
-                        <td>{{ form.Category }}</td>
-                        <td>{{ form.CreatedDate }}</td>
-                        <td>{{ form.Deadline }}</td>
+                        <td class="mobileHidden">{{ form.Category }}</td>
+                        <td class="mobileHidden">{{ form.CreatedDate }}</td>
+                        <td class="mobileHidden">{{ form.Deadline }}</td>
                         <td>{{ form.State }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="...">

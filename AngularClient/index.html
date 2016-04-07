@@ -42,7 +42,7 @@
 
                     <button type="submit" class="btn btn-default" id="loginBtn" ng-click="vm.login()">Login</button>
 
-                    <div ng-hide="vm.messageLogIn" id="messageLogIn" class="alert alert-danger" role="alert">{{vm.messageLogIn}}</div>
+                    <div ng-show="vm.messageLogIn" id="messageLogIn" class="alert alert-danger" role="alert">{{vm.messageLogIn}}</div>
                 </form>
                 <ul class="nav navbar-nav mobileHidden" ng-if="vm.isLoggedIn">
                     <li><p class="navbar-text">Hello, {{vm.userData.username}}</p></li>
