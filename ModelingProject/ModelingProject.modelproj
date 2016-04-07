@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{a4bb2f71-5f5d-4f5a-b83a-3e8043100b63}</ProjectGuid>
+    <ProjectGuid>{11cc4ff3-9117-424b-b549-a26f0ea9cdbc}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>ModelingProject1</Name>
-    <RootNamespace>ModelingProject1</RootNamespace>
+    <Name>ModelingProject</Name>
+    <RootNamespace>ModelingProject</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -30,7 +30,7 @@
       <DependentUpon>UMLActivityDiagram1.activitydiagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
-    <Content Include="ModelDefinition\ModelingProject1.uml">
+    <Content Include="ModelDefinition\ModelingProject.uml">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
