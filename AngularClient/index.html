@@ -112,6 +112,7 @@
             <ul ng-if="vm.role == 'admin'" class="sidebar-nav">
                 <li><hr></li>
                 <li><h4>Admin</h4></li>
+                <li ng-click="vm.changePage('contact_admin')"><a href="/#/contact_admin">Send message</a></li>
                 <li ng-click="vm.changePage('manage_categories')"><a href="/#/manage_categories">Manage Categories</a></li>
                 <li ng-click="vm.changePage('manage_users')"><a href="/#/manage_users">Manage Users</a></li>
                 <li ng-click="vm.changePage('manage_polls')"><a href="/#/manage_polls">Manage Polls</a></li>
@@ -137,6 +138,7 @@
                         <div ng-if="vm.pages.manage_polls" ng-include="'app/form/formListAdminView.html'">manage_polls</div>
                         <div ng-if="vm.pages.manage_categories" ng-include="'app/category/categoryAdminListView.html'">manage_categories</div>
                         <div ng-if="vm.pages.search_polls" ng-include="'app/formSearch/formSearchView.html'">search_polls</div>
+                        <div ng-if="vm.pages.contact_admin" ng-include="'app/contact/contactAdminView.html'">contact_admin</div>
                     </div>
                 </div>
             </div>

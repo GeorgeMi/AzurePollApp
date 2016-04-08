@@ -1,18 +1,25 @@
-﻿<div ng-controller="ContactController as ctrl" >
-    <div class="panel panel-default" ng-controller="CategoryController as cat">
+﻿<div ng-controller="ContactController as ctrl">
+    <div class="panel panel-default" ng-controller="UserController as userCtrl">
         <div class="panel-heading">Contact Us</div>
         <div class="panel-body">
 
             <form class="form-horizontal">
-                
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">To:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" ng-model="ctrl.contact.receiver" required>
+                            <option value="{{category.UserID}} " ng-repeat="user in userCtrl.users ">{{ category.Username }}</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="pwd">Category:</label>
                     <div class="col-sm-8">
                         <select class="form-control" ng-model="ctrl.contact.category" required>
                             <option value="Message">Message</option>
-                            <option value="Report abuse">Report bug</option>
-                            <option value="Report abuse">Report abuse</option>
-                            <option value="Request admin role">Request admin role</option>
+                            <option value="Warning">Warning</option>
+                            <option value="Praise">Praise</option>
                         </select>
                     </div>
                 </div>
@@ -35,10 +42,10 @@
                         <div ng-if="ctrl.sent" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
                     </div>
                 </div>
-                
+
             </form>
 
-           
+
         </div>
     </div>
 </div>

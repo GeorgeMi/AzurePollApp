@@ -11,16 +11,17 @@
 
         vm.contact = {
             category: "Message",
-            message: ""
+            message: "",
+            receiver: -1
         }
         var x = JSON.stringify(vm.contact);
 
-        vm.sendMessage = function () {
+        vm.sendUserMessage = function () {
            
             if (vm.contact.message != '') {
 
                 $rootScope.isLoading = true;
-
+                vm.contact.receiver = 0;//0 == send to admin
                 var x = JSON.stringify(vm.contact);
 
                 contactResource.send.sendMessage(x,
@@ -29,6 +30,7 @@
                       
                        vm.contact.message = '';
                        vm.contact.category = '';
+                       vm.contact.receiver = -1;
                        vm.messageContact = 'Message sent successfully';
                        vm.sent = true;
 

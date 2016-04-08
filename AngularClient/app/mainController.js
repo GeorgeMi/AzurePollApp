@@ -10,7 +10,7 @@
 
         var vm = this;
 
-        vm.isLoggedIn = false;
+        vm.isLoggedIn = true;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
         
@@ -18,7 +18,7 @@
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
         vm.message = '';
-        vm.role = '';
+        vm.role = 'admin';
 
         //data for login
         vm.userData = {
@@ -47,7 +47,8 @@
             voted_polls: false,
             category_forms: false,
             contact: false,
-            search_polls: false
+            search_polls: false,
+            contact_admin:false
         };
 
         vm.confirm_password = '';
@@ -216,6 +217,7 @@
             vm.pages.category_forms = false;
             vm.pages.contact = false;
             vm.pages.search_polls = false;
+            vm.pages.contact_admin = false;
 
         }
 
@@ -238,6 +240,7 @@
             vm.pages.voted_polls = false;
             vm.pages.contact = false;
             vm.pages.search_polls = false;
+            vm.pages.contact_admin = false;
 
 
             if (mypage == 'home') {
@@ -279,8 +282,10 @@
             else if (mypage == 'search_polls') {
                 vm.pages.search_polls = true;
             }
-
-
+            else if (mypage == 'contact_admin') {
+                vm.pages.contact_admin = true;
+            }
+     
         }
         vm.changePage('home');
 
