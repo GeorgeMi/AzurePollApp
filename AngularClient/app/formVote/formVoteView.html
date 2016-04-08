@@ -1,4 +1,4 @@
-﻿<div ng-controller="FormVoteController as ctrl" >
+﻿<div ng-controller="FormVoteController as ctrl">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>{{ctrl.detailedForm.Title}}</h3>
@@ -9,14 +9,19 @@
 
             <form class="form-horizontal">
                 <div data-ng-repeat="question in ctrl.detailedForm.Questions">
-                    <div class="form-group">
-                        <label ng-if="ctrl.voted == ctrl.showResults" class="col-sm-offset-2 well col-sm-8" for="pwd">{{question.Question}}</label>
 
-                        <div ng-hide="ctrl.voted" class="col-sm-offset-3 col-sm-8" ng-repeat="answer in question.Answers">
-                            <input type="radio" name="{{ question.Answers }}" value="{{ answer.AnswerID }}" ng-model="ctrl.voteForm.answers[question.nrCrt].answer " required> {{ answer.Answer }}<br>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <label ng-if="ctrl.voted == ctrl.showResults" class="col-sm-offset-2 well col-sm-8" for="pwd">{{question.Question}}</label>
                         </div>
-                        <div ng-if="ctrl.showResults" class="col-sm-offset-2 col-sm-4">
-                            <canvas id="doughnut" class="chart chart-doughnut" chart-legend="true" chart-data="ctrl.chartResult[question.nrCrt].chartData" chart-labels="ctrl.chartResult[question.nrCrt].chartLabels"></canvas>
+
+                        <div class="panel-body">
+                            <div ng-hide="ctrl.voted" class="col-sm-offset-3 col-sm-8" ng-repeat="answer in question.Answers">
+                                <input type="radio" name="{{ question.Answers }}" value="{{ answer.AnswerID }}" ng-model="ctrl.voteForm.answers[question.nrCrt].answer " required> {{ answer.Answer }}<br>
+                            </div>
+                            <div ng-if="ctrl.showResults" class="col-sm-offset-2 col-sm-4">
+                                <canvas id="doughnut" class="chart chart-doughnut" chart-legend="true" chart-data="ctrl.chartResult[question.nrCrt].chartData" chart-labels="ctrl.chartResult[question.nrCrt].chartLabels"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>

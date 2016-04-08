@@ -10,7 +10,7 @@
 
         var vm = this;
 
-        vm.isLoggedIn = true;
+        vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
         
@@ -18,7 +18,7 @@
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
         vm.message = '';
-        vm.role = 'admin';
+        vm.role = '';
 
         //data for login
         vm.userData = {
