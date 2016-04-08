@@ -127,7 +127,7 @@ namespace WebAPI.Controllers
         /// add new form to database
         /// </summary>
         /// <param name="formDTO">form detailes</param>
-        /// <returns></returns>
+        /// <returns>http status code OK or ExpectationFailed</returns>
         [RequireToken]
         public HttpResponseMessage Post([FromBody] FormDetailDTO formDTO)
         {
