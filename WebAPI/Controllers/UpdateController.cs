@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// delete unverified accounts and set to closed outdated forms
         /// </summary>
-        [RequirePasswordForScheduler]
+       [RequirePasswordForScheduler]
         public void Get()
         {
             UsersModel model = new UsersModel();

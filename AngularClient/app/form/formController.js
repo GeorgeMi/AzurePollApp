@@ -22,7 +22,7 @@
             createdDate: '',
             deadline: '',
             id: 0,
-            state: 'ok',
+            state: 'open',
             //  answer: {id:1,answer:"a"}
             questions: [{ id: 1, question: '', answers: [{ id: 1, answer: '' }] }]
         };
