@@ -34,7 +34,7 @@ namespace BusinessLogic
                 formDTO.Title = f.Title;
                 formDTO.State = f.State;
                 formDTO.CreatedDate = f.CreatedDate.ToString();
-                formDTO.Deadline = f.Deadline.ToString();
+                formDTO.Deadline = f.Deadline.ToShortDateString();
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
@@ -97,7 +97,7 @@ namespace BusinessLogic
                 formDTO.Title = f.Title;
                 formDTO.State = f.State;
                 formDTO.CreatedDate = f.CreatedDate.ToString();
-                formDTO.Deadline = f.Deadline.ToString();
+                formDTO.Deadline = f.Deadline.ToShortDateString();
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
@@ -137,7 +137,7 @@ namespace BusinessLogic
                 formDTO.Title = f.Title;
                 formDTO.State = f.State;
                 formDTO.CreatedDate = f.CreatedDate.ToString();
-                formDTO.Deadline = f.Deadline.ToString();
+                formDTO.Deadline = f.Deadline.ToShortDateString();
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
@@ -183,7 +183,7 @@ namespace BusinessLogic
                 formDTO.Title = f.Title;
                 formDTO.State = f.State;
                 formDTO.CreatedDate = f.CreatedDate.ToString();
-                formDTO.Deadline = f.Deadline.ToString();
+                formDTO.Deadline = f.Deadline.ToShortDateString();
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
@@ -212,7 +212,7 @@ namespace BusinessLogic
                 formDTO.Title = f.Title;
                 formDTO.State = f.State;
                 formDTO.CreatedDate = f.CreatedDate.ToString();
-                formDTO.Deadline = f.Deadline.ToString();
+                formDTO.Deadline = f.Deadline.ToShortDateString();
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;

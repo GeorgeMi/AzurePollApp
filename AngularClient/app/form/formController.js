@@ -98,12 +98,13 @@
                 alert("Minimum Number of Answers Allowed is 1");
             }
         }
-
+       
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
         formResource.get.getForms(param, function (data) {
 
             $rootScope.isLoading = false; //loading gif
             vm.forms = data;
+                      
             if (vm.forms.length < vm.per_page) {
                 vm.Next = false;
             }
