@@ -1,4 +1,4 @@
-﻿<div ng-controller="FormUserController as ctrl" >
+﻿<div ng-controller="FormUserController as ctrl">
 
     <div class="panel panel-default">
         <div class="panel-heading">Polls per page</div>
@@ -14,12 +14,13 @@
     </div>
 
     <div ng-repeat="form in ctrl.userForms">
-       
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Author: {{ form.Username}}
-                </div>
-                <div class="panel-body">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Author: {{ form.Username}}
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
                     <div class="col-sm-6 col-md-4">
                         <h3>{{ form.Title}}</h3>
                     </div>
@@ -35,12 +36,14 @@
                     <div class="col-sm-6 col-md-4">
                         <h5>Deadline: {{ form.Deadline }}</h5>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="btn-group btn-group-justified">
                         <div class="btn btn-default" title="View results" ng-click="vm.changePage(ctrl.changeID(form.Id))">View Results</div>
                         <div class="btn btn-default" title="Delete poll" ng-click="ctrl.deleteForm(form.Id)">Delete poll</div>
-                       
                     </div>
-              
+                </div>
+
             </div>
         </div>
     </div>

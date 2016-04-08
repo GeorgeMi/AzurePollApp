@@ -13,29 +13,30 @@
         </div>
     </div>
 
-   <div ng-controller="FormVoteController as ctrlVote">
+    <div ng-controller="FormVoteController as ctrlVote">
         <div ng-repeat="form in ctrl.forms | filter:searchText">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Author: {{ form.Username}}
                 </div>
                 <div class="panel-body">
-                    <div class="col-sm-6 col-md-4">
-                        <h3>{{ form.Title}}</h3>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 col-md-4">
+                            <h3>{{ form.Title}}</h3>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <h5>Category: {{ form.Category }}</h5>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <h5>State: {{ form.State }}</h5>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <h5>Created on: {{ form.CreatedDate }}</h5>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <h5>Deadline: {{ form.Deadline }}</h5>
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <h5>Category: {{ form.Category }}</h5>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <h5>State: {{ form.State }}</h5>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <h5>Created on: {{ form.CreatedDate }}</h5>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <h5>Deadline: {{ form.Deadline }}</h5>
-                    </div>
-
                     <div class="col-sm-6 col-md-4">
                         <div class="btn-group btn-group-justified">
                             <div ng-hide="form.Voted" class="btn btn-default" ng-click="vm.changePage(ctrlVote.changeID(form.Id))">Vote poll</div>

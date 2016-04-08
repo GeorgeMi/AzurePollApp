@@ -5,6 +5,7 @@
  */
 using DataTransferObject;
 using Microsoft.Practices.Unity;
+using System;
 
 namespace WebAPI.Models
 {
@@ -39,7 +40,7 @@ namespace WebAPI.Models
                 bl.MessageLogic.SendMessage(token, contactMessageDTO);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

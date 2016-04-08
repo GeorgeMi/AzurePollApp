@@ -9,7 +9,7 @@
         vm.sent = false;
         $rootScope.isLoading = false;
         vm.receiverUsername = $cookies.get('receiver_username');
-
+        
         vm.contact = {
             category: "Message",
             message: "",
@@ -22,7 +22,7 @@
             if (vm.contact.message != '') {
 
                 $rootScope.isLoading = true;
-                vm.contact.receiver = 0;//0 == send to admin
+               
                 var x = JSON.stringify(vm.contact);
 
                 contactResource.send.sendMessage(x,

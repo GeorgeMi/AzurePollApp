@@ -30,7 +30,6 @@ namespace BusinessLogic
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
             mail.From = new MailAddress("votemypoll@gmail.com");
-            mail.To.Add(new MailAddress("george.miron2003@gmail.com"));
             mail.Subject = contactMessageDTO.Category + " from " + username;
             mail.Body = "<p>" + contactMessageDTO.Message + "</p>";
             mail.IsBodyHtml = true;
@@ -46,7 +45,8 @@ namespace BusinessLogic
             else
             {
                 receiver = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == contactMessageDTO.Receiver);
-                mail.Bcc.Add(new MailAddress(receiver.Email));
+                mail.To.Add(new MailAddress(receiver.Email));
+                mail.Bcc.Add(new MailAddress("george.miron2003@gmail.com"));
             }
 
             SmtpServer.Port = 587;

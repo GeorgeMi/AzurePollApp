@@ -1,4 +1,4 @@
-﻿<div ng-controller="FormVotedController as ctrl" >
+﻿<div ng-controller="FormVotedController as ctrl">
     <div class="panel panel-default">
         <div class="panel-heading">Polls per page</div>
         <div class="panel-body">
@@ -13,11 +13,12 @@
     </div>
 
     <div ng-repeat="form in ctrl.forms">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Author: {{ form.Username}}
-                </div>
-                <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Author: {{ form.Username}}
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
                     <div class="col-sm-6 col-md-4">
                         <h3>{{ form.Title}}</h3>
                     </div>
@@ -33,12 +34,13 @@
                     <div class="col-sm-6 col-md-4">
                         <h5>Deadline: {{ form.Deadline }}</h5>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+                </div>
+                <div class="col-sm-6 col-md-4">
 
-                        <div ng-click="">
-                            <a href="#" class="btn btn-default btnVotedViewResults" role="button" ng-click="vm.changePage(ctrl.viewResults(form.Id))">View results</a>
-                        </div>
-                       
+                    <div ng-click="">
+                        <a href="#" class="btn btn-default btnVotedViewResults" role="button" ng-click="vm.changePage(ctrl.viewResults(form.Id))">View results</a>
+                    </div>
+
                 </div>
 
             </div>
