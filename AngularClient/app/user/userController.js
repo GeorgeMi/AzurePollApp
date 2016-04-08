@@ -2,9 +2,9 @@
     "use strict";
     angular
         .module("userManagement")
-        .controller("UserController", ["userResource","$rootScope", UserController]);
+        .controller("UserController", ["userResource","$cookies", "$rootScope", UserController]);
 
-    function UserController(userResource, $rootScope) {
+    function UserController(userResource,$cookies, $rootScope) {
         var vm = this;
 
         vm.page_nr = 0; //numarul paginii
@@ -23,8 +23,8 @@
             else {
                 vm.Next = true;
             }
-           
-        },  $rootScope.isLoading = false);
+           $rootScope.isLoading = false
+        });
 
         vm.deleteUser = function (userID) {
             var r = confirm("Are you sure that you want to permanently delete this user?");
@@ -151,6 +151,14 @@
             $rootScope.isLoading = false;
         }
      
+        vm.viewSendMessage = function (id, username) {
+           // alert(id+" "+username);
+            $cookies.remove('receiver_id');
+            $cookies.remove('receiver_username');
 
+            $cookies.put('receiver_id', id);
+            $cookies.put('receiver_username', username);
+            return 'contact_admin_redirect';
+        }
     }
 }());

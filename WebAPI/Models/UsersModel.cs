@@ -49,6 +49,22 @@ namespace WebAPI.Models
                 return false;
             }
         }
+
+        /// <summary>
+        /// get list of all users' username and id from database
+        /// </summary>
+        public List<UsernameDTO> GetAllUsernames()
+        {
+            try
+            {
+                return bl.UserLogic.GetAllUsernames();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// ask business logic to get username's id
         /// </summary>

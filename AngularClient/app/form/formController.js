@@ -12,7 +12,7 @@
         vm.per_page = 10; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = true; // se afiseaza "next page" la paginare
-        $rootScope.isLoading = false; //loading gif
+        $rootScope.isLoading = true; //loading gif
 
         //data form to send
         vm.sendForm = {
@@ -102,6 +102,7 @@
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
         formResource.get.getForms(param, function (data) {
 
+            $rootScope.isLoading = false; //loading gif
             vm.forms = data;
             if (vm.forms.length < vm.per_page) {
                 vm.Next = false;
@@ -118,9 +119,9 @@
 
             if (vm.sendForm.title != '' && vm.sendForm.category != '' && vm.sendForm.deadline != '') {
 
-                vm.sendForm.title = vm.sendForm.title.replace(/ /g, '');
-                vm.sendForm.category = vm.sendForm.category.replace(/ /g, '');
-                vm.sendForm.deadline = vm.sendForm.deadline.replace(/ /g, '');
+                vm.sendForm.title = vm.sendForm.title.trim()
+                vm.sendForm.category = vm.sendForm.category.trim()
+               
             }
 
             if (vm.sendForm.title != '' && vm.sendForm.category != '' && vm.sendForm.deadline != '') {

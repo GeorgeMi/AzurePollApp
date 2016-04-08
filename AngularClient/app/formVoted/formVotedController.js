@@ -22,8 +22,9 @@
             else {
                 vm.Next = true;
             }
+           $rootScope.isLoading = false
           
-        },  $rootScope.isLoading = false);
+        });
 
         vm.viewResults = function (id) {
             //alert("cookie");

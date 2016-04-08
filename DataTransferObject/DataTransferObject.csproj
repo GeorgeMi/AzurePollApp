@@ -50,6 +50,7 @@
     <Compile Include="TokenDTO.cs" />
     <Compile Include="UserDetailDTO.cs" />
     <Compile Include="UserDTO.cs" />
+    <Compile Include="UsernameDTO.cs" />
     <Compile Include="UserRegistrationDTO.cs" />
     <Compile Include="VoteAnswerDetailResultDTO.cs" />
     <Compile Include="VoteAnswerResultDTO.cs" />

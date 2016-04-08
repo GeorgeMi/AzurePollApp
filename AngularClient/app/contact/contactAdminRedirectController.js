@@ -1,23 +1,24 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("contactManagement")
-        .controller("ContactController", ["contactResource", "$cookies", "$rootScope", ContactController]);
+        .controller("ContactAdminRedirectController", ["contactResource", "$cookies", "$rootScope", ContactAdminRedirectController]);
 
-    function ContactController(contactResource, $cookies,  $rootScope) {
+    function ContactAdminRedirectController(contactResource, $cookies, $rootScope) {
         var vm = this;
         vm.sent = false;
         $rootScope.isLoading = false;
+        vm.receiverUsername = $cookies.get('receiver_username');
 
         vm.contact = {
             category: "Message",
             message: "",
-            receiver: -1
+            receiver: $cookies.get('receiver_id')
         }
         var x = JSON.stringify(vm.contact);
 
         vm.sendUserMessage = function () {
-           
+
             if (vm.contact.message != '') {
 
                 $rootScope.isLoading = true;
@@ -27,13 +28,14 @@
                 contactResource.send.sendMessage(x,
                    //s-a trimis cu succes
                    function (data) {
-                      
+
                        vm.contact.message = '';
                        vm.contact.category = '';
                        vm.contact.receiver = -1;
                        vm.messageContact = 'Message sent successfully';
                        vm.sent = true;
                        $rootScope.isLoading = false;
+
                    },
 
                   //nu s-a trimis
@@ -46,8 +48,6 @@
                        }
                        $rootScope.isLoading = false;
                    });
-
-               
             }
         }
 

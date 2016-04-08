@@ -12,6 +12,7 @@
         //a votat userul?
         vm.voted = false;
         vm.showResults = false;
+       
         //array pentru raspuns
         vm.voteForm = {
             username: $cookies.get('username'),
@@ -27,14 +28,14 @@
         var param = { form_id: vm.formID };
 
         if (vm.formID) {
-            //  alert("asdasd");
+            
             $rootScope.isLoading = true;
             $cookies.remove('last_poll');
             formResource.getForm.getForm(param,
                 function (data) {
 
                     vm.detailedForm = data;
-
+                    $rootScope.isLoading = false;
                     //creez array-ul pentru raspuns
                     if (vm.detailedForm.Questions.length > 0) {
                         var i;
@@ -51,13 +52,12 @@
                         }
                     }
                 });
-            $rootScope.isLoading = false;
+           
         }
 
         //vote
         vm.vote = function () {
             // alert(vm.sendForm);
-           
             var x = JSON.stringify(vm.voteForm)
 
             //s-au votat toate intrebarile
@@ -73,7 +73,7 @@
                             vm.voteForm.answers[i].answer = 0;
                         }
                         vm.results = data;
-
+                        $rootScope.isLoading = false;
                         vm.voted = true;
                         vm.messageForm = 'Poll voted successfully';
 
@@ -83,12 +83,14 @@
                     function (response) {
                         if (response.data.error) {
                             vm.messageForm = response.data.error;
+                            vm.messageForm = 'Poll voted failed';
+                            $rootScope.isLoading = false;
                         }
                         else {
 
                         }
                     });
-                $rootScope.isLoading = false;
+               
             }
         }
 

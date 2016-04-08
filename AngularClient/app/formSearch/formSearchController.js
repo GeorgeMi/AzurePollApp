@@ -30,10 +30,10 @@
                     else {
                         vm.Next = true;
                     }
-
+                    $rootScope.isLoading = false; //loading gif
                 });
 
-                $rootScope.isLoading = false; //loading gif
+               
             }
            
         }
@@ -68,8 +68,9 @@
                         else {
                             vm.Next = true;
                         }
+                        $rootScope.isLoading = false;
                     });
-                $rootScope.isLoading = false;
+               
             }
         }
         

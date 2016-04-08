@@ -15,6 +15,7 @@ using Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System;
 
 namespace BusinessLogic
 {
@@ -74,6 +75,26 @@ namespace BusinessLogic
             }
            
         }
+
+        public List<UsernameDTO> GetAllUsernames()
+        {
+            //returneaza lista cu toti userii si id-urile
+            List<User> userList = _dataAccess.UserRepository.GetAll().ToList();
+            List<UsernameDTO> userDtoList = new List<UsernameDTO>();
+            UsernameDTO userDTO;
+
+            foreach (User u in userList)
+            {
+                userDTO = new UsernameDTO();
+                userDTO.Username = u.Username;
+                userDTO.UserID = u.UserID;
+
+                userDtoList.Add(userDTO);
+            }
+
+            return userDtoList.ToList();
+        }
+
         public UserDetailDTO GetUser(int id)
         {
             //gaseste user dupa id

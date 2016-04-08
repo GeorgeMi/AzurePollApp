@@ -26,10 +26,10 @@
             else {
                 vm.Next = true;
             }
-           
+            $rootScope.isLoading = false;
         });
 
-        $rootScope.isLoading = false;
+       
         vm.deleteForm = function (formID) {
             var r = confirm("Are you sure that you want to permanently delete this form?");
           
@@ -49,8 +49,9 @@
                                 vm.userForms.splice(i, 1);
                             }
                         }
+                        $rootScope.isLoading = false;
                     });
-                $rootScope.isLoading = false;
+               
             }
         }
 

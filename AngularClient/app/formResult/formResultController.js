@@ -36,12 +36,9 @@
                     
                 }
               
-              
+                $rootScope.isLoading = false;
 
             });
-
-        $rootScope.isLoading = false;
-
-
+             
     }
 }());

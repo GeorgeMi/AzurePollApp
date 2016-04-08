@@ -32,8 +32,21 @@ namespace WebAPI.Controllers
             int page_nr = pageVal[0];
             int per_page = pageVal[1];
 
-            List<UserDetailDTO> list = new List<UserDetailDTO>();
+            List<UserDetailDTO> list;
             list = userModel.GetAllUsers(page_nr, per_page);
+            return list;
+        }
+
+        /// <summary>
+        /// get list of all users' username and id from database
+        /// </summary>
+      //  [RequireAdminToken]
+        [HttpGet]
+        [ActionName("usernames")]
+        public IEnumerable<UsernameDTO> Usernames(int id)
+        {
+            List<UsernameDTO> list;
+            list = userModel.GetAllUsernames();
             return list;
         }
 

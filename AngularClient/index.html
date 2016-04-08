@@ -139,6 +139,7 @@
                         <div ng-if="vm.pages.manage_categories" ng-include="'app/category/categoryAdminListView.html'">manage_categories</div>
                         <div ng-if="vm.pages.search_polls" ng-include="'app/formSearch/formSearchView.html'">search_polls</div>
                         <div ng-if="vm.pages.contact_admin" ng-include="'app/contact/contactAdminView.html'">contact_admin</div>
+                        <div ng-if="vm.pages.contact_admin_redirect" ng-include="'app/contact/contactAdminRedirectView.html'">contact_admin_redirect</div>
                     </div>
                 </div>
             </div>
@@ -218,6 +219,8 @@
     <script src="app/formCategory/formCategoryController.js"></script>
     <script src="app/contact/contactController.js"></script>
     <script src="app/formSearch/formSearchController.js"></script>
+    <script src="app/user/usernameListController.js"></script>
+    <script src="app/contact/contactAdminRedirectController.js"></script>
 </body>
 
 </html>
