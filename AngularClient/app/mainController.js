@@ -33,6 +33,10 @@
             email: ''
         };
 
+        vm.pagesArray = {
+            current: '',
+            last: ''
+        };
         //app pages
         vm.pages = {
             home: true,
@@ -202,7 +206,9 @@
         vm.logout = function () {
             $cookies.remove("token");
             $cookies.remove("role");
-
+            $cookies.remove("receiver_id");
+            $cookies.remove("receiver_username");
+                    
             vm.isLoggedIn = false;
 
             vm.pages.home = false;
@@ -228,7 +234,7 @@
         vm.changePage = function (mypage) {
             //inchide sideBar la smartphone
             $(".mobileSideBarVisible").addClass("sideBarHidden");
-
+            vm.ok = 1; // mypage este valid
             vm.pages.home = false;
             vm.pages.categories = false;
             vm.pages.category_forms = false;
@@ -244,7 +250,6 @@
             vm.pages.search_polls = false;
             vm.pages.contact_admin = false;
             vm.pages.contact_admin_redirect = false;
-
 
             if (mypage == 'home') {
                 vm.pages.home = true;
@@ -291,9 +296,27 @@
             else if (mypage == 'contact_admin_redirect') {
                 vm.pages.contact_admin_redirect = true;
             }
-                 
+            else {
+                vm.ok = 0;
+            }
+
+            if (vm.ok == 1)
+            {
+                vm.pagesArray.last = vm.pagesArray.current;
+                vm.pagesArray.current = mypage;
+            }
+            
         }
         vm.changePage('home');
+
+        vm.backPage = function () {
+            
+            vm.changePage(vm.pagesArray.last);
+            temp = vm.pagesArray.last;
+            vm.pagesArray.last = vm.pagesArray.current;
+            vm.pagesArray.current = temp;
+          
+        }
 
         //------------------verify mail---------------------
         if ($location.search().verifymail) {
