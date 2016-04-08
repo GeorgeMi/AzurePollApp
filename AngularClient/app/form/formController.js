@@ -138,7 +138,7 @@
                         vm.sendForm.questions = [{ id: 1, question: '', answers: [{ id: 1, answer: '' }] }];
                         vm.messageForm = 'Poll created successfully';
 
-                        vm.created = true;
+                        vm.created = "success";
                     },
 
                    //nu s-a creat
@@ -146,13 +146,15 @@
                         if (response.data != null) {
                             if (response.data.error) {
                                 vm.messageForm = response.data.error;
+                                vm.created = "fail";
                             }
                             else {
 
                             }
                         }
+                        $rootScope.isLoading = false;
                     });
-                $rootScope.isLoading = false;
+               
             }
         }
 

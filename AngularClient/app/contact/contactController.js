@@ -32,7 +32,7 @@
                        vm.contact.category = '';
                        vm.contact.receiver = -1;
                        vm.messageContact = 'Message sent successfully';
-                       vm.sent = true;
+                       vm.sent = "success";
                        $rootScope.isLoading = false;
                    },
 
@@ -40,6 +40,8 @@
                    function (response) {
                        if (response.data.error) {
                            vm.messageContact = response.data.error;
+                           vm.sent = "fail";
+                           
                        }
                        else {
 

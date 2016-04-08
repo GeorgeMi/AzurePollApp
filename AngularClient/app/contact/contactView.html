@@ -38,7 +38,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <div ng-if="ctrl.sent" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
+                        <div ng-if="ctrl.sent == 'success'" class="alert alert-success" role="alert">{{ctrl.messageContact}}</div>
+                        <div ng-if="ctrl.sent == 'fail'" class="alert alert-danger" role="alert">{{ctrl.messageContact}}</div>
                     </div>
                 </div>
                 

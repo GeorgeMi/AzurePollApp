@@ -41,6 +41,8 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
+            formDtoList.Reverse();
+
             return formDtoList.Skip(page * per_page).Take(per_page).ToList();
         }
 
@@ -114,6 +116,8 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
+            formDtoList.Reverse();
+
             return formDtoList.Skip(page_nr * per_page).Take(per_page).ToList();
 
         }
@@ -152,6 +156,8 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
+            formDtoList.Reverse();
+
             return formDtoList.Skip(page * per_page).Take(per_page).ToList();
         }
 
@@ -185,6 +191,8 @@ namespace BusinessLogic
 
                 formDtoList.Add(formDTO);
             }
+
+            formDtoList.Reverse();
 
             return formDtoList.Skip(page * per_page).Take(per_page).ToList();
         }
@@ -222,7 +230,8 @@ namespace BusinessLogic
 
                 formDtoList.Add(formDTO);
             }
-
+            //inversa lista pentru a fi primele cele mai noi
+            formDtoList.Reverse();
             return formDtoList.Skip(page * per_page).Take(per_page).ToList();
 
         }
