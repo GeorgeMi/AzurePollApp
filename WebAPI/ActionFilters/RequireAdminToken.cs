@@ -38,7 +38,6 @@ namespace WebAPI.ActionFilters
 
             if (!valid)
             {
-                //Invalid Authorization Key
                 json = new JSendMessage("fail", "Invalid Authorization Key");
                 context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
