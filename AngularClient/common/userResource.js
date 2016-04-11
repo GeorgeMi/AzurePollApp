@@ -10,7 +10,6 @@
                           {
                               'getUsers': {
                                   method: 'GET',
-                                  isArray: true,
                                   headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                                   transformRequest: function (data, headersGetter) {
                                       var str = [];
@@ -25,7 +24,6 @@
                           {
                               'getUsername': {
                                   method: 'GET',
-                                  isArray: true,
                                   headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                                   transformRequest: function (data, headersGetter) {
                                       var str = [];
