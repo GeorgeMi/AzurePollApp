@@ -2,7 +2,7 @@
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormUserController", ["formResource", "$cookies","$rootScope", FormUserController]);
+        .controller("FormUserController", ["formResource", "$cookies", "$rootScope", FormUserController]);
 
     function FormUserController(formResource, $cookies, $rootScope) {
         var vm = this;
@@ -16,23 +16,31 @@
 
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
-        formResource.getForms.getForms(param, function (data) {
+        formResource.getForms.getForms(param,
+            function (data) {
 
-            vm.userForms = data;
+                vm.userForms = data.data;
+                $rootScope.isLoading = false;
 
-            if (vm.userForms.length < vm.per_page) {
-                vm.Next = false;
+                if (vm.userForms.length < vm.per_page) {
+                    vm.Next = false;
+                }
+                else {
+                    vm.Next = true;
+                }
+
+            },
+
+            function (message) {
+                    vm.message = message.data.message;
+                    $rootScope.isLoading = false; //loading gif
             }
-            else {
-                vm.Next = true;
-            }
-            $rootScope.isLoading = false;
-        });
+            );
 
-       
+
         vm.deleteForm = function (formID) {
             var r = confirm("Are you sure that you want to permanently delete this form?");
-          
+
             if (r == true) {
                 $rootScope.isLoading = true;
 
@@ -51,7 +59,7 @@
                         }
                         $rootScope.isLoading = false;
                     });
-               
+
             }
         }
 
@@ -76,6 +84,7 @@
                 formResource.getForms.getForms(param, function (data) {
 
                     vm.userForms = data;
+                    $rootScope.isLoading = false;
 
                     if (vm.userForms.length < vm.per_page) {
                         vm.Next = false;
@@ -91,7 +100,7 @@
                         vm.Prev = true;
                     }
                 });
-                $rootScope.isLoading = false;
+
             }
         }
 
@@ -111,6 +120,8 @@
             formResource.getForms.getForms(param, function (data) {
 
                 vm.userForms = data;
+                $rootScope.isLoading = false;
+
                 if (vm.userForms.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -124,11 +135,7 @@
                 else {
                     vm.Prev = true;
                 }
-               $rootScope.isLoading = false;
             });
-          
         }
-       
-
     }
 }());

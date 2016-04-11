@@ -1,9 +1,9 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormCategoryController", ["formResource", "$cookies","$rootScope", FormCategoryController]);
-       
+        .controller("FormCategoryController", ["formResource", "$cookies", "$rootScope", FormCategoryController]);
+
 
     function FormCategoryController(formResource, $cookies, $rootScope) {
         var vm = this;
@@ -15,16 +15,14 @@
         $rootScope.isLoading = true; //loading gif
 
         var param = { category_id: $cookies.get('category_id'), page_nr: vm.page_nr, per_page: vm.per_page };
-        
-        formResource.getCategoryForms.getCategoryForms(param,function (data) {
+
+        formResource.getCategoryForms.getCategoryForms(param, function (data) {
             vm.forms = data;
-            
-            if (vm.forms.length < vm.per_page)
-            {
+
+            if (vm.forms.length < vm.per_page) {
                 vm.Next = false;
             }
-            else
-            {
+            else {
                 vm.Next = true;
             }
             $rootScope.isLoading = false;
@@ -78,6 +76,7 @@
 
                 formResource.getCategoryForms.getCategoryForms(param, function (data) {
                     vm.forms = data;
+                    $rootScope.isLoading = false;
 
                     if (vm.forms.length < vm.per_page) {
                         vm.Next = false;
@@ -93,7 +92,6 @@
                         vm.Prev = true;
                     }
                 });
-                $rootScope.isLoading = false;
             }
         }
 
@@ -113,6 +111,8 @@
 
             formResource.getCategoryForms.getCategoryForms(param, function (data) {
                 vm.forms = data;
+                $rootScope.isLoading = false;
+
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -129,7 +129,5 @@
 
             });
         }
-        $rootScope.isLoading = false;
-
     }
 }());

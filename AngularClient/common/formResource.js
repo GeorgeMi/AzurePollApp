@@ -11,7 +11,6 @@
                       {
                           'getForms': {
                               method: 'GET',
-                              isArray: true,
                               headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                               transformRequest: function (data, headersGetter) {
                                   var str = [];
@@ -42,7 +41,6 @@
                      {
                          'getVotedForms': {
                              method: 'GET',
-                             isArray: true,
                              headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                              transformRequest: function (data, headersGetter) {
                                  var str = [];
@@ -58,7 +56,6 @@
                      {
                          'getCategoryForms': {
                              method: 'GET',
-                             isArray: true,
                              headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                              transformRequest: function (data, headersGetter) {
                                  var str = [];
@@ -92,7 +89,6 @@
                       {
                           'getForms': {
                               method: 'GET',
-                              isArray: true,
                               headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                               transformRequest: function (data, headersGetter) {
                                   var str = [];
@@ -139,7 +135,6 @@
                       {
                           'searchForms': {
                               method: 'GET',
-                              isArray: true,
                               headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'token': $cookies.get('token') },
                               transformRequest: function (data, headersGetter) {
                                   var str = [];

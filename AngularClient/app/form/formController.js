@@ -98,20 +98,29 @@
                 alert("Minimum Number of Answers Allowed is 1");
             }
         }
-       
-        var param = { page_nr: vm.page_nr, per_page: vm.per_page };
-        formResource.get.getForms(param, function (data) {
 
-            $rootScope.isLoading = false; //loading gif
-            vm.forms = data;
-                      
-            if (vm.forms.length < vm.per_page) {
-                vm.Next = false;
+        var param = { page_nr: vm.page_nr, per_page: vm.per_page };
+        formResource.get.getForms(param,
+
+            function (data) {
+
+                vm.forms = data.data;
+                $rootScope.isLoading = false; //loading gif
+
+                if (vm.forms.length < vm.per_page) {
+                    vm.Next = false;
+                }
+                else {
+                    vm.Next = true;
+                }
+
+            },
+
+            function (message) {
+                vm.message = message.data.message;
+                $rootScope.isLoading = false; //loading gif
             }
-            else {
-                vm.Next = true;
-            }
-        });
+        );
 
 
 
@@ -122,7 +131,7 @@
 
                 vm.sendForm.title = vm.sendForm.title.trim()
                 vm.sendForm.category = vm.sendForm.category.trim()
-               
+
             }
 
             if (vm.sendForm.title != '' && vm.sendForm.category != '' && vm.sendForm.deadline != '') {
@@ -155,7 +164,7 @@
                         }
                         $rootScope.isLoading = false;
                     });
-               
+
             }
         }
 
@@ -201,6 +210,7 @@
                 formResource.get.getForms(param, function (data) {
 
                     vm.forms = data;
+                    $rootScope.isLoading = false;
 
                     if (vm.forms.length < vm.per_page) {
                         vm.Next = false;
@@ -216,7 +226,7 @@
                         vm.Prev = true;
                     }
                 });
-                $rootScope.isLoading = false;
+
             }
         }
 
@@ -232,10 +242,12 @@
             else {
                 vm.Prev = true;
             }
-            
+
             formResource.get.getForms(param, function (data) {
 
                 vm.forms = data;
+                $rootScope.isLoading = false
+
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -249,10 +261,8 @@
                 else {
                     vm.Prev = true;
                 }
-             
-            },   $rootScope.isLoading = false);
+            });
         }
-       
 
     }
 }());

@@ -99,6 +99,7 @@
        
                 userResource.get.getUsers(param,function (data) {
                     vm.users = data;
+                    $rootScope.isLoading = false;
 
                     if (vm.users.length < vm.per_page) {
                         vm.Next = false;
@@ -114,7 +115,7 @@
                     }
                   
                });
-                $rootScope.isLoading = false;
+               
             }
         }
 
@@ -133,7 +134,8 @@
             
             userResource.get.getUsers(param, function (data) {
                 vm.users = data;
-
+                $rootScope.isLoading = false;
+                
                 if (vm.users.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -148,7 +150,7 @@
                 }
 
             });
-            $rootScope.isLoading = false;
+           
         }
      
         vm.viewSendMessage = function (id, username) {

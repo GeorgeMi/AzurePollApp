@@ -24,7 +24,8 @@ namespace BusinessLogic
         {
             //returnez toate formurile unui user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
-            List<Form> formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID).ToList();
+            List<Form> formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID).OrderByDescending(form => form.CreatedDate).ToList();
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
@@ -40,10 +41,8 @@ namespace BusinessLogic
                 formDTO.Id = f.FormID;
                 formDtoList.Add(formDTO);
             }
-
-            formDtoList.Reverse();
-
-            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
+            
+            return formDtoList.ToList();
         }
 
         public VoteResultDetailDTO GetDetailResultForm(int id)
@@ -85,7 +84,8 @@ namespace BusinessLogic
         {
             //returneaza toate formurile care contin searchedName
             List<Form> formList = _dataAccess.FormRepository.GetAll().Where(form => form.Category.Name.Contains(searchedName) ||
-                form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).ToList();
+                form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).OrderByDescending(form => form.CreatedDate).ToList();
+            formList = formList.Skip(page_nr * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
@@ -116,16 +116,15 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-            formDtoList.Reverse();
-
-            return formDtoList.Skip(page_nr * per_page).Take(per_page).ToList();
+            return formDtoList.ToList();
 
         }
 
         public List<FormDTO> GetCategoryForms(int categoryID, string token, int page, int per_page)
         {
             //returneaza toate formurile dintr-o categorie
-            List<Form> formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID).ToList();
+            List<Form> formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID).OrderByDescending(f => f.CreatedDate).ToList();
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
@@ -155,10 +154,7 @@ namespace BusinessLogic
 
                 formDtoList.Add(formDTO);
             }
-
-            formDtoList.Reverse();
-
-            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
+            return formDtoList.ToList();
         }
 
         public List<FormDTO> GetVotedForms(string username, int page, int per_page)
@@ -166,7 +162,8 @@ namespace BusinessLogic
             //returneaza toate formurile votate de catre un user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
             List<Form> formList = new List<Form>();
-            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).ToList();
+            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).OrderByDescending(voted => voted.Form.CreatedDate).ToList();
+            votedFormsList = votedFormsList.Skip(page * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
             Form form;
@@ -192,15 +189,14 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-            formDtoList.Reverse();
-
-            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
+           return formDtoList.ToList();
         }
 
         public List<FormDTO> GetAllForms(string token, int page, int per_page)
         {
             //returneaza toate formurile 
-            List<Form> formList = _dataAccess.FormRepository.GetAll().ToList();
+            List<Form> formList = _dataAccess.FormRepository.GetAll().OrderByDescending(form=>form.CreatedDate).ToList();
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
@@ -231,8 +227,7 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
             //inversa lista pentru a fi primele cele mai noi
-            formDtoList.Reverse();
-            return formDtoList.Skip(page * per_page).Take(per_page).ToList();
+            return formDtoList.ToList();
 
         }
 

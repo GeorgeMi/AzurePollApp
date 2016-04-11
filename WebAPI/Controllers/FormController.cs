@@ -26,9 +26,11 @@ namespace WebAPI.Controllers
         /// <summary>
         /// get all forms from database
         /// </summary>
-        [RequireToken]
-        public IEnumerable<FormDTO> Get()
+       // [RequireToken]
+        public HttpResponseMessage Get()
         {
+            HttpResponseMessage responseMessage;
+            JSend json;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];
@@ -36,8 +38,20 @@ namespace WebAPI.Controllers
 
             List<FormDTO> list = new List<FormDTO>();
             list = formModel.GetAllForms(token, page_nr, per_page);
+         
+            if (list.Count > 0)
+            {
+                json = new JSendData<FormDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+            }
 
-            return list;
+            return responseMessage;
+
         }
 
         /// <summary>
@@ -47,8 +61,10 @@ namespace WebAPI.Controllers
         [RequireToken]
         [HttpGet]
         [ActionName("user")]
-        public new IEnumerable<FormDTO> User(string id)
+        public new HttpResponseMessage User(string id)
         {
+            HttpResponseMessage responseMessage;
+            JSend json;
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];
             int per_page = pageVal[1];
@@ -56,7 +72,18 @@ namespace WebAPI.Controllers
             List<FormDTO> list = new List<FormDTO>();
             list = formModel.GetUserForms(id, page_nr, per_page);
 
-            return list;
+            if (list.Count > 0)
+            {
+                json = new JSendData<FormDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+            }
+
+            return responseMessage;
         }
 
         /// <summary>

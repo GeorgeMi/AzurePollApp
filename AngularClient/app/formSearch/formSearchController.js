@@ -87,6 +87,7 @@
 
                 formResource.search.searchForms(param, function (data) {
                     vm.forms = data;
+                    $rootScope.isLoading = false;
 
                     if (vm.forms.length < vm.per_page) {
                         vm.Next = false;
@@ -102,8 +103,7 @@
                         vm.Prev = true;
                     }
                 });
-                $rootScope.isLoading = false;
-            }
+                            }
         }
 
         vm.chosePageNr = function (id) {
@@ -122,6 +122,8 @@
 
             formResource.search.searchForms(param, function (data) {
                 vm.forms = data;
+                $rootScope.isLoading = false;
+
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
                 }
@@ -137,7 +139,7 @@
                 }
 
             });
-            $rootScope.isLoading = false;
+           
         }
        
 
