@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 
@@ -17,6 +18,7 @@ namespace WebAPI.ActionFilters
         {
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "scheduler");
             bool valid = false;
+            JSend json;
 
             if (header.Value == null)
             {
@@ -33,7 +35,8 @@ namespace WebAPI.ActionFilters
             if (!valid)
             {
                 //Invalid Authorization Key
-                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden);
+                json = new JSendMessage("fail", "Invalid Authorization Key");
+                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
 

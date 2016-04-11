@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.ActionFilters
@@ -15,7 +16,7 @@ namespace WebAPI.ActionFilters
         public override void OnActionExecuting(HttpActionContext context)
         {
             AuthModel authModel = new AuthModel();
-
+            JSend json;
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "token");
 
             bool valid, isAdmin, okDate;
@@ -38,7 +39,8 @@ namespace WebAPI.ActionFilters
             if (!valid)
             {
                 //Invalid Authorization Key
-                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden);
+                json = new JSendMessage("fail", "Invalid Authorization Key");
+                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
         }

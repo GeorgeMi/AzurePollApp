@@ -39,8 +39,7 @@ namespace WebAPI.Controllers
          
             if (list.Count > 0)
             {
-                json = new JSendDataList<FormDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+               responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {
@@ -70,8 +69,7 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                json = new JSendDataList<FormDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {
@@ -97,8 +95,7 @@ namespace WebAPI.Controllers
 
             if (voteResult != null)
             {
-                json = new JSendData<VoteResultDetailDTO>("success", voteResult);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, voteResult);
             }
             else
             {
@@ -124,8 +121,7 @@ namespace WebAPI.Controllers
 
             if (formContent != null)
             {
-                json = new JSendData<FormDetailDTO>("success", formContent);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+               responseMessage = Request.CreateResponse(HttpStatusCode.OK, formContent);
             }
             else
             {
@@ -156,8 +152,7 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                json = new JSendDataList<FormDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {
@@ -189,8 +184,7 @@ namespace WebAPI.Controllers
             
             if (list.Count > 0)
             {
-                json = new JSendDataList<FormDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+               responseMessage = Request.CreateResponse(HttpStatusCode.OK,list);
             }
             else
             {

@@ -4,6 +4,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Net.Http;
 using WebAPI.Models;
+using WebAPI.Messages;
 
 namespace WebAPI.ActionFilters
 {
@@ -14,25 +15,26 @@ namespace WebAPI.ActionFilters
         /// </summary>
         public override void OnActionExecuting(HttpActionContext context)
         {
-            AuthModel authModel = new AuthModel(); 
-
+            AuthModel authModel = new AuthModel();
+            JSend json;
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "token");
-                        
+
             bool valid;
 
             if (header.Value == null)
             {
-               valid = false;
+                valid = false;
             }
             else
             {
-                valid= authModel.VerifyToken(header.Value.First());
+                valid = authModel.VerifyToken(header.Value.First());
             }
-                       
+
             if (!valid)
             {
-               //Invalid Authorization Key
-                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden);
+                //Invalid Authorization Key
+                json = new JSendMessage("fail", "Invalid Authorization Key");
+                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
         }

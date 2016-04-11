@@ -42,8 +42,7 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                json = new JSendDataList<FormDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {

@@ -36,8 +36,7 @@ namespace WebAPI.Controllers
             
             if (result != null)
             {
-                json = new JSendData<VoteResultDTO>("success", result);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, result);
             }
             else
             {

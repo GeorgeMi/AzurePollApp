@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.ActionFilters
@@ -19,7 +20,7 @@ namespace WebAPI.ActionFilters
         {
             AuthModel authModel = new AuthModel();
             FormModel formModel = new FormModel();
-
+            JSend json;
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "token");
             var formIdToDelete = context.Request.RequestUri.Segments[3];
 
@@ -47,7 +48,8 @@ namespace WebAPI.ActionFilters
             if (!(valid || formIsFromUser))
             {
                 //Invalid Authorization Key
-                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden);
+                json = new JSendMessage("fail", "Invalid Authorization Key");
+                context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
         }

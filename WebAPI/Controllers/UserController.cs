@@ -37,8 +37,7 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                json = new JSendDataList<UserDetailDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {
@@ -63,8 +62,7 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                json = new JSendDataList<UsernameDTO>("success", list);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
             }
             else
             {
@@ -89,8 +87,7 @@ namespace WebAPI.Controllers
 
             if (userDetail != null)
             {
-                json = new JSendData<UserDetailDTO>("success", userDetail);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, userDetail);
             }
             else
             {
