@@ -26,9 +26,24 @@ namespace WebAPI.Controllers
         /// get all categories from database
         /// </summary>
         [RequireToken]
-        public IEnumerable<CategoryDTO> Get()
+        public HttpResponseMessage Get()
         {
-           return categoryModel.GetAllCategories();
+            HttpResponseMessage responseMessage;
+            JSend json;
+            List<CategoryDTO> list = categoryModel.GetAllCategories();
+
+            if (list.Count > 0)
+            {
+                json = new JSendDataList<CategoryDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
         }
 
         /// <summary>
@@ -40,15 +55,18 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post(CategoryDTO categoryDTO)
         {
             HttpResponseMessage responseMessage;
-
+            JSend json;
             bool response = categoryModel.AddCategory(categoryDTO);
+
             if (response)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK);
+                json = new JSendMessage("success", "category successfully added");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;
@@ -61,19 +79,21 @@ namespace WebAPI.Controllers
         /// <param name="categoryID">category ID</param>
         /// <returns>http status code OK or ExpectationFailed</returns>
         [RequireAdminToken]
-        public HttpResponseMessage Delete (int id)
+        public HttpResponseMessage Delete(int id)
         {
             HttpResponseMessage responseMessage;
-
+            JSend json;
             bool response = categoryModel.DeleteCategory(id);
+
             if (response)
             {
-                SuccessMessage msg = new SuccessMessage("deleted");
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, msg);
+                json = new JSendMessage("success", "category successfully deleted");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;

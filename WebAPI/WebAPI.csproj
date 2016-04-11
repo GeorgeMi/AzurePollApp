@@ -243,6 +243,7 @@
     <Compile Include="Messages\ErrorMessage.cs" />
     <Compile Include="Messages\JSend.cs" />
     <Compile Include="Messages\JSendData.cs" />
+    <Compile Include="Messages\JSendDataList.cs" />
     <Compile Include="Messages\JSendMessage.cs" />
     <Compile Include="Messages\MyMessage.cs" />
     <Compile Include="Messages\RoleMessage.cs" />

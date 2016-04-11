@@ -5,8 +5,11 @@
  */
 using DataTransferObject;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using WebAPI.ActionFilters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -24,12 +27,25 @@ namespace WebAPI.Controllers
         /// <param name="voteDTO">username and answers</param>
         /// <returns>form's results</returns>
         [RequireToken]
-        public VoteResultDTO Post([FromBody] VoteListDTO voteDTO)
+        public HttpResponseMessage Post([FromBody] VoteListDTO voteDTO)
         {
+            HttpResponseMessage responseMessage;
+            JSend json;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
-
             VoteResultDTO result = formModel.Vote(voteDTO,token);
-            return result;
+            
+            if (result != null)
+            {
+                json = new JSendData<VoteResultDTO>("success", result);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
         }
 
     }

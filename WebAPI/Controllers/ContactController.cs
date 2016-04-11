@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebAPI.ActionFilters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -29,17 +30,20 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post(ContactMessageDTO contactMessageDTO)
         {
             HttpResponseMessage responseMessage;
+            JSend json;
             //get token to indentify user's contact details
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             bool response = contactModel.SendMessage(token, contactMessageDTO);
 
             if (response)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK);
+                json = new JSendMessage("success", "message sent successfully");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;

@@ -7,9 +7,11 @@ using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebAPI.ActionFilters;
+using WebAPI.Messages;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -26,8 +28,10 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">string to search</param>
         [RequireToken]
-        public IEnumerable<FormDTO> Get(string id)
+        public HttpResponseMessage Get(string id)
         {
+            HttpResponseMessage responseMessage;
+            JSend json;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];
@@ -35,7 +39,19 @@ namespace WebAPI.Controllers
 
             List<FormDTO> list = new List<FormDTO>();
             list = formModel.GetAllForms(token, id, page_nr, per_page);
-            return list;
+
+            if (list.Count > 0)
+            {
+                json = new JSendDataList<FormDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
         }
 
         /// <summary>

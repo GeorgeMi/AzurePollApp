@@ -26,15 +26,27 @@ namespace WebAPI.Controllers
         /// get list of all users'details from database
         /// </summary>
         [RequireAdminToken]
-        public IEnumerable<UserDetailDTO> Get()
+        public HttpResponseMessage Get()
         {
+            HttpResponseMessage responseMessage;
+            JSend json;
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];
             int per_page = pageVal[1];
+            List<UserDetailDTO> list = userModel.GetAllUsers(page_nr, per_page);
 
-            List<UserDetailDTO> list;
-            list = userModel.GetAllUsers(page_nr, per_page);
-            return list;
+            if (list.Count > 0)
+            {
+                json = new JSendDataList<UserDetailDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
         }
 
         /// <summary>
@@ -43,11 +55,25 @@ namespace WebAPI.Controllers
       //  [RequireAdminToken]
         [HttpGet]
         [ActionName("usernames")]
-        public IEnumerable<UsernameDTO> Usernames(int id)
+        public HttpResponseMessage Usernames(int id)
         {
-            List<UsernameDTO> list;
-            list = userModel.GetAllUsernames();
-            return list;
+            HttpResponseMessage responseMessage;
+            JSend json;
+            List<UsernameDTO> list = userModel.GetAllUsernames();
+
+            if (list.Count > 0)
+            {
+                json = new JSendDataList<UsernameDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
+
         }
 
         /// <summary>
@@ -55,9 +81,24 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="id">user ID</param>
         [RequireToken]
-        public UserDetailDTO Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return userModel.GetUser(id);
+            HttpResponseMessage responseMessage;
+            JSend json;
+            UserDetailDTO userDetail = userModel.GetUser(id);
+
+            if (userDetail != null)
+            {
+                json = new JSendData<UserDetailDTO>("success", userDetail);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            else
+            {
+                json = new JSendMessage("fail", "no items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+            }
+
+            return responseMessage;
         }
 
         /// <summary>
@@ -69,16 +110,18 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Delete(int id)
         {
             HttpResponseMessage responseMessage;
+            JSend json;
 
             bool response = userModel.Delete(id);
             if (response)
             {
-                SuccessMessage msg = new SuccessMessage("deleted");
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, msg);
+                json = new JSendMessage("success", "user successfully deleted");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;
@@ -94,17 +137,19 @@ namespace WebAPI.Controllers
         [ActionName("promote")]
         public HttpResponseMessage Promote(int id)
         {
-
             HttpResponseMessage responseMessage;
-
+            JSend json;
             bool response = userModel.PromoteUser(id);
+
             if (response)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK);
+                json = new JSendMessage("success", "user successfully promoted");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;
@@ -121,25 +166,21 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Demote(int id)
         {
             HttpResponseMessage responseMessage;
-
+            JSend json;
             bool response = userModel.DemoteUser(id);
+
             if (response)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK);
+                json = new JSendMessage("success", "user successfully demoted");
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed);
+                json = new JSendMessage("fail", "something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
             return responseMessage;
-        }
-
-        [RequireToken]
-        [ActionName("aaa")]
-        public string GetUser(int id, string s)
-        {
-            return id.ToString() + " asdasdasdasds";
         }
 
         /// <summary>

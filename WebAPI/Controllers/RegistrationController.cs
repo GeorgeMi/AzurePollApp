@@ -26,17 +26,18 @@ namespace WebAPI.Controllers
         {
             UsersModel userModel = new UsersModel();
             HttpResponseMessage response;
+            JSend json;
             bool add = userModel.AddUser(user);
 
             if (add)
             {
-                SuccessMessage msg = new SuccessMessage("Registration successful! Please, verify your mail address.");
-                response = Request.CreateResponse(HttpStatusCode.OK, msg);
+                json = new JSendMessage("success", "Registration successful! Please, verify your mail address.");
+                response = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Registration failed! Please, try another username or email. ");
-                response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
+                json = new JSendMessage("failed", "Registration failed! Please, try another username or email.");
+                response = Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
             return response;
@@ -52,16 +53,17 @@ namespace WebAPI.Controllers
             AuthModel auth = new AuthModel();
             bool verify = auth.VerifyMailToken(id);
             HttpResponseMessage response;
+            JSend json;
 
             if (verify)
             {
-                SuccessMessage msg = new SuccessMessage("Your account has been successfully verified!");
-                response = Request.CreateResponse(HttpStatusCode.OK, msg);
+                json = new JSendMessage("success", "Your account has been successfully verified!");
+                response = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Invalid verification link!");
-                response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
+                json = new JSendMessage("failed", "Invalid verification link!");
+                response = Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
             return response;
