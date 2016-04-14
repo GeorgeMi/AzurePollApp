@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
@@ -59,12 +59,12 @@ namespace WebAPI.Controllers
 
             if (response)
             {
-                json = new JSendMessage("success", "category successfully added");
+                json = new JSendMessage("success", "Category successfully added");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
+                json = new JSendMessage("fail", "Something bad happened");
                 responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
@@ -86,12 +86,12 @@ namespace WebAPI.Controllers
 
             if (response)
             {
-                json = new JSendMessage("success", "category successfully deleted");
+                json = new JSendMessage("success", "Category successfully deleted");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
+                json = new JSendMessage("fail", "Something bad happened");
                 responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 

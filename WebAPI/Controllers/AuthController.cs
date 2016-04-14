@@ -55,18 +55,19 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Get(string id)
         {
             AuthModel auth = new AuthModel();
-            bool verify = auth.VerifyMailToken(id);
             HttpResponseMessage response;
+            JSend json;
+            bool verify = auth.VerifyMailToken(id);
 
             if (verify)
             {
-                SuccessMessage msg = new SuccessMessage("Your account has been successfully verified!");
-                response = Request.CreateResponse(HttpStatusCode.OK, msg);
+                json = new JSendMessage("success", "Your account has been successfully verified!");
+                response = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                ErrorMessage msg = new ErrorMessage("Invalid verification link!");
-                response = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
+                json = new JSendMessage("fail", "Invalid verification link!");
+                response = Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 
             return response;

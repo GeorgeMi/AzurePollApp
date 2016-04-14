@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
@@ -125,7 +125,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 

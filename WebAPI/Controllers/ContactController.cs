@@ -37,12 +37,12 @@ namespace WebAPI.Controllers
 
             if (response)
             {
-                json = new JSendMessage("success", "message sent successfully");
+                json = new JSendMessage("success", "Message sent successfully");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
+                json = new JSendMessage("fail", "Something bad happened");
                 responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
             }
 
