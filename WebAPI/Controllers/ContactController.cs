@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post(ContactMessageDTO contactMessageDTO)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             //get token to indentify user's contact details
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             bool response = contactModel.SendMessage(token, contactMessageDTO);
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             else
             {
                 json = new JSendMessage("fail", "Something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;

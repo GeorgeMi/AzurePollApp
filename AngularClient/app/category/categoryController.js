@@ -15,22 +15,33 @@
             name: ''
         };
        
-        categoryResource.get.getCategories(function (data) {
-            vm.categories = data;
+        categoryResource.get.getCategories(
+            function (response) {
+                vm.categories = response.data;
             
             $rootScope.isLoading = false;
-        });
+            },
+            function (error) {
+                vm.message = error.data.message;
+                $rootScope.isLoading = false; //loading gif
+            }
+        );
        
         vm.addCategory = function () {
             $rootScope.isLoading = true;
 
             categoryResource.add.addCategory(vm.category, function (data) {
 
-                categoryResource.get.getCategories(function (data) {
-                    vm.category.name = '';
-                    vm.categories = data;
-                    $rootScope.isLoading = false;
-                });
+                categoryResource.get.getCategories(
+                    function (response) {
+                        vm.category.name = '';
+                        vm.categories = response.data;
+                        $rootScope.isLoading = false;
+                    },
+                    function (error) {
+                        vm.message = error.data.message;
+                        $rootScope.isLoading = false; //loading gif
+                    });
             });
         }
 
@@ -42,7 +53,7 @@
                 var param = { cat_id: categoryID };
                 var i;
                 categoryResource.delete.deleteCategory(param,
-                    function (data) {
+                    function (response) {
 
                         /*  categoryResource.get.getCategories(function (data) {
                               vm.categories = data;
@@ -54,7 +65,11 @@
                             }
                         }
                         $rootScope.isLoading = false;
-                    });
+                    },
+                function (error) {
+                    vm.message = error.data.message;
+                    $rootScope.isLoading = false; //loading gif
+                });
             }
         }
 

@@ -22,16 +22,24 @@
                 $rootScope.isLoading = true; //loading gif
                 var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
 
-                formResource.search.searchForms(param, function (data) {
-                    vm.forms = data;
-                    if (vm.forms.length < vm.per_page) {
-                        vm.Next = false;
-                    }
-                    else {
-                        vm.Next = true;
-                    }
-                    $rootScope.isLoading = false; //loading gif
-                });
+                formResource.search.searchForms(param,
+
+                    function (response) {
+                        vm.forms = response.data;
+                        if (vm.forms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
+                        $rootScope.isLoading = false; //loading gif
+                    },
+
+                function (error) {
+                     vm.message = error.message;
+                     vm.Next = false;
+                     $rootScope.isLoading = false; //loading gif
+                 });
 
                
             }
@@ -54,7 +62,7 @@
                 // alert(formID);
 
                 formResource.delete.deleteForm(param,
-                    function (data) {
+                    function (response) {
 
                         for (i = 0; i < vm.forms.length ; i++) {
 
@@ -69,7 +77,11 @@
                             vm.Next = true;
                         }
                         $rootScope.isLoading = false;
-                    });
+                    },
+                     function (error) {
+                         vm.message = error.message;
+                         $rootScope.isLoading = false; //loading gif
+                     });
                
             }
         }
@@ -85,8 +97,9 @@
                 vm.page_nr = 0;
                 var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
 
-                formResource.search.searchForms(param, function (data) {
-                    vm.forms = data;
+                formResource.search.searchForms(param,
+                    function (response) {
+                        vm.forms = response.data;
                     $rootScope.isLoading = false;
 
                     if (vm.forms.length < vm.per_page) {
@@ -102,7 +115,12 @@
                     else {
                         vm.Prev = true;
                     }
-                });
+                    },
+                 function (error) {
+                     vm.message = error.message;
+                     vm.Next = false;
+                     $rootScope.isLoading = false; //loading gif
+                 });
                             }
         }
 
@@ -120,8 +138,9 @@
                 vm.Prev = true;
             }
 
-            formResource.search.searchForms(param, function (data) {
-                vm.forms = data;
+            formResource.search.searchForms(param,
+                function (response) {
+                    vm.forms = response.data;
                 $rootScope.isLoading = false;
 
                 if (vm.forms.length < vm.per_page) {
@@ -138,7 +157,12 @@
                     vm.Prev = true;
                 }
 
-            });
+                },
+             function (error) {
+                 vm.message = error.message;
+                 vm.Next = false;
+                 $rootScope.isLoading = false; //loading gif
+             });
            
         }
        

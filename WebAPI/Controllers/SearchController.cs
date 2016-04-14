@@ -42,11 +42,12 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
+                json = new JSendData<FormDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 

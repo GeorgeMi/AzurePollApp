@@ -14,8 +14,10 @@
         $rootScope.isLoading = true;
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
        
-        userResource.get.getUsers(param,function (data) {
-            vm.users = data;
+        userResource.get.getUsers(param,
+            function (response) {
+                vm.users = response.data;
+                vm.message = null;
 
             if (vm.users.length < vm.per_page) {
                 vm.Next = false;
@@ -24,7 +26,12 @@
                 vm.Next = true;
             }
            $rootScope.isLoading = false
-        });
+            },
+         function (error) {
+             vm.message = error.data.message;
+             vm.Next = false;
+             $rootScope.isLoading = false; //loading gif
+         });
 
         vm.deleteUser = function (userID) {
             var r = confirm("Are you sure that you want to permanently delete this user?");
@@ -35,17 +42,22 @@
                 var i;
 
                 userResource.delete.deleteUser(param,
-                    function (data) {
-
+                    function (response) {
+                        vm.message = null;
                         for (i = 0; i < vm.users.length ; i++) {
 
                             if (vm.users[i].UserID === userID) {
                                 vm.users.splice(i, 1);
                             }
                         }
-
-                    });
-                $rootScope.isLoading = false;
+                        $rootScope.isLoading = false;
+                    },
+                     function (error) {
+                         vm.message = error.data.message;
+                         vm.Next = false;
+                         $rootScope.isLoading = false; //loading gif
+                     });
+               
             }
         }
 
@@ -55,16 +67,22 @@
             var i;
 
             userResource.promote.promoteUser(param,
-                function (data) {
-
+                function (response) {
+                    vm.message = null;
                     for (i = 0; i < vm.users.length ; i++) {
 
                         if (vm.users[i].UserID === userID) {
                             vm.users[i].Role = 'admin';
                         }
                     }
-                });
-            $rootScope.isLoading = false;
+                    $rootScope.isLoading = false;
+                },
+                 function (error) {
+                     vm.message = error.data.message;
+                     vm.Next = false;
+                     $rootScope.isLoading = false; //loading gif
+                 });
+           
         }
 
         vm.demote = function (userID) {
@@ -73,7 +91,8 @@
             var i;
 
             userResource.demote.demoteUser(param,
-                function (data) {
+                function (response) {
+                    vm.message = null;
 
                     for (i = 0; i < vm.users.length ; i++) {
 
@@ -81,8 +100,14 @@
                             vm.users[i].Role='user';
                         }
                     }
-                });
-            $rootScope.isLoading = false;
+                    $rootScope.isLoading = false;
+                },
+                 function (error) {
+                     vm.message = error.data.message;
+                     vm.Next = false;
+                     $rootScope.isLoading = false; //loading gif
+                 });
+           
         }
 
 
@@ -97,8 +122,10 @@
                 vm.page_nr = 0;
                 var param = { page_nr: vm.page_nr, per_page: vm.per_page };
        
-                userResource.get.getUsers(param,function (data) {
-                    vm.users = data;
+                userResource.get.getUsers(param,
+                    function (response) {
+                        vm.message = null;
+                        vm.users = response.data;
                     $rootScope.isLoading = false;
 
                     if (vm.users.length < vm.per_page) {
@@ -114,7 +141,12 @@
                         vm.Prev = true;
                     }
                   
-               });
+                    },
+                function (error) {
+                    vm.message = error.data.message;
+                    vm.Next = false;
+                    $rootScope.isLoading = false; //loading gif
+                });
                
             }
         }
@@ -132,8 +164,10 @@
                 vm.Prev = true;
             }
             
-            userResource.get.getUsers(param, function (data) {
-                vm.users = data;
+            userResource.get.getUsers(param,
+                function (response) {
+                    vm.message = null;
+                    vm.users = response.data;
                 $rootScope.isLoading = false;
                 
                 if (vm.users.length < vm.per_page) {
@@ -149,7 +183,12 @@
                     vm.Prev = true;
                 }
 
-            });
+                },
+             function (error) {
+                 vm.message = error.data.message;
+                 vm.Next = false;
+                 $rootScope.isLoading = false; //loading gif
+             });
            
         }
      

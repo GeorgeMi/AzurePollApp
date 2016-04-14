@@ -34,7 +34,8 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
+                json = new JSendData<CategoryDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
@@ -54,7 +55,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post(CategoryDTO categoryDTO)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             bool response = categoryModel.AddCategory(categoryDTO);
 
             if (response)
@@ -65,7 +66,7 @@ namespace WebAPI.Controllers
             else
             {
                 json = new JSendMessage("fail", "Something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;
@@ -81,7 +82,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Delete(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             bool response = categoryModel.DeleteCategory(id);
 
             if (response)
@@ -92,7 +93,7 @@ namespace WebAPI.Controllers
             else
             {
                 json = new JSendMessage("fail", "Something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;

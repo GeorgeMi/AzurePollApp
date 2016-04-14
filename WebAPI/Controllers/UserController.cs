@@ -37,11 +37,12 @@ namespace WebAPI.Controllers
 
             if (list.Count > 0)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
+                json = new JSendData<UserDetailDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
+                json = new JSendMessage("fail", "No items found");
                 responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
             }
 
@@ -57,7 +58,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Usernames(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             List<UsernameDTO> list = userModel.GetAllUsernames();
 
             if (list.Count > 0)
@@ -66,8 +67,8 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
-                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+                json = new JSendMessage("fail", "No items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NoContent, json);
             }
 
             return responseMessage;
@@ -82,7 +83,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Get(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             UserDetailDTO userDetail = userModel.GetUser(id);
 
             if (userDetail != null)
@@ -91,8 +92,8 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "no items found");
-                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+                json = new JSendMessage("fail", "No items found");
+                responseMessage = Request.CreateResponse(HttpStatusCode.NoContent, json);
             }
 
             return responseMessage;
@@ -107,18 +108,18 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Delete(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
 
             bool response = userModel.Delete(id);
             if (response)
             {
-                json = new JSendMessage("success", "user successfully deleted");
+                json = new JSendMessage("success", "User successfully deleted");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                json = new JSendMessage("fail", "Something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;
@@ -135,18 +136,18 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Promote(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             bool response = userModel.PromoteUser(id);
 
             if (response)
             {
-                json = new JSendMessage("success", "user successfully promoted");
+                json = new JSendMessage("success", "User successfully promoted");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                json = new JSendMessage("fail", "Something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;
@@ -163,18 +164,18 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Demote(int id)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             bool response = userModel.DemoteUser(id);
 
             if (response)
             {
-                json = new JSendMessage("success", "user successfully demoted");
+                json = new JSendMessage("success", "User successfully demoted");
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.ExpectationFailed, json);
+                json = new JSendMessage("fail", "Something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;

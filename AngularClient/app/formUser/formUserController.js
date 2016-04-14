@@ -12,14 +12,13 @@
         vm.Next = true; // se afiseaza "next page" la paginare
         $rootScope.isLoading = true; //loading gif
 
-        //  var param = { username: $cookies.get('username') };
-
+        //<-----------------load page----------------------> 
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
         formResource.getForms.getForms(param,
-            function (data) {
+            function (response) {
 
-                vm.userForms = data.data;
+                vm.userForms = response.data;
                 $rootScope.isLoading = false;
 
                 if (vm.userForms.length < vm.per_page) {
@@ -31,13 +30,15 @@
 
             },
 
-            function (message) {
-                    vm.message = message.data.message;
-                    $rootScope.isLoading = false; //loading gif
+
+            function (error) {
+                vm.message = error.data.message;
+                vm.Next = false;
+                $rootScope.isLoading = false; //loading gif
             }
             );
 
-
+        //<-----------------delete form----------------------> 
         vm.deleteForm = function (formID) {
             var r = confirm("Are you sure that you want to permanently delete this form?");
 

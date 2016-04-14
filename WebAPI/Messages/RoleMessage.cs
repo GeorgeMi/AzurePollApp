@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Messages
 {
-    public class RoleMessage : MyMessage
+    public class RoleMessage 
     {
         public string role;
 

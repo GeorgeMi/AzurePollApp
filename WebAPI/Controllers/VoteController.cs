@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Post([FromBody] VoteListDTO voteDTO)
         {
             HttpResponseMessage responseMessage;
-            JSend json;
+            JSendMessage json;
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             VoteResultDTO result = formModel.Vote(voteDTO,token);
             
@@ -40,8 +40,8 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "something bad happened");
-                responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, json);
+                json = new JSendMessage("fail", "Something bad happened");
+                responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 
             return responseMessage;

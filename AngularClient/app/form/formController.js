@@ -12,6 +12,7 @@
         vm.per_page = 10; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = true; // se afiseaza "next page" la paginare
+        vm.message = null;
         $rootScope.isLoading = true; //loading gif
 
         //data form to send
@@ -32,7 +33,7 @@
         vm.maxQuestionCount = 20;
         vm.maxAnswerCount = 6;
 
-        //add question
+        //<-----------------add question---------------------->
         vm.addNewQuestion = function () {
 
             var questionID = vm.sendForm.questions.length + 1;
@@ -45,7 +46,7 @@
             }
         };
 
-        //add answer
+        //<-----------------add answer----------------------> 
         vm.addNewAnswer = function (questionID) {
 
             var answerID = vm.sendForm.questions[questionID - 1].answers.length + 1;
@@ -58,7 +59,7 @@
             }
         };
 
-        //delete question
+        //<-----------------delete question----------------------> 
         vm.deleteQuestion = function (questionID) {
 
             if (vm.sendForm.questions.length > 1) {
@@ -78,7 +79,7 @@
             }
         }
 
-        //delete answer
+        //<-----------------delete answer----------------------> 
         vm.deleteAnswer = function (questionID, answerID) {
             // alert('q: ' + questionID + ', a: ' + answerID);
             if (vm.sendForm.questions[questionID - 1].answers.length > 1) {
@@ -99,13 +100,14 @@
             }
         }
 
+        //<-----------------load page----------------------> 
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
         formResource.get.getForms(param,
 
-            function (data) {
-
-                vm.forms = data.data;
+            function (response) {
+                vm.forms = response.data;
                 $rootScope.isLoading = false; //loading gif
+                vm.message = null;
 
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
@@ -116,14 +118,15 @@
 
             },
 
-            function (message) {
-                vm.message = message.data.message;
+            function (error) {
+                vm.message = error.data.message;
+                vm.Next = false;
                 $rootScope.isLoading = false; //loading gif
             }
         );
 
 
-
+        //<-----------------add form----------------------> 
         vm.addForm = function () {
             // alert(vm.sendForm);
 
@@ -140,34 +143,30 @@
 
                 formResource.add.addForm(x,
                     //s-a creat cu succes
-                    function (data) {
+                    function (response) {
                         vm.sendForm.title = '';
                         vm.sendForm.category = '';
                         vm.sendForm.createdDate = '';
                         vm.sendForm.deadline = '';
                         vm.sendForm.questions = [{ id: 1, question: '', answers: [{ id: 1, answer: '' }] }];
-                        vm.messageForm = 'Poll created successfully';
 
-                        vm.created = "success";
+                        vm.messageForm = response.message;
+                        vm.created = response.status;
+                        $rootScope.isLoading = false;
                     },
 
                    //nu s-a creat
-                    function (response) {
-                        if (response.data != null) {
-                            if (response.data.error) {
-                                vm.messageForm = response.data.error;
-                                vm.created = "fail";
-                            }
-                            else {
-
-                            }
-                        }
-                        $rootScope.isLoading = false;
-                    });
+                   
+            function (error) {
+                vm.messageForm = error.data.message;
+                vm.created = error.data.status;
+                $rootScope.isLoading = false; //loading gif
+            });
 
             }
         }
 
+        //<-----------------delete form----------------------> 
         vm.deleteForm = function (formID) {
             var r = confirm("Are you sure that you want to permanently delete this form?");
             if (r == true) {
@@ -191,12 +190,14 @@
             }
         }
 
+        //<-----------------view results----------------------> 
         vm.viewResults = function (id) {
             //alert("cookie");
             $cookies.put('my_poll_result', id);
             return 'my_poll_result';
         }
 
+        //<-----------------change items per page----------------------> 
         vm.itemsPerPage = vm.per_page;
         vm.chosePerPage = function () {
             //schimba numarul de elemente de pe pagina
@@ -207,53 +208,43 @@
                 vm.per_page = vm.itemsPerPage;
                 vm.page_nr = 0;
                 var param = { page_nr: 0, per_page: vm.itemsPerPage };
-                formResource.get.getForms(param, function (data) {
+                formResource.get.getForms(param,
 
-                    vm.forms = data;
-                    $rootScope.isLoading = false;
+                    function (response) {
+                        vm.forms = response.data;
+                        $rootScope.isLoading = false; //loading gif
+                        vm.message = null;
 
-                    if (vm.forms.length < vm.per_page) {
+                        if (vm.forms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
+
+                        if (vm.page_nr <= 0) {
+                            vm.Prev = false;
+                        }
+                        else {
+                            vm.Prev = true;
+                        }
+
+                    },
+
+                    function (error) {
+                        vm.message = error.data.message;
                         vm.Next = false;
-                    }
-                    else {
-                        vm.Next = true;
-                    }
-
-                    if (vm.page_nr <= 0) {
-                        vm.Prev = false;
-                    }
-                    else {
-                        vm.Prev = true;
-                    }
-                });
+                        $rootScope.isLoading = false; //loading gif
+                    });
 
             }
-        }
 
-        vm.chosePageNr = function (id) {
-            //schimba numarul paginii
-            $rootScope.isLoading = true;
-            vm.page_nr = id;
-            var param = { page_nr: id, per_page: vm.itemsPerPage };
-
-            if (vm.page_nr <= 0) {
-                vm.Prev = false;
-            }
-            else {
-                vm.Prev = true;
-            }
-
-            formResource.get.getForms(param, function (data) {
-
-                vm.forms = data;
-                $rootScope.isLoading = false
-
-                if (vm.forms.length < vm.per_page) {
-                    vm.Next = false;
-                }
-                else {
-                    vm.Next = true;
-                }
+            //<-----------------change page----------------------> 
+            vm.chosePageNr = function (id) {
+                //schimba numarul paginii
+                $rootScope.isLoading = true;
+                vm.page_nr = id;
+                var param = { page_nr: id, per_page: vm.itemsPerPage };
 
                 if (vm.page_nr <= 0) {
                     vm.Prev = false;
@@ -261,8 +252,38 @@
                 else {
                     vm.Prev = true;
                 }
-            });
-        }
 
+                formResource.get.getForms(param,
+
+                   function (response) {
+                       vm.forms = response.data;
+                       $rootScope.isLoading = false; //loading gif
+                       vm.message = null;
+
+                       if (vm.forms.length < vm.per_page) {
+                           vm.Next = false;
+                       }
+                       else {
+                           vm.Next = true;
+                       }
+
+                       if (vm.page_nr <= 0) {
+                           vm.Prev = false;
+                       }
+                       else {
+                           vm.Prev = true;
+                       }
+
+                   },
+
+                   function (error) {
+                       vm.message = error.data.message;
+                       vm.Next = false;
+                       $rootScope.isLoading = false; //loading gif
+                   });
+
+
+            }
+        }
     }
 }());

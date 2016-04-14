@@ -16,7 +16,7 @@ namespace WebAPI.ActionFilters
         public override void OnActionExecuting(HttpActionContext context)
         {
             AuthModel authModel = new AuthModel();
-            JSend json;
+            JSendMessage json;
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "token");
 
             bool valid, isAdmin, okDate;

@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             else
             {
                 //invalid username and password
-                ErrorMessage msg = new ErrorMessage("Invalid username or password");
+                JSendMessage msg = new JSendMessage("fail","Invalid username or password");
                 responseMessage = Request.CreateResponse(HttpStatusCode.Forbidden, msg);
             }
 
@@ -56,17 +56,17 @@ namespace WebAPI.Controllers
         {
             AuthModel auth = new AuthModel();
             HttpResponseMessage response;
-            JSend json;
+            JSendMessage json;
             bool verify = auth.VerifyMailToken(id);
 
             if (verify)
             {
-                json = new JSendMessage("success", "Your account has been successfully verified!");
+                json = new JSendMessage("success", "Your account has been successfully verified");
                 response = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("fail", "Invalid verification link!");
+                json = new JSendMessage("fail", "Invalid verification link");
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 

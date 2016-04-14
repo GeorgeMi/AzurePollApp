@@ -16,17 +16,25 @@
 
         var param = { category_id: $cookies.get('category_id'), page_nr: vm.page_nr, per_page: vm.per_page };
 
-        formResource.getCategoryForms.getCategoryForms(param, function (data) {
-            vm.forms = data;
+        formResource.getCategoryForms.getCategoryForms(param,
+            function (response) {
+                vm.forms = response.data;
+                vm.message = null;
 
-            if (vm.forms.length < vm.per_page) {
+                if (vm.forms.length < vm.per_page) {
+                    vm.Next = false;
+                }
+                else {
+                    vm.Next = true;
+                }
+                $rootScope.isLoading = false;
+        },
+
+            function (error) {
+                vm.message = error.data.message;
                 vm.Next = false;
-            }
-            else {
-                vm.Next = true;
-            }
-            $rootScope.isLoading = false;
-        });
+                $rootScope.isLoading = false; //loading gif
+            });
 
         vm.viewResults = function (id) {
             //alert("cookie");
@@ -44,8 +52,8 @@
                 // alert(formID);
 
                 formResource.delete.deleteForm(param,
-                    function (data) {
-
+                    function (response) {
+                        vm.message = null;
                         for (i = 0; i < vm.forms.length ; i++) {
 
                             if (vm.forms[i].Id === formID) {
@@ -58,8 +66,14 @@
                         else {
                             vm.Next = true;
                         }
-                    });
-                $rootScope.isLoading = false;
+                        $rootScope.isLoading = false;
+                    },
+                
+                function (error) {
+                    vm.message = error.data.message;
+                    vm.Next = false;
+                    $rootScope.isLoading = false; //loading gif
+                });
             }
         }
 
@@ -74,24 +88,31 @@
                 vm.page_nr = 0;
                 var param = { category_id: $cookies.get('category_id'), page_nr: vm.page_nr, per_page: vm.per_page };
 
-                formResource.getCategoryForms.getCategoryForms(param, function (data) {
-                    vm.forms = data;
-                    $rootScope.isLoading = false;
+                formResource.getCategoryForms.getCategoryForms(param,
+                    function (response) {
+                        vm.forms = response.data;
+                        vm.message = null;
+                        $rootScope.isLoading = false;
 
-                    if (vm.forms.length < vm.per_page) {
-                        vm.Next = false;
-                    }
-                    else {
-                        vm.Next = true;
-                    }
+                        if (vm.forms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
 
-                    if (vm.page_nr <= 0) {
-                        vm.Prev = false;
-                    }
-                    else {
-                        vm.Prev = true;
-                    }
-                });
+                        if (vm.page_nr <= 0) {
+                            vm.Prev = false;
+                        }
+                        else {
+                            vm.Prev = true;
+                        }
+                    },
+                 function (error) {
+                     vm.message = error.data.message;
+                     vm.Next = false;
+                     $rootScope.isLoading = false; //loading gif
+                 });
             }
         }
 
@@ -109,9 +130,11 @@
             }
 
 
-            formResource.getCategoryForms.getCategoryForms(param, function (data) {
-                vm.forms = data;
+            formResource.getCategoryForms.getCategoryForms(param,
+                function (response) {
+                    vm.forms = response.data;
                 $rootScope.isLoading = false;
+                vm.message = null;
 
                 if (vm.forms.length < vm.per_page) {
                     vm.Next = false;
@@ -127,6 +150,11 @@
                     vm.Prev = true;
                 }
 
+                },
+                function (error) {
+                    vm.message = error.data.message;
+                    vm.Next = false;
+                    $rootScope.isLoading = false; //loading gif
             });
         }
     }

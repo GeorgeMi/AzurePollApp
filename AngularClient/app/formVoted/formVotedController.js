@@ -1,30 +1,39 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormVotedController", ["formResource", "$cookies","$rootScope", FormVotedController]);
+        .controller("FormVotedController", ["formResource", "$cookies", "$rootScope", FormVotedController]);
 
-    function FormVotedController(formResource, $cookies,  $rootScope) {
+    function FormVotedController(formResource, $cookies, $rootScope) {
         var vm = this;
         vm.page_nr = 0; //numarul paginii
-        vm.per_page = 1; //numarul de elemente de pe pagina
+        vm.per_page = 5; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = true; // se afiseaza "next page" la paginare
         $rootScope.isLoading = true;
+        vm.message = null;
 
         var param = { page_nr: vm.page_nr, per_page: vm.per_page };
-       
-        formResource.getVotedForms.getVotedForms(param,function (data) {
-            vm.forms = data;
-            if (vm.forms.length < vm.per_page) {
-                vm.Next = false;
-            }
-            else {
-                vm.Next = true;
-            }
-           $rootScope.isLoading = false
-          
-        });
+
+        formResource.getVotedForms.getVotedForms(param,
+            function (response) {
+                vm.forms = response.data;
+                vm.message = null;
+
+                if (vm.forms.length < vm.per_page) {
+                    vm.Next = false;
+                }
+                else {
+                    vm.Next = true;
+                }
+                $rootScope.isLoading = false
+
+            },
+         function (error) {
+             vm.message = error.data.message;
+             vm.Next = false;
+             $rootScope.isLoading = false; //loading gif
+         });
 
         vm.viewResults = function (id) {
             //alert("cookie");
@@ -44,31 +53,40 @@
                 vm.page_nr = 0;
                 var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
-                formResource.getVotedForms.getVotedForms(param, function (data) {
-                    vm.forms = data;
-                    $rootScope.isLoading = false;
+                formResource.getVotedForms.getVotedForms(param,
 
-                    if (vm.forms.length < vm.per_page) {
-                        vm.Next = false;
-                    }
-                    else {
-                        vm.Next = true;
-                    }
+                    function (response) {
+                        vm.forms = response.data;
+                        vm.message = null;
+                        $rootScope.isLoading = false;
 
-                    if (vm.page_nr <= 0) {
-                        vm.Prev = false;
-                    }
-                    else {
-                        vm.Prev = true;
-                    }
-                });
-               
+                        if (vm.forms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
+
+                        if (vm.page_nr <= 0) {
+                            vm.Prev = false;
+                        }
+                        else {
+                            vm.Prev = true;
+                        }
+                    },
+                     function (error) {
+                         vm.message = error.data.message;
+                         vm.Next = false;
+                         $rootScope.isLoading = false; //loading gif
+                     });
+
             }
         }
 
         vm.chosePageNr = function (id) {
             //schimba numarul paginii
             $rootScope.isLoading = true;
+
             vm.page_nr = id;
             var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
@@ -78,10 +96,12 @@
             else {
                 vm.Prev = true;
             }
-                        
 
-            formResource.getVotedForms.getVotedForms(param, function (data) {
-                vm.forms = data;
+
+            formResource.getVotedForms.getVotedForms(param,
+                function (response) {
+                vm.message = null;
+                vm.forms = response.data;
                 $rootScope.isLoading = false;
 
                 if (vm.forms.length < vm.per_page) {
@@ -98,9 +118,15 @@
                     vm.Prev = true;
                 }
 
-            });
-       }
-       
+            },
+            
+         function (error) {
+             vm.message = error.data.message;
+             vm.Next = false;
+             $rootScope.isLoading = false; //loading gif
+         });
+        }
+
 
     }
 

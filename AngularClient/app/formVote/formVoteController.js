@@ -1,10 +1,10 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormVoteController", ["formResource", "$cookies","$rootScope", FormVoteController]);
+        .controller("FormVoteController", ["formResource", "$cookies", "$rootScope", FormVoteController]);
 
-    function FormVoteController(formResource, $cookies,$rootScope, RadarCtrl) {
+    function FormVoteController(formResource, $cookies, $rootScope, RadarCtrl) {
         var vm = this;
 
         vm.formID = $cookies.get('last_poll');
@@ -12,7 +12,7 @@
         //a votat userul?
         vm.voted = false;
         vm.showResults = false;
-       
+
         //array pentru raspuns
         vm.voteForm = {
             username: $cookies.get('username'),
@@ -28,13 +28,13 @@
         var param = { form_id: vm.formID };
 
         if (vm.formID) {
-            
+
             $rootScope.isLoading = true;
             $cookies.remove('last_poll');
             formResource.getForm.getForm(param,
-                function (data) {
+                function (response) {
 
-                    vm.detailedForm = data;
+                    vm.detailedForm = response;
                     $rootScope.isLoading = false;
                     //creez array-ul pentru raspuns
                     if (vm.detailedForm.Questions.length > 0) {
@@ -51,8 +51,12 @@
                             vm.detailedForm.Questions[i].nrCrt = i;
                         }
                     }
+                },
+                function (error) {
+                    vm.messageForm = error.data.message;
+                    $rootScope.isLoading = false; //loading gif
                 });
-           
+
         }
 
         //vote
@@ -65,14 +69,14 @@
                 $rootScope.isLoading = true;
                 formResource.vote.voteForm(x,
                     //s-a creat cu succes
-                    function (data) {
+                    function (response) {
                         var i;
 
                         for (i = 0; i < vm.voteForm.answers.length; i++) {
                             //deja este un rand introdus la initializare
                             vm.voteForm.answers[i].answer = 0;
                         }
-                        vm.results = data;
+                        vm.results = response;
                         $rootScope.isLoading = false;
                         vm.voted = true;
                         vm.messageForm = 'Poll voted successfully';
@@ -80,17 +84,14 @@
                     },
 
                    //nu s-a creat
-                    function (response) {
-                        if (response.data.error) {
-                            vm.messageForm = response.data.error;
-                            vm.messageForm = 'Poll voted failed';
-                            $rootScope.isLoading = false;
-                        }
-                        else {
+                    function (error) {
 
-                        }
+                        vm.messageForm = error.data.message;
+                        vm.voted = false;
+                        $rootScope.isLoading = false;
+
                     });
-               
+
             }
         }
 

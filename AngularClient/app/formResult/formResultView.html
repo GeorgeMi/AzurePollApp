@@ -1,5 +1,5 @@
 ﻿<div ng-controller="FormResultController as ctrl">
-    <div class="panel panel-default">
+    <div ng-if="ctrl.results" class="panel panel-default">
         <div class="panel-heading">
             <h3>{{ctrl.results.Title}}</h3>
             <h5>{{ctrl.results.NrVotes}} people have voted</h5>
@@ -34,4 +34,8 @@
         </div>
       
     </div>
+    <div class="col-sm-8 col-sm-offset-2">
+        <div ng-if="ctrl.message" class="alert alert-info" role="alert">{{ctrl.message}}</div>
+    </div>
 </div>
+

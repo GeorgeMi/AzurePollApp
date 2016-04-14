@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         {
             UsersModel userModel = new UsersModel();
             HttpResponseMessage response;
-            JSend json;
+            JSendMessage json;
             bool add = userModel.AddUser(user);
 
             if (add)
@@ -53,16 +53,16 @@ namespace WebAPI.Controllers
             AuthModel auth = new AuthModel();
             bool verify = auth.VerifyMailToken(id);
             HttpResponseMessage response;
-            JSend json;
+            JSendMessage json;
 
             if (verify)
             {
-                json = new JSendMessage("success", "Your account has been successfully verified!");
+                json = new JSendMessage("success", "Your account has been successfully verified");
                 response = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {
-                json = new JSendMessage("failed", "Invalid verification link!");
+                json = new JSendMessage("failed", "Invalid verification link");
                 response = Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
 

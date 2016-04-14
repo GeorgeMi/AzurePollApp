@@ -1,8 +1,8 @@
-﻿(function ()  {
+﻿(function () {
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormResultController", ["formResource", "$cookies","$rootScope", FormResultController]);
+        .controller("FormResultController", ["formResource", "$cookies", "$rootScope", FormResultController]);
 
     function FormResultController(formResource, $cookies, $rootScope) {
         var vm = this;
@@ -11,11 +11,10 @@
         $rootScope.isLoading = true; //loading gif
 
         formResource.getFormResult.getFormResult(param,
-            function (data) {
-             
-                $cookies.remove('my_poll_result');
-                vm.results = data;
+            function (response) {
 
+                $cookies.remove('my_poll_result');
+                vm.results = response;
 
                 var i, j, k;
                 vm.chartResult = [];
@@ -31,14 +30,17 @@
 
                         vm.chartResult[i].chartLabels.push(vm.results.Questions[i].Answers[j].Answer);
                         vm.chartResult[i].chartData.push(vm.results.Questions[i].Answers[j].AnswerNrVotes);
-                        
                     }
-                    
+
                 }
-              
+
                 $rootScope.isLoading = false;
 
-            });
-             
+            },
+             function (error) {
+                 vm.message = error.data.message;
+                 $rootScope.isLoading = false; //loading gif
+             });
+
     }
 }());

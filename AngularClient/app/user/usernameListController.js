@@ -7,11 +7,16 @@
     function UsernameController(userResource, $rootScope) {
         var vm = this;
 
-        userResource.getUsername.getUsername(function (data) {
+        userResource.getUsername.getUsername(
+            function (response) {
 
-            vm.users = data;
+                vm.users = response.data;
 
          
-        });
+            },
+         function (error) {
+             vm.message = error.data.message;
+           
+         });
     }
 })();

@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <returns>string: user or admin</returns>
         [RequireToken]
-        public MyMessage Get()
+        public RoleMessage Get()
         {
             AuthModel authModel = new AuthModel();
 

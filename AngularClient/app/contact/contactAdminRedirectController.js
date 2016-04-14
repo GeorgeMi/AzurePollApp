@@ -27,24 +27,19 @@
 
                 contactResource.send.sendMessage(x,
                    //s-a trimis cu succes
-                   function (data) {
+                   function (response) {
 
                        vm.contact.message = '';
                        vm.contact.category = '';
-                       vm.messageContact = 'Message sent successfully';
-                       vm.sent = "success";
+                       vm.messageContact = response.message;
+                       vm.sent = response.status;
                        $rootScope.isLoading = false;
                    },
 
                   //nu s-a trimis
-                   function (response) {
-                       if (response.data.error) {
-                           vm.messageContact = response.data.error;
-                           vm.sent = "fail";
-                       }
-                       else {
-
-                       }
+                   function (error) {
+                       vm.messageContact = error.message;
+                       vm.sent = error.status;
                        $rootScope.isLoading = false;
                    });
             }

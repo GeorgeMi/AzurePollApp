@@ -18,7 +18,7 @@ namespace WebAPI.ActionFilters
         {
             var header = context.Request.Headers.SingleOrDefault(x => x.Key == "scheduler");
             bool valid = false;
-            JSend json;
+            JSendMessage json;
 
             if (header.Value == null)
             {
