@@ -14,6 +14,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -63,6 +64,7 @@ namespace BusinessLogic
             MD5 md5;
             byte[] textToHash;
             byte[] result;
+            string MAC;
 
             try
             {
@@ -72,8 +74,10 @@ namespace BusinessLogic
                 createdDate = DateTime.Now;
                 expirationDate = DateTime.Now.AddHours(3);
 
+                // preiau adresa mac
+                MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
                 //creez token string
-                text = t.TokenID.ToString() + username + password + createdDate.ToString();
+                text = t.TokenID.ToString() + username + password + createdDate.ToString()+MAC;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);

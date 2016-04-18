@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// get list of all users' username and id from database
         /// </summary>
-      //  [RequireAdminToken]
+        [RequireAdminToken]
         [HttpGet]
         [ActionName("usernames")]
         public HttpResponseMessage Usernames(int id)

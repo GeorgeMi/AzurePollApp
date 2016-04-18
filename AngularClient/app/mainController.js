@@ -2,7 +2,7 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", "$routeParams" ,"$location","$rootScope", MainController])
+        .controller("MainController", ["userAccount", "$cookies", "$routeParams", "$location", "$rootScope", MainController])
 
 
 
@@ -13,7 +13,7 @@
         vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
-        
+
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
         vm.messageLogIn = '';
@@ -63,19 +63,19 @@
 
         //------------------register-----------------------
         vm.registerUser = function () {
-            
-            if (vm.userDataRegistration.email != ''
-               && vm.userDataRegistration.username != ''
-                && vm.userDataRegistration.password != '') {
 
+            if (vm.userDataRegistration.email != '' && vm.userDataRegistration.email != null
+               && vm.userDataRegistration.username != '' && vm.userDataRegistration.username != null
+                && vm.userDataRegistration.password != '' && vm.userDataRegistration.password != null) {
+                alert(vm.userDataRegistration.password);
                 vm.userDataRegistration.email = vm.userDataRegistration.email.replace(/ /g, '');
                 vm.userDataRegistration.username = vm.userDataRegistration.username.replace(/ /g, '');
                 vm.userDataRegistration.password = vm.userDataRegistration.password.replace(/ /g, '');
             }
-           
-            if (vm.userDataRegistration.email != ''
-                && vm.userDataRegistration.username != ''
-                 && vm.userDataRegistration.password != '') {
+
+            if (vm.userDataRegistration.email != '' && vm.userDataRegistration.email != null
+               && vm.userDataRegistration.username != '' && vm.userDataRegistration.username != null
+                && vm.userDataRegistration.password != '' && vm.userDataRegistration.password != null) {
 
                 if (vm.confirm_password == vm.userDataRegistration.password) {
                     //start loading
@@ -83,9 +83,10 @@
 
                     userAccount.registration.registerUser(vm.userDataRegistration,
 
-                        function (data) {
+                        function (response) {
                             //inregistrarea a avut succes
-                            vm.messageSuccessRegistration = data.success;
+                            vm.messageSuccessRegistration = response.message;
+                            vm.messageFailedRegistration = '';
                             vm.userData.username = vm.userDataRegistration.username;
                             vm.userData.password = vm.userDataRegistration.password;
                             //  vm.login();
@@ -93,22 +94,13 @@
                             $rootScope.isLoadingRegister = false;
                         },
 
-                        function (response) {
+                        function (error) {
                             //inregistrarea nu a avut succes
                             vm.isLoggedIn = false;
                             $rootScope.isLoadingRegister = false;
+                            vm.messageSuccessRegistration = '';
+                            vm.messageFailedRegistration = error.data.message;
 
-                            if (response.data.error) {
-                                vm.messageFailedRegistration = response.data.error;
-                            }
-
-                            //validation errors
-                            if (response.data.modelState) {
-
-                                for (var key in response.data.modelState) {
-                                    vm.messageFailedRegistration += response.data.modelState[key] + "\r\n";
-                                }
-                            }
                         });
                 }
                 else {
@@ -131,42 +123,38 @@
 
                 //start loading
                 $rootScope.isLoadingRegister = true;
-                 userAccount.login.loginUser(vm.userData,
+                userAccount.login.loginUser(vm.userData,
 
-                    function (data) {
-                        if (data.error) {
-                            vm.isLoggedIn = false;
-                            vm.password = "";
-                            vm.messageLogIn = data.error;
+                   function (response) {
 
-                        } else {
-                            vm.isLoggedIn = true;
-                            vm.password = "";
-                            vm.token = data.token;
-                            vm.role = data.role;
-                            //always load on home page
-                            vm.changePage('home');
+                       vm.isLoggedIn = true;
+                       vm.password = "";
+                       vm.token = response.token;
+                       vm.role = response.role;
+                       //always load on home page
+                       vm.changePage('home');
 
-                            var expireDate = new Date();
-                            expireDate.setDate(expireDate.getDate() + 1);
+                       var expireDate = new Date();
+                       expireDate.setDate(expireDate.getDate() + 1);
 
-                            $cookies.put("token", data.token, { 'expires': expireDate });
-                            $cookies.put("username", vm.userData.username, { 'expires': expireDate });
-                            $cookies.put("role", vm.role, { 'expires': expireDate });
+                       $cookies.put("token", vm.token, { 'expires': expireDate });
+                       $cookies.put("username", vm.userData.username, { 'expires': expireDate });
+                       $cookies.put("role", vm.role, { 'expires': expireDate });
 
-                        }
-                        //stop loading
-                        $rootScope.isLoadingRegister = false;
 
-                    }, function (response) {
-                        //inregistrarea nu a avut succes
-                        vm.isLoggedIn = false;
-                        vm.password = "";
-                        vm.messageLogIn = response.data.error;
+                       //stop loading
+                       $rootScope.isLoadingRegister = false;
 
-                        //stop loading
-                        $rootScope.isLoadingRegister = false;
-                    })
+                   }, function (error) {
+                       //inregistrarea nu a avut succes
+
+                       vm.isLoggedIn = false;
+                       vm.password = "";
+                       vm.messageLogIn = error.data.message;
+
+                       //stop loading
+                       $rootScope.isLoadingRegister = false;
+                   })
             }
         }
 
@@ -208,7 +196,7 @@
             $cookies.remove("role");
             $cookies.remove("receiver_id");
             $cookies.remove("receiver_username");
-                    
+
             vm.isLoggedIn = false;
 
             vm.pages.home = false;
@@ -300,22 +288,21 @@
                 vm.ok = 0;
             }
 
-            if (vm.ok == 1)
-            {
+            if (vm.ok == 1) {
                 vm.pagesArray.last = vm.pagesArray.current;
                 vm.pagesArray.current = mypage;
             }
-            
+
         }
         vm.changePage('home');
 
         vm.backPage = function () {
-            
+
             vm.changePage(vm.pagesArray.last);
             temp = vm.pagesArray.last;
             vm.pagesArray.last = vm.pagesArray.current;
             vm.pagesArray.current = temp;
-          
+
         }
 
         //------------------verify mail---------------------
@@ -327,20 +314,18 @@
 
             userAccount.verifyMail.verifyMail(param,
 
-                        function (data) {
-                            //validarea a avut succes
-                            vm.messageSuccessRegistration = data.success;
+                  function (response) {
+                      //validarea a avut succes
+                      vm.messageSuccessRegistration = response.data.message;
+                      vm.messageFailedRegistration = '';
 
-                        },
+                  },
 
-                        function (response) {
-
-                            //validarea nu a avut succes
-                            if (response.data.error) {
-                                vm.messageFailedRegistration = response.data.error;
-                            }
-
-                        });
+                   function () {
+                       //validarea nu a avut succes
+                       vm.messageFailedRegistration = error.data.message;
+                       vm.messageSuccessRegistration = '';
+                   });
 
             //stop loading
             $rootScope.isLoadingRegister;
@@ -351,6 +336,6 @@
         }
 
 
-    
+
     };
 })();

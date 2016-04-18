@@ -14,6 +14,7 @@
         $rootScope.isLoading = false; //loading gif
 
         vm.Search = function () {
+            vm.message = '';
             if (vm.searchText != '') {
                 vm.searchText = vm.searchText.trim();
             }
@@ -36,7 +37,7 @@
                     },
 
                 function (error) {
-                     vm.message = error.message;
+                     vm.message = error.data.message;
                      vm.Next = false;
                      $rootScope.isLoading = false; //loading gif
                  });
@@ -79,7 +80,7 @@
                         $rootScope.isLoading = false;
                     },
                      function (error) {
-                         vm.message = error.message;
+                         vm.message = error.data.message;
                          $rootScope.isLoading = false; //loading gif
                      });
                
@@ -89,7 +90,7 @@
         vm.itemsPerPage = vm.per_page;
         vm.chosePerPage = function () {
             //schimba numarul de elemente de pe pagina
-
+            vm.message = '';
             if (vm.itemsPerPage != vm.per_page) {
 
                 $rootScope.isLoading = true;
@@ -117,7 +118,7 @@
                     }
                     },
                  function (error) {
-                     vm.message = error.message;
+                     vm.message = error.data.message;
                      vm.Next = false;
                      $rootScope.isLoading = false; //loading gif
                  });
@@ -127,6 +128,7 @@
         vm.chosePageNr = function (id) {
             //schimba numarul paginii
             $rootScope.isLoading = true;
+            vm.message = '';
             vm.page_nr = id;
             var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
 
@@ -159,7 +161,7 @@
 
                 },
              function (error) {
-                 vm.message = error.message;
+                 vm.message = error.data.message;
                  vm.Next = false;
                  $rootScope.isLoading = false; //loading gif
              });
