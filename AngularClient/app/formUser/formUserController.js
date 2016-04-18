@@ -82,25 +82,33 @@
                 vm.page_nr = 0;
                 var param = { page_nr: vm.page_nr, per_page: vm.per_page };
 
-                formResource.getForms.getForms(param, function (data) {
+                formResource.getForms.getForms(param,
+                    function (response) {
 
-                    vm.userForms = data;
-                    $rootScope.isLoading = false;
+                        vm.userForms = response.data;
+                        $rootScope.isLoading = false;
 
-                    if (vm.userForms.length < vm.per_page) {
-                        vm.Next = false;
-                    }
-                    else {
-                        vm.Next = true;
-                    }
+                        if (vm.userForms.length < vm.per_page) {
+                            vm.Next = false;
+                        }
+                        else {
+                            vm.Next = true;
+                        }
 
-                    if (vm.page_nr <= 0) {
-                        vm.Prev = false;
-                    }
-                    else {
-                        vm.Prev = true;
-                    }
-                });
+                        if (vm.page_nr <= 0) {
+                            vm.Prev = false;
+                        }
+                        else {
+                            vm.Prev = true;
+                        }
+                    },
+
+
+            function (error) {
+                vm.message = error.data.message;
+                vm.Next = false;
+                $rootScope.isLoading = false; //loading gif
+            });
 
             }
         }
@@ -118,9 +126,10 @@
                 vm.Prev = true;
             }
 
-            formResource.getForms.getForms(param, function (data) {
+            formResource.getForms.getForms(param, 
+                function (response) {
 
-                vm.userForms = data;
+                    vm.userForms = response.data;
                 $rootScope.isLoading = false;
 
                 if (vm.userForms.length < vm.per_page) {
@@ -136,6 +145,12 @@
                 else {
                     vm.Prev = true;
                 }
+            },
+            
+            function (error) {
+                vm.message = error.data.message;
+                vm.Next = false;
+                $rootScope.isLoading = false; //loading gif
             });
         }
     }
