@@ -1,4 +1,4 @@
-﻿<div ng-controller="CategoryController as ctrl" >
+﻿<div ng-controller="CategoryController as ctrl">
 
     <div class="panel panel-default">
         <div class="panel-heading">Search category</div>
@@ -15,7 +15,7 @@
         <div class="panel-heading">All categories</div>
         <div class="panel-body">
             <div class="list-group" ng-repeat="category in ctrl.categories  | filter:searchText">
-                <a ng-click="vm.changePage(ctrl.viewCategoryForms(category.CategoryID))" class="list-group-item list-group-item-success">{{ category.Name }}</a>
+                <button ng-click="vm.changePage(ctrl.viewCategoryForms(category.CategoryID))" type="button" class="list-group-item">{{ category.Name }}</button>
             </div>
         </div>
     </div>
