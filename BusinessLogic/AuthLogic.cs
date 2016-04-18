@@ -36,7 +36,7 @@ namespace BusinessLogic
             //verifica daca in baza de date exista un tuplu ce corespunde cu datele introduse
             try
             {
-                return _dataAccess.UserRepository.FindFirstBy(user => user.Username == username && user.Password == password && user.Verified == "yes").UserID;
+                return _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username) && user.Password.Equals(password) && user.Verified == "yes").UserID;
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace BusinessLogic
                 if (verify)
                 {
                     //se updateaza contul userului, verified => true
-                    userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString == token).UserID;
+                    userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString.Equals(token)).UserID;
                     _dataAccess.UserRepository.Verified(userID);
                     return true;
                 }

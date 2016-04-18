@@ -23,7 +23,7 @@ namespace BusinessLogic
         public List<FormDTO> GetUserForms(string username, int page, int per_page)
         {
             //returnez toate formurile unui user
-            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
+            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
             List<Form> formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID).OrderByDescending(form => form.CreatedDate).ToList();
             formList = formList.Skip(page * per_page).Take(per_page).ToList();
             List<FormDTO> formDtoList = new List<FormDTO>();
@@ -89,7 +89,7 @@ namespace BusinessLogic
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID;
+            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {
@@ -128,7 +128,7 @@ namespace BusinessLogic
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID;
+            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {
@@ -160,7 +160,7 @@ namespace BusinessLogic
         public List<FormDTO> GetVotedForms(string username, int page, int per_page)
         {
             //returneaza toate formurile votate de catre un user
-            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
+            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
             List<Form> formList = new List<Form>();
             List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).OrderByDescending(voted => voted.Form.CreatedDate).ToList();
             votedFormsList = votedFormsList.Skip(page * per_page).Take(per_page).ToList();
@@ -200,7 +200,7 @@ namespace BusinessLogic
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID;
+            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {
@@ -300,13 +300,13 @@ namespace BusinessLogic
         public int GetCategoryID(string name)
         {
             //
-            return _dataAccess.CategoryRepository.FindFirstBy(cat => cat.Name == name).CategoryID;
+            return _dataAccess.CategoryRepository.FindFirstBy(cat => cat.Name.Equals(name)).CategoryID;
         }
 
         public int GetQuestionID(string content, int formID)
         {
             //
-            return _dataAccess.QuestionRepository.FindFirstBy(q => q.Content == content && q.FormID == formID).QuestionID;
+            return _dataAccess.QuestionRepository.FindFirstBy(q => q.Content.Equals(content) && q.FormID == formID).QuestionID;
         }
 
         public void AddCategory(string name)
@@ -374,29 +374,29 @@ namespace BusinessLogic
         {
             DateTime date = createdDate.AddSeconds(-5);
             //returneaza id-ul unui form
-            return _dataAccess.FormRepository.FindFirstBy(form => form.Title == title && form.UserID == userID && form.CreatedDate >= date).FormID;
+            return _dataAccess.FormRepository.FindFirstBy(form => form.Title.Equals(title) && form.UserID == userID && form.CreatedDate >= date).FormID;
         }
 
         public int GetUserID(string username)
         {
             //returneaza id-ul unui user
-            return _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
+            return _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
         }
 
         public int FormIdCreatedbyUserId(int formID, string userToken)
         {
             //returneaza id-ul formului daca formul apartine de userul care are tokenul usertToken
-            int userID = _dataAccess.TokenRepository.FindFirstBy(token => token.TokenString == userToken).UserID;
+            int userID = _dataAccess.TokenRepository.FindFirstBy(token => token.TokenString.Equals(userToken)).UserID;
             return _dataAccess.FormRepository.FindFirstBy(form => form.FormID == formID && form.UserID == userID).FormID;
         }
 
         public VoteResultDTO Vote(VoteListDTO voteListDTO, string token)
         {
-            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username == voteListDTO.Username).UserID;
+            int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(voteListDTO.Username)).UserID;
             int questionID;
 
             //testeaza daca tokenul si userul care a votat coincid
-            if (userID == _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString == token).UserID)
+            if (userID == _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID)
             {
                 questionID = voteListDTO.Answers[0].Question;
 

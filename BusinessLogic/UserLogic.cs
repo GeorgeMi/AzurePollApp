@@ -22,7 +22,7 @@ namespace BusinessLogic
     public class UserLogic
     {
         private IAzureDataAccess _dataAccess;
-       
+
         public UserLogic(IAzureDataAccess objDataAccess)
         {
             //primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
@@ -50,12 +50,12 @@ namespace BusinessLogic
                 userDtoList.Add(userDTO);
             }
 
-            return userDtoList.ToList(); 
+            return userDtoList.ToList();
         }
 
         public string GetUserRole(string username)
         {
-            return _dataAccess.UserRepository.FindFirstBy(u => u.Username == username).Role;
+            return _dataAccess.UserRepository.FindFirstBy(u => u.Username.Equals(username)).Role;
         }
 
         public int AddUser(UserRegistrationDTO userDTO)
@@ -67,14 +67,14 @@ namespace BusinessLogic
             else
             {
                 //adauga un user
-                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user" ,Verified="no"};
+                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user", Verified = "no" };
                 _dataAccess.UserRepository.Add(user);
 
-               
-                return _dataAccess.UserRepository.FindFirstBy(u => u.Username == userDTO.Username).UserID;
-                 
+
+                return _dataAccess.UserRepository.FindFirstBy(u => u.Username.Equals(userDTO.Username)).UserID;
+
             }
-           
+
         }
 
         public List<UsernameDTO> GetAllUsernames()
@@ -126,7 +126,7 @@ namespace BusinessLogic
         public int GetUserID(string username)
         {
             //cauta id-ul userului dupa username
-            return _dataAccess.UserRepository.FindFirstBy(user => user.Username == username).UserID;
+            return _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
         }
 
         public string GetUsername(int id)

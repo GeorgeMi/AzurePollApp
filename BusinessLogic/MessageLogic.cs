@@ -23,7 +23,7 @@ namespace BusinessLogic
         {
             List<User> adminsList;
             User receiver;
-            int userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString == token).UserID;
+            int userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString.Equals(token)).UserID;
             string username = _dataAccess.UserRepository.FindFirstBy(u => u.UserID == userID).Username;
 
             MailMessage mail = new MailMessage();
@@ -36,7 +36,7 @@ namespace BusinessLogic
 
             if (contactMessageDTO.Receiver == 0)
             {
-                adminsList = _dataAccess.UserRepository.FindAllBy(user => user.Role == "admin").ToList();
+                adminsList = _dataAccess.UserRepository.FindAllBy(user => user.Role.Equals("admin")).ToList();
                 foreach (User admin in adminsList)
                 {
                     mail.Bcc.Add(new MailAddress(admin.Email));

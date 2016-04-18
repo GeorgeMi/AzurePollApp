@@ -77,7 +77,7 @@ namespace BusinessLogic
                 // preiau adresa mac
                 MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
                 //creez token string
-                text = t.TokenID.ToString() + username + password + createdDate.ToString()+MAC;
+                text = t.TokenID.ToString() + username + password + createdDate.ToString() + MAC;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);
