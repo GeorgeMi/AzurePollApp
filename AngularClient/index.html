@@ -8,9 +8,10 @@
     <!-- Style sheets -->
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/sidebar.css" rel="stylesheet" />
+    <link href="Content/footer.css" rel="stylesheet" />
     <link href="Content/angular-chart.css" rel="stylesheet" />
     <link href="Content/loadingGif.css" rel="stylesheet" />
-
+      
 </head>
 <body ng-app="app" ng-controller="MainController as vm" data-ng-init="vm.registerToken()" class="ng-cloak">
 
@@ -164,6 +165,8 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <div ng-include="'footer.html'"></div>
     </div>
 
 
@@ -187,7 +190,8 @@
         </div>
     </div>
 
-    <!-- Library Scripts -->
+  
+      <!-- Library Scripts -->
     <script src="Scripts/jquery-2.2.1.js"></script>
     <script src="scripts/angular.js"></script>
     <script src="Scripts/angular-resource.js"></script>

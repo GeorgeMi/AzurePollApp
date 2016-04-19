@@ -123,12 +123,15 @@ textarea {
     width: 100%;
 }
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 500) {
-  
-      img { 
-        max-width: 100%;
-        height: auto
+@media only screen and (max-width : 800px) {
 
+    .groupPerPagePanel {
+       padding-bottom: 15%;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
     }
 
     #sidebar-wrapper {
@@ -228,12 +231,15 @@ textarea {
         position: relative;
         width: 100%;
     }
+
+ 
 }
 
 /*desktop */
-@media only screen and (min-width : 510px) {
+@media only screen and (min-width : 820px) {
     .mobileSideBarVisible {
         width: 20%;
         display: inline-block;
     }
+    
 }
