@@ -20,14 +20,24 @@ namespace BusinessLogic
             _dataAccess = objDataAccess;
         }
 
-        public List<FormDTO> GetUserForms(string username, int page, int per_page)
+        public List<FormDTO> GetUserForms(string username, int page, int per_page, string state)
         {
             //returnez toate formurile unui user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
-            List<Form> formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID).OrderByDescending(form => form.CreatedDate).ToList();
-            formList = formList.Skip(page * per_page).Take(per_page).ToList();
+            List<Form> formList;
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
+
+            if (state == "all")
+            {
+                formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID).OrderByDescending(form => form.CreatedDate).ToList();
+            }
+            else
+            {
+                formList = _dataAccess.FormRepository.FindAllBy(form => form.UserID == userID && form.State == state ).OrderByDescending(form => form.CreatedDate).ToList();
+            }
+
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
 
             foreach (Form f in formList)
             {
@@ -41,7 +51,7 @@ namespace BusinessLogic
                 formDTO.Id = f.FormID;
                 formDtoList.Add(formDTO);
             }
-            
+
             return formDtoList.ToList();
         }
 
@@ -80,16 +90,29 @@ namespace BusinessLogic
             return voteResult;
         }
 
-        public List<FormDTO> GetAllForms(string token, string searchedName, int page_nr, int per_page)
+        public List<FormDTO> GetAllForms(string token, string searchedName, int page_nr, int per_page, string state)
         {
             //returneaza toate formurile care contin searchedName
-            List<Form> formList = _dataAccess.FormRepository.GetAll().Where(form => form.Category.Name.Contains(searchedName) ||
-                form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).OrderByDescending(form => form.CreatedDate).ToList();
-            formList = formList.Skip(page_nr * per_page).Take(per_page).ToList();
+            List<Form> formList;
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
+            int userID;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
+            if (state == "all")
+            {
+                formList = _dataAccess.FormRepository.GetAll().Where(form => form.Category.Name.Contains(searchedName) ||
+               form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).OrderByDescending(form => form.CreatedDate).ToList();
+
+            }
+            else
+            {
+                formList = _dataAccess.FormRepository.GetAll().Where(form => (form.Category.Name.Contains(searchedName) ||
+               form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)) && form.State.Equals(state)).OrderByDescending(form => form.CreatedDate).ToList();
+
+            }
+            formList = formList.Skip(page_nr * per_page).Take(per_page).ToList();
+
+            userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {
@@ -120,15 +143,25 @@ namespace BusinessLogic
 
         }
 
-        public List<FormDTO> GetCategoryForms(int categoryID, string token, int page, int per_page)
+        public List<FormDTO> GetCategoryForms(int categoryID, string token, int page, int per_page, string state)
         {
             //returneaza toate formurile dintr-o categorie
-            List<Form> formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID).OrderByDescending(f => f.CreatedDate).ToList();
-            formList = formList.Skip(page * per_page).Take(per_page).ToList();
+            List<Form> formList;
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
+            int userID;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
+            if (state == "all")
+            {
+                formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID).OrderByDescending(f => f.CreatedDate).ToList();
+            }
+            else
+            {
+                formList = _dataAccess.FormRepository.FindAllBy(f => f.CategoryID == categoryID && f.State == state).OrderByDescending(f => f.CreatedDate).ToList();
+            }
+
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
+            userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {
@@ -157,16 +190,26 @@ namespace BusinessLogic
             return formDtoList.ToList();
         }
 
-        public List<FormDTO> GetVotedForms(string username, int page, int per_page)
+        public List<FormDTO> GetVotedForms(string username, int page, int per_page, string state)
         {
             //returneaza toate formurile votate de catre un user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
             List<Form> formList = new List<Form>();
-            List<VotedForm> votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).OrderByDescending(voted => voted.Form.CreatedDate).ToList();
-            votedFormsList = votedFormsList.Skip(page * per_page).Take(per_page).ToList();
+            List<VotedForm> votedFormsList;
             List<FormDTO> formDtoList = new List<FormDTO>();
             FormDTO formDTO;
             Form form;
+
+            if (state == "all")
+            {
+                votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID).OrderByDescending(voted => voted.Form.CreatedDate).ToList();
+            }
+            else
+            {
+                votedFormsList = _dataAccess.VotedFormsRepository.FindAllBy(voted => voted.UserID == userID && voted.Form.State == state).OrderByDescending(voted => voted.Form.CreatedDate).ToList();
+            }
+
+            votedFormsList = votedFormsList.Skip(page * per_page).Take(per_page).ToList();
 
             foreach (VotedForm votedForm in votedFormsList)
             {
@@ -189,18 +232,30 @@ namespace BusinessLogic
                 formDtoList.Add(formDTO);
             }
 
-           return formDtoList.ToList();
+            return formDtoList.ToList();
         }
 
-        public List<FormDTO> GetAllForms(string token, int page, int per_page)
+        public List<FormDTO> GetAllForms(string token, int page, int per_page, string state)
         {
             //returneaza toate formurile 
-            List<Form> formList = _dataAccess.FormRepository.GetAll().OrderByDescending(form=>form.CreatedDate).ToList();
-            formList = formList.Skip(page * per_page).Take(per_page).ToList();
-            List<FormDTO> formDtoList = new List<FormDTO>();
+            List<Form> formList;
             FormDTO formDTO;
+            List<FormDTO> formDtoList;
+            int userID;
 
-            int userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
+            if (state == "all")
+            {
+                formList = _dataAccess.FormRepository.GetAll().OrderByDescending(form => form.CreatedDate).ToList();
+            }
+            else
+            {
+                formList = _dataAccess.FormRepository.GetAll().Where(form => form.State == state).OrderByDescending(form => form.CreatedDate).ToList();
+            }
+
+            formList = formList.Skip(page * per_page).Take(per_page).ToList();
+            formDtoList = new List<FormDTO>();
+
+            userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
 
             foreach (Form f in formList)
             {

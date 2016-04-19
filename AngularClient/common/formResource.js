@@ -7,7 +7,7 @@
     function formResource($resource, appSettings, $cookies) {
         return {
             //all forms
-            get: $resource(appSettings.serverPath + "/api/form?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
+            get: $resource(appSettings.serverPath + "/api/form?state=:state&page=:page_nr&per_page=:per_page", { state: '@id', page_nr: '@id', per_page: '@id' },
                       {
                           'getForms': {
                               method: 'GET',
@@ -37,7 +37,7 @@
                          }
                      }),
             //voted forms
-            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username') + "?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
+            getVotedForms: $resource(appSettings.serverPath + "/api/form/voted/" + $cookies.get('username') + "?state=:state&page=:page_nr&per_page=:per_page", { state: '@id', page_nr: '@id', per_page: '@id' },
                      {
                          'getVotedForms': {
                              method: 'GET',
@@ -52,7 +52,7 @@
                          }
                      }),
             //forms from category
-            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id?page=:page_nr&per_page=:per_page", { category_id: '@id', page_nr: '@id', per_page: '@id' },
+            getCategoryForms: $resource(appSettings.serverPath + "/api/form/category/:category_id?state=:state&page=:page_nr&per_page=:per_page", { state: '@id', category_id: '@id', page_nr: '@id', per_page: '@id' },
                      {
                          'getCategoryForms': {
                              method: 'GET',
@@ -85,7 +85,7 @@
 
               }),
             //all forms from user
-            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username') + "?page=:page_nr&per_page=:per_page", { page_nr: '@id', per_page: '@id' },
+            getForms: $resource(appSettings.serverPath + "/api/form/user/" + $cookies.get('username') + "?state=:state&page=:page_nr&per_page=:per_page", { state: '@id', page_nr: '@id', per_page: '@id' },
                       {
                           'getForms': {
                               method: 'GET',
@@ -131,7 +131,7 @@
                }),
 
             //search forms
-            search: $resource(appSettings.serverPath + "/api/search/:searchedText?page=:page_nr&per_page=:per_page", { searchedText: '@id', page_nr: '@id', per_page: '@id' },
+            search: $resource(appSettings.serverPath + "/api/search/:searchedText?state=:state&page=:page_nr&per_page=:per_page", { state: '@id', searchedText: '@id', page_nr: '@id', per_page: '@id' },
                       {
                           'searchForms': {
                               method: 'GET',
@@ -144,7 +144,7 @@
                                   return str.join("&");
                               }
                           }
-                      }),
+                      })
         }
     }
 

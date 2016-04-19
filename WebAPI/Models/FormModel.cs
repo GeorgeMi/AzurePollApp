@@ -34,11 +34,11 @@ namespace WebAPI.Models
         /// <param name="token">token string</param>
         /// <param name="page">page number</param>
         /// <param name="per_page">elements per page</param>
-        public List<FormDTO> GetAllForms(string token, int page, int per_page)
+        public List<FormDTO> GetAllForms(string token, int page, int per_page, string state)
         {
             try
             {
-                return bl.FormLogic.GetAllForms(token, page, per_page);
+                return bl.FormLogic.GetAllForms(token, page, per_page, state);
             }
             catch (Exception ex)
             {
@@ -68,11 +68,11 @@ namespace WebAPI.Models
         /// <param name="username">username</param>
         /// <param name="page">page number</param>
         /// <param name="per_page">elements per page</param>
-        public List<FormDTO> GetUserForms(string username, int page, int per_page)
+        public List<FormDTO> GetUserForms(string username, int page, int per_page, string state)
         {
             try
             {
-                return bl.FormLogic.GetUserForms(username, page, per_page);
+                return bl.FormLogic.GetUserForms(username, page, per_page, state);
             }
             catch
             {
@@ -87,11 +87,11 @@ namespace WebAPI.Models
         /// <param name="searchedName">string to search</param>
         /// <param name="page">page number</param>
         /// <param name="per_page">elements per page</param>
-        internal List<FormDTO> GetAllForms(string token, string searched, int page_nr, int per_page)
+        internal List<FormDTO> GetAllForms(string token, string searched, int page_nr, int per_page, string state)
         {
             try
             {
-                return bl.FormLogic.GetAllForms(token, searched, page_nr, per_page);
+                return bl.FormLogic.GetAllForms(token, searched, page_nr, per_page, state);
             }
             catch (Exception ex)
             {
@@ -105,11 +105,11 @@ namespace WebAPI.Models
         /// <param name="username">username</param>
         /// <param name="page">page number</param>
         /// <param name="per_page">elements per page</param>
-        public List<FormDTO> GetVotedForms(string username, int page_nr, int per_page)
+        public List<FormDTO> GetVotedForms(string username, int page_nr, int per_page, string state)
         {
             try
             {
-                return bl.FormLogic.GetVotedForms(username, page_nr, per_page);
+                return bl.FormLogic.GetVotedForms(username, page_nr, per_page, state);
             }
             catch
             {
@@ -142,11 +142,11 @@ namespace WebAPI.Models
         /// <param name="token">token string</param>
         /// <param name="page_nr">page number</param>
         /// <param name="per_page">elements per page</param>
-        public List<FormDTO> GetCategoryForms(int categoryID, string token, int page_nr, int per_page)
+        public List<FormDTO> GetCategoryForms(int categoryID, string token, int page_nr, int per_page, string state)
         {
             try
             {
-                return bl.FormLogic.GetCategoryForms(categoryID, token, page_nr, per_page);
+                return bl.FormLogic.GetCategoryForms(categoryID, token, page_nr, per_page, state);
             }
             catch
             {

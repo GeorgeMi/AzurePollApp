@@ -11,6 +11,7 @@
         vm.per_page = 1; //numarul de elemente de pe pagina
         vm.Prev = false; // se afiseaza "prev page" la paginare
         vm.Next = false; // se afiseaza "next page" la paginare
+        vm.state = 'open'; //open, closed, all
         $rootScope.isLoading = false; //loading gif
 
         vm.Search = function () {
@@ -21,7 +22,7 @@
 
             if (vm.searchText != '') {
                 $rootScope.isLoading = true; //loading gif
-                var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+                var param = { searchedText: vm.searchText, state: vm.state, page_nr: vm.page_nr, per_page: vm.per_page };
 
                 formResource.search.searchForms(param,
 
@@ -96,7 +97,7 @@
                 $rootScope.isLoading = true;
                 vm.per_page = vm.itemsPerPage;
                 vm.page_nr = 0;
-                var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+                var param = { searchedText: vm.searchText, state: vm.state, page_nr: vm.page_nr, per_page: vm.per_page };
 
                 formResource.search.searchForms(param,
                     function (response) {
@@ -130,7 +131,7 @@
             $rootScope.isLoading = true;
             vm.message = '';
             vm.page_nr = id;
-            var param = { searchedText: vm.searchText, page_nr: vm.page_nr, per_page: vm.per_page };
+            var param = { searchedText: vm.searchText, state: vm.state, page_nr: vm.page_nr, per_page: vm.per_page };
 
 
             if (vm.page_nr <= 0) {
@@ -166,6 +167,36 @@
                  $rootScope.isLoading = false; //loading gif
              });
            
+        }
+
+        //<-----------------change state----------------------> 
+        vm.itemsState = vm.state;
+        vm.changeState = function () {
+            //schimba numarul de elemente de pe pagina
+            if (vm.itemsState != vm.state) {
+
+                $rootScope.isLoading = true;
+                vm.state = vm.itemsState;
+                var param = { searchedText: vm.searchText, state: vm.state, page_nr: vm.page_nr, per_page: vm.per_page };
+
+                formResource.search.searchForms(param,
+
+                    function (response) {
+                        vm.forms = response.data;
+                        $rootScope.isLoading = false; //loading gif
+                        vm.message = null;
+
+
+
+                    },
+
+                    function (error) {
+                        vm.message = error.data.message;
+                        vm.Next = false;
+                        $rootScope.isLoading = false; //loading gif
+                    });
+
+            }
         }
        
 

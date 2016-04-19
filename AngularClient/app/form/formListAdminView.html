@@ -1,7 +1,7 @@
 ﻿<div ng-controller="FormController as ctrl">
-    <div class="panel panel-default">
-        <div class="panel-heading">Polls per page</div>
-        <div class="panel-body">
+    <div class="groupPerPagePanel">
+        <div class="col-sm-6">
+            <label class="control-label " for="pwd">Polls per page:</label>
             <select class="form-control" ng-model="ctrl.itemsPerPage" ng-click="ctrl.chosePerPage()" placeholder="Polls per page">
                 <option>1</option>
                 <option>5</option>
@@ -10,7 +10,16 @@
                 <option>20</option>
             </select>
         </div>
+        <div class="col-sm-6 statePanel">
+            <label class="control-label " for="pwd">State:</label>
+            <select class="form-control" ng-model="ctrl.itemsState" ng-click="ctrl.changeState()" placeholder="State">
+                <option>open</option>
+                <option>closed</option>
+                <option>all</option>
+            </select>
+        </div>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">Search poll</div>
         <div class="panel-body">

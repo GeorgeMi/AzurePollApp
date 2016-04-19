@@ -36,9 +36,10 @@ namespace WebAPI.Controllers
             int[] pageVal = GetPageNumberAndElementNumber();
             int page_nr = pageVal[0];
             int per_page = pageVal[1];
+            string state = GetState();
 
             List<FormDTO> list = new List<FormDTO>();
-            list = formModel.GetAllForms(token, id, page_nr, per_page);
+            list = formModel.GetAllForms(token, id, page_nr, per_page,  state);
 
             if (list.Count > 0)
             {
@@ -95,6 +96,36 @@ namespace WebAPI.Controllers
             result[1] = per_page;
 
             return result;
+        }
+
+        private string GetState()
+        {
+            string state = "open";
+
+            try
+            {
+                //if query exists and it is valid, default state value is changing 
+                var queryString = this.Request.GetQueryNameValuePairs();
+
+                foreach (KeyValuePair<string, string> pair in queryString)
+                {
+                    if (pair.Key == "state")
+                    {
+                        state = pair.Value.ToString();
+                    }
+                }
+
+                if (state != "open" && state != "closed" && state != "all")
+                {
+                    state = "open";
+                }
+            }
+            catch
+            {
+                state = "open";
+            }
+
+            return state;
         }
     }
 }

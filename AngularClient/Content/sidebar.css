@@ -7,6 +7,16 @@
     text-decoration: none;
 }
 
+.statePanel {
+   
+    
+}
+
+.groupPerPagePanel {
+   float:none;
+  padding-bottom:7%;
+
+}
 #sidebar-wrapper {
     height: 100%;
     background: #2C3E50;
