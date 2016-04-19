@@ -1,22 +1,18 @@
 ﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+    display: none !important;
 }
+
 .navbar {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
     text-decoration: none;
 }
 
-.statePanel {
-   
-    
-}
-
 .groupPerPagePanel {
-   float:none;
-  padding-bottom:7%;
-
+    float: none;
+    padding-bottom: 10%;
 }
+
 #sidebar-wrapper {
     height: 100%;
     background: #2C3E50;
@@ -26,9 +22,10 @@
 }
 
 #messageLogIn {
-    position:absolute;
-    width:91%;
+    position: absolute;
+    width: 91%;
 }
+
 .contentHidden {
     display: none;
 }
@@ -118,15 +115,21 @@ textarea {
 }
 
 .pollQuestionPanel {
-    margin:0 auto;
-    float:none;
+    margin: 0 auto;
+    float: none;
 }
 
 .btnVotedViewResults {
-    width:100%;
+    width: 100%;
 }
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 500px) {
+@media only screen and (max-width : 500) {
+  
+      img { 
+        max-width: 100%;
+        height: auto
+
+    }
 
     #sidebar-wrapper {
         width: 100%;
