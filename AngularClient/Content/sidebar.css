@@ -1,13 +1,28 @@
 ﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
-
+body {
+color:#2F3E47;
+}
 .navbar {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
     text-decoration: none;
+    background-color:#EDEDED;
+   
 }
 
+.navbar-default .navbar-brand {
+     color:#2F3E47;
+}
+
+.nav a {
+      color:#2F3E47;
+}
+
+.navbar-default .navbar-text {
+      color:#2F3E47;
+}
 .groupPerPagePanel {
     float: none;
     padding-bottom: 10%;
@@ -15,7 +30,7 @@
 
 #sidebar-wrapper {
     height: 110%;
-    background: #2C3E50;
+    background:  #2F3E47;
     padding-top: 10px;
     color: white;
     width: 20%;
