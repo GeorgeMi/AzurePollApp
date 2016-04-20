@@ -10,7 +10,7 @@
 
         var vm = this;
 
-        vm.isLoggedIn = false;
+        vm.isLoggedIn = true;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
 
