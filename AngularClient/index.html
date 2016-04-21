@@ -166,10 +166,12 @@
             </div>
         </div>
         <!-- footer when logged -->
-        <div ng-include="'html/footer.html'" ></div>
+        <div ng-include="'html/footer.html'" class="footer" ></div>
     </div>
     <!-- footer -->
-     <div ng-hide="vm.isLoggedIn" class="navbar-fixed-bottom" ng-include="'html/footer.html'"></div>
+    <div ng-hide="vm.isLoggedIn" class="navbar-fixed-bottom mobileHidden footer" ng-include="'html/footer.html'"></div>
+    <!-- footer mobile -->
+    <div ng-hide="vm.isLoggedIn" class="desktopHidden footer" ng-include="'html/footer.html'"></div>
   
 
     <div ng-if="$root.isLoadingRegister" class="col-sm-12 loadingGif">
