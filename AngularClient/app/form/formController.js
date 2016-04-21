@@ -296,15 +296,13 @@
                 $rootScope.isLoading = true;
                 vm.state = vm.itemsState;
                 param = { page_nr: 0, per_page: vm.per_page, state: vm.itemsState };
+
                 formResource.get.getForms(param,
 
                     function (response) {
                         vm.forms = response.data;
                         $rootScope.isLoading = false; //loading gif
                         vm.message = null;
-
-
-
                     },
 
                     function (error) {
