@@ -22,6 +22,8 @@ namespace BusinessLogic
 
         public List<FormDTO> GetUserForms(string username, int page, int per_page, string state)
         {
+            if (username == null)
+                throw new MissingFieldException();
             //returnez toate formurile unui user
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username)).UserID;
             List<Form> formList;

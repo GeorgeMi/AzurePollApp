@@ -59,6 +59,10 @@
       <Project>{B3850F5B-F1D1-419C-A126-B21B4B8AE36F}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataTransferObject\DataTransferObject.csproj">
+      <Project>{6564679D-E974-4A91-ADB6-A0263BB40411}</Project>
+      <Name>DataTransferObject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
