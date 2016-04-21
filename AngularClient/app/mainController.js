@@ -241,48 +241,63 @@
 
             if (mypage == 'home') {
                 vm.pages.home = true;
+                vm.ok = 1;
             }
             else if (mypage == 'categories') {
                 vm.pages.categories = true;
+                vm.ok = 1;
             }
             else if (mypage == 'my_polls') {
                 vm.pages.my_polls = true;
+                vm.ok = 0;
             }
             else if (mypage == 'new_poll') {
                 vm.pages.new_poll = true;
+                vm.ok = 0;
             }
             else if (mypage == 'manage_users') {
                 vm.pages.manage_users = true;
+                vm.ok = 1;
             }
             else if (mypage == 'manage_polls') {
                 vm.pages.manage_polls = true;
+                vm.ok = 1;
             }
             else if (mypage == 'manage_categories') {
                 vm.pages.manage_categories = true;
+                vm.ok = 1;
             }
             else if (mypage == 'vote_poll') {
                 vm.pages.vote_poll = true;
+                vm.ok = 0;
             }
             else if (mypage == 'my_poll_result') {
                 vm.pages.my_poll_result = true;
+                vm.ok = 0;
             }
             else if (mypage == 'voted_polls') {
                 vm.pages.voted_polls = true;
+                vm.ok = 0;
             }
             else if (mypage == 'category_forms') {
                 vm.pages.category_forms = true;
+                vm.ok = 0;
             }
             else if (mypage == 'contact') {
                 vm.pages.contact = true;
+                vm.ok = 1;
             }
             else if (mypage == 'search_polls') {
                 vm.pages.search_polls = true;
+                vm.ok = 1;
             }
             else if (mypage == 'contact_admin') {
                 vm.pages.contact_admin = true;
+                vm.ok = 1;
             }
             else if (mypage == 'contact_admin_redirect') {
                 vm.pages.contact_admin_redirect = true;
+                vm.ok = 0;
             }
             else {
                 vm.ok = 0;
@@ -291,18 +306,23 @@
             if (vm.ok == 1) {
                 vm.pagesArray.last = vm.pagesArray.current;
                 vm.pagesArray.current = mypage;
+               
             }
-
+            else
+            {
+                vm.pagesArray.last = vm.pagesArray.current;
+            }
+           
         }
         vm.changePage('home');
 
         vm.backPage = function () {
-
+            
             vm.changePage(vm.pagesArray.last);
             temp = vm.pagesArray.last;
             vm.pagesArray.last = vm.pagesArray.current;
             vm.pagesArray.current = temp;
-
+     
         }
 
         //------------------verify mail---------------------

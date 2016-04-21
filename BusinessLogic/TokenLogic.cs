@@ -72,7 +72,7 @@ namespace BusinessLogic
                 t = GetTokenByUserID(id);
 
                 createdDate = DateTime.Now;
-                expirationDate = DateTime.Now.AddHours(3);
+                expirationDate = DateTime.Now.AddHours(1);
 
                 // preiau adresa mac
                 MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();

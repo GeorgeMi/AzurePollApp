@@ -21,6 +21,9 @@ namespace BusinessLogic
 
         public void SendMessage(string token, ContactMessageDTO contactMessageDTO)
         {
+            if (string.IsNullOrWhiteSpace(contactMessageDTO.Category) || string.IsNullOrWhiteSpace(contactMessageDTO.Message) || contactMessageDTO.Receiver < 0)
+                throw new System.Exception("Values cannot be null");
+
             List<User> adminsList;
             User receiver;
             int userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString.Equals(token)).UserID;

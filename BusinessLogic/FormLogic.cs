@@ -377,6 +377,8 @@ namespace BusinessLogic
             //add form
             CultureInfo provider = CultureInfo.InvariantCulture;
             // string format = "ddd MMM d HH:mm:ss GMT";
+            if (string.IsNullOrWhiteSpace(formDTO.Category) || string.IsNullOrWhiteSpace(formDTO.Username) || formDTO.Questions.Capacity <= 1)
+                throw new MissingMemberException("Values cannot be null");
 
             Form form = new Form() { CreatedDate = DateTime.Now, Deadline = DateTime.Now.AddDays(7 * Int32.Parse(formDTO.Deadline)), State = formDTO.State, Title = formDTO.Title };
             Question q;

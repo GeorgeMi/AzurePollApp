@@ -30,7 +30,8 @@
         vm.addCategory = function () {
             $rootScope.isLoading = true;
 
-            categoryResource.add.addCategory(vm.category, function (data) {
+            categoryResource.add.addCategory(vm.category,
+                function (response) {
 
                 categoryResource.get.getCategories(
                     function (response) {
@@ -42,7 +43,11 @@
                         vm.message = error.data.message;
                         $rootScope.isLoading = false; //loading gif
                     });
-            });
+            },
+             function (error) {
+                 vm.message = error.data.message;
+                 $rootScope.isLoading = false; //loading gif
+             });
         }
 
         vm.deleteCategory = function (categoryID) {

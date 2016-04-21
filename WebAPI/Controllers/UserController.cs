@@ -58,12 +58,13 @@ namespace WebAPI.Controllers
         public HttpResponseMessage Usernames(int id)
         {
             HttpResponseMessage responseMessage;
-            JSendMessage json;
+            JSend json;
             List<UsernameDTO> list = userModel.GetAllUsernames();
 
             if (list.Count > 0)
             {
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, list);
+                json = new JSendData<UsernameDTO>("success", list);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, json);
             }
             else
             {

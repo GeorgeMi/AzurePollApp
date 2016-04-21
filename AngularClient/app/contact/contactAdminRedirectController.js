@@ -21,6 +21,8 @@
 
             if (vm.contact.message != '') {
 
+                vm.messageContact = '';
+                vm.sent = null;
                 $rootScope.isLoading = true;
                
                 var x = JSON.stringify(vm.contact);
@@ -38,8 +40,8 @@
 
                   //nu s-a trimis
                    function (error) {
-                       vm.messageContact = error.message;
-                       vm.sent = error.status;
+                       vm.messageContact = error.data.message;
+                       vm.sent = error.data.status;
                        $rootScope.isLoading = false;
                    });
             }
