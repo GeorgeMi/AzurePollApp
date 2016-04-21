@@ -44,7 +44,12 @@
                     <div class="col-sm-6 col-md-4">
                         <h5>Deadline: {{ form.Deadline }}</h5>
                     </div>
+                    <div class="col-sm-8 col-sm-offset-4 ">
+                        <h5> URL: http://votemypoll.azurewebsites.net/#/?poll={{ form.Id }}</h5>
+                    </div>
+                   
                 </div>
+
                 <div class="col-sm-6 col-md-4">
                     <div class="btn-group btn-group-justified">
                         <div class="btn btn-default" title="View results" ng-click="vm.changePage(ctrl.changeID(form.Id))">View Results</div>

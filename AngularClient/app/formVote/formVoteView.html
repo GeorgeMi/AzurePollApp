@@ -12,7 +12,7 @@
 
                     <div class="panel panel-default" ng-if="ctrl.voted == ctrl.showResults">
                         <div class="panel-heading">
-                           {{question.Question}}
+                            {{question.Question}}
                         </div>
 
                         <div class="panel-body">
@@ -50,6 +50,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-if="!ctrl.voted && ctrl.messageForm != null " class="alert alert-danger" role="alert">{{ctrl.messageForm}}</div>
+            </div>
+
         </div>
     </div>
 </div>

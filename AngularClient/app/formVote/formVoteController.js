@@ -85,7 +85,6 @@
 
                    //nu s-a creat
                     function (error) {
-
                         vm.messageForm = error.data.message;
                         vm.voted = false;
                         $rootScope.isLoading = false;

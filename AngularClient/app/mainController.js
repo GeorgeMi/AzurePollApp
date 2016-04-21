@@ -2,17 +2,18 @@
     "use strinct";
     angular
         .module("app")
-        .controller("MainController", ["userAccount", "$cookies", "$routeParams", "$location", "$rootScope", MainController])
+        .controller("MainController", ["userAccount","formResource", "$cookies", "$routeParams", "$location", "$rootScope", MainController])
 
 
 
-    function MainController(userAccount, $cookies, $routeParams, $location, $rootScope) {
+    function MainController(userAccount,formResource, $cookies, $routeParams, $location, $rootScope) {
 
         var vm = this;
-
+        
         vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
+        vm.isQuery = false;
 
         vm.messageSuccessRegistration = '';
         vm.messageFailedRegistration = '';
@@ -174,7 +175,9 @@
                         vm.isLoggedIn = true;
 
                         //always load on home page
-                        vm.changePage('home');
+                        if (!vm.isQuery) {
+                             vm.changePage('home');
+                        }
 
                         var expireDate = new Date();
                         expireDate.setDate(expireDate.getDate() + 1);
@@ -220,7 +223,7 @@
         //------------------change page-----------------------
 
         vm.changePage = function (mypage) {
-            //inchide sideBar la smartphone
+           //inchide sideBar la smartphone
             $(".mobileSideBarVisible").addClass("sideBarHidden");
             vm.ok = 1; // mypage este valid
             vm.pages.home = false;
@@ -306,23 +309,28 @@
             if (vm.ok == 1) {
                 vm.pagesArray.last = vm.pagesArray.current;
                 vm.pagesArray.current = mypage;
-               
+
             }
-            else
-            {
+            else {
                 vm.pagesArray.last = vm.pagesArray.current;
             }
-           
+
         }
         vm.changePage('home');
 
         vm.backPage = function () {
-            
+
             vm.changePage(vm.pagesArray.last);
             temp = vm.pagesArray.last;
             vm.pagesArray.last = vm.pagesArray.current;
             vm.pagesArray.current = temp;
-     
+
+        }
+
+        vm.changeID = function (id) {
+            // alert("cookie");
+            $cookies.put('last_poll', id);
+            return 'vote_poll';
         }
 
         //------------------verify mail---------------------
@@ -348,12 +356,21 @@
                    });
 
             //stop loading
-            $rootScope.isLoadingRegister;
+            $rootScope.isLoadingRegister = false;
+        }
+        else if ($location.search().poll) {
+            vm.isQuery = true;
+            vm.changePage(vm.changeID($location.search().poll));
+
         }
             //change page using url
         else if ($location.url()) {
             vm.changePage($location.url());
         }
+
+
+
+       
 
 
 
