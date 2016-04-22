@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                json = new JSendMessage("fail", "Something bad happened");
+                json = new JSendMessage("fail", "Poll already voted");
                 responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest, json);
             }
 

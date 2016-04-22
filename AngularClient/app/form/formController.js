@@ -2,9 +2,9 @@
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormController", ["formResource", "$cookies", "$rootScope", FormController]);
+        .controller("FormController", ["formResource", "$cookies", "$rootScope", "$window", FormController]);
 
-    function FormController(formResource, $cookies, $rootScope) {
+    function FormController(formResource, $cookies, $rootScope, $window) {
         var vm = this;
 
         vm.created = false;
@@ -123,6 +123,9 @@
                 vm.message = error.data.message;
                 vm.Next = false;
                 $rootScope.isLoading = false; //loading gif
+                if (vm.message == "Invalid Authorization Key") {
+                    $window.location.reload();
+                }
             }
         );
 

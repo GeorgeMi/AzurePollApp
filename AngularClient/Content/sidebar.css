@@ -6,6 +6,12 @@ body {
     color: #2F3E47;
 }
 
+.list-group {
+    margin-bottom: 0;
+}
+.alert {
+    text-align: center;
+}
 .navbar {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
