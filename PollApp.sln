@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObject", "DataT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C0FD93B-1473-43D8-A118-52B403BCDEEF}"
 	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
@@ -47,6 +48,10 @@ EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "ModelingProject\ModelingProject.modelproj", "{11CC4FF3-9117-424B-B549-A26F0EA9CDBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{7F533ADE-58B1-4210-940A-A59FA9617AB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAndLoadTestProject", "WebAndLoadTestProject\WebAndLoadTestProject.csproj", "{36A41B6F-E375-4BC6-B746-1544BB5CDCC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{048FFDBF-234E-46CF-ABF8-6244291E57E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,8 +99,16 @@ Global
 		{7F533ADE-58B1-4210-940A-A59FA9617AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F533ADE-58B1-4210-940A-A59FA9617AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F533ADE-58B1-4210-940A-A59FA9617AB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A41B6F-E375-4BC6-B746-1544BB5CDCC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A41B6F-E375-4BC6-B746-1544BB5CDCC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A41B6F-E375-4BC6-B746-1544BB5CDCC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A41B6F-E375-4BC6-B746-1544BB5CDCC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7F533ADE-58B1-4210-940A-A59FA9617AB1} = {048FFDBF-234E-46CF-ABF8-6244291E57E5}
+		{36A41B6F-E375-4BC6-B746-1544BB5CDCC7} = {048FFDBF-234E-46CF-ABF8-6244291E57E5}
 	EndGlobalSection
 EndGlobal

@@ -457,10 +457,17 @@ namespace BusinessLogic
             //testeaza daca tokenul si userul care a votat coincid
             if (userID == _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID)
             {
+               
                 questionID = voteListDTO.Answers[0].Question;
 
                 int formID = _dataAccess.QuestionRepository.FindFirstBy(question => question.QuestionID == questionID).FormID;
 
+                if (
+                    _dataAccess.VotedFormsRepository.FindAllBy(
+                        votedForm => votedForm.FormID == formID && votedForm.UserID == userID).ToList().Count > 0)
+                {
+                    throw new Exception("Poll already voted!");
+                }
                 //incrementez numarul de voturi pentru fiecare intrebare si raspuns
 
                 foreach (VoteDTO voteDTO in voteListDTO.Answers)
@@ -507,7 +514,7 @@ namespace BusinessLogic
                 _dataAccess.VotedFormsRepository.Add(voted);
                 return voteResult;
             }
-            else throw new Exception("Poll already voted!");
+            else throw new Exception("Something bad happened");
 
         }
 

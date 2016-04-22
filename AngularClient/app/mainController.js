@@ -68,7 +68,7 @@
             if (vm.userDataRegistration.email != '' && vm.userDataRegistration.email != null
                && vm.userDataRegistration.username != '' && vm.userDataRegistration.username != null
                 && vm.userDataRegistration.password != '' && vm.userDataRegistration.password != null) {
-                alert(vm.userDataRegistration.password);
+                //alert(vm.userDataRegistration.password);
                 vm.userDataRegistration.email = vm.userDataRegistration.email.replace(/ /g, '');
                 vm.userDataRegistration.username = vm.userDataRegistration.username.replace(/ /g, '');
                 vm.userDataRegistration.password = vm.userDataRegistration.password.replace(/ /g, '');
@@ -125,37 +125,37 @@
                 //start loading
                 $rootScope.isLoadingRegister = true;
                 userAccount.login.loginUser(vm.userData,
+                    function(response) {
 
-                   function (response) {
+                        vm.isLoggedIn = true;
+                        vm.password = "";
+                        vm.token = response.token;
+                        vm.role = response.role;
+                        //always load on home page
+                        vm.changePage('home');
 
-                       vm.isLoggedIn = true;
-                       vm.password = "";
-                       vm.token = response.token;
-                       vm.role = response.role;
-                       //always load on home page
-                       vm.changePage('home');
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 1);
 
-                       var expireDate = new Date();
-                       expireDate.setDate(expireDate.getDate() + 1);
-
-                       $cookies.put("token", vm.token, { 'expires': expireDate });
-                       $cookies.put("username", vm.userData.username, { 'expires': expireDate });
-                       $cookies.put("role", vm.role, { 'expires': expireDate });
+                        $cookies.put("token", vm.token, { 'expires': expireDate });
+                        $cookies.put("username", vm.userData.username, { 'expires': expireDate });
+                        $cookies.put("role", vm.role, { 'expires': expireDate });
 
 
+                        //stop loading
+                        $rootScope.isLoadingRegister = false;
+
+                    },
+                    function(error) {
+                        //inregistrarea nu a avut succes
+
+                        vm.isLoggedIn = false;
+                        vm.password = "";
+                        vm.messageLogIn = error.data.message;
+                       
                        //stop loading
-                       $rootScope.isLoadingRegister = false;
-
-                   }, function (error) {
-                       //inregistrarea nu a avut succes
-
-                       vm.isLoggedIn = false;
-                       vm.password = "";
-                       vm.messageLogIn = error.data.message;
-
-                       //stop loading
-                       $rootScope.isLoadingRegister = false;
-                   })
+                        $rootScope.isLoadingRegister = false;
+                    });
             }
         }
 
