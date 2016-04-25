@@ -166,13 +166,13 @@
             </div>
         </div>
         <!-- footer when logged -->
-        <div ng-include="'html/footer.html'" class="footer" ></div>
+        <div ng-include="'html/footer.html'" class="footer"></div>
     </div>
     <!-- footer -->
     <div ng-hide="vm.isLoggedIn" class="navbar-fixed-bottom mobileHidden footer" ng-include="'html/footer.html'"></div>
     <!-- footer mobile -->
     <div ng-hide="vm.isLoggedIn" class="desktopHidden footer" ng-include="'html/footer.html'"></div>
-  
+
 
     <div ng-if="$root.isLoadingRegister" class="col-sm-12 loadingGif">
         <div class="windows8">
@@ -196,13 +196,14 @@
 
 
     <!-- Library Scripts -->
-    <script src="Scripts/jquery-2.2.1.js"></script>
+    <script src="Scripts/jquery-2.2.3.js"></script>
     <script src="scripts/angular.js"></script>
     <script src="Scripts/angular-resource.js"></script>
     <script src="Scripts/angular-cookies.js"></script>
     <script src="Scripts/angular-route.js"></script>
     <script src="Scripts/Chart.js"></script>
     <script src="Scripts/angular-chart.js"></script>
+    <script src="Scripts/ngclipboard.min.js"></script>
 
     <!-- Application Script -->
     <script src="app/app.js"></script>
@@ -245,5 +246,10 @@
             $(".mobileSideBarVisible").addClass("sideBarHidden");
         }
     });
+
+    function copyToClipboard(s) {
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", s);
+    }
+
 
 </script>

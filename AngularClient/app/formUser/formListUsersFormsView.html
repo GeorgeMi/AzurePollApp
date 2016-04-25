@@ -44,10 +44,18 @@
                     <div class="col-sm-6 col-md-4">
                         <h5>Deadline: {{ form.Deadline }}</h5>
                     </div>
-                    <div class="col-sm-8 col-sm-offset-4 ">
-                        <h5> URL: http://votemypoll.azurewebsites.net/#/?poll={{ form.Id }}</h5>
-                    </div>
+                    
                    
+                     <div class="col-sm-6 col-sm-offset-4">
+                        <div class="input-group">
+                            <input type="text" id="linkPoll" class="form-control" value="http://votemypoll.azurewebsites.net/#/?poll={{ form.Id }}" aria-describedby="basic-addon2">
+                            <span style="cursor: pointer;" class="input-group-addon" id="basic-addon2" onclick="copyToClipboard(document.getElementById('linkPoll').value)"><span class="glyphicon glyphicon-copy" ></span></span>
+                        </div>
+                    </div>
+
+                    
+
+
                 </div>
 
                 <div class="col-sm-6 col-md-4">

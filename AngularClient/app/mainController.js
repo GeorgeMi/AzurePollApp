@@ -9,7 +9,7 @@
     function MainController(userAccount,formResource, $cookies, $routeParams, $location, $rootScope) {
 
         var vm = this;
-        
+
         vm.isLoggedIn = false;
         $rootScope.isLoading = false; //loading gif
         $rootScope.isLoadingRegister = false; //loading gif
@@ -252,7 +252,7 @@
             }
             else if (mypage == 'my_polls') {
                 vm.pages.my_polls = true;
-                vm.ok = 0;
+                vm.ok = 1;
             }
             else if (mypage == 'new_poll') {
                 vm.pages.new_poll = true;
@@ -280,7 +280,7 @@
             }
             else if (mypage == 'voted_polls') {
                 vm.pages.voted_polls = true;
-                vm.ok = 0;
+                vm.ok = 1;
             }
             else if (mypage == 'category_forms') {
                 vm.pages.category_forms = true;

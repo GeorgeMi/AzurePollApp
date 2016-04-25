@@ -6,7 +6,7 @@
     var categoryManagementModule = angular.module("categoryManagement", ["common.services", "ngCookies"]);
     var contactManagementModule = angular.module("contactManagement", ["common.services", "ngCookies"]);
 
-    var app = angular.module("app", ["userManagement", "formManagement", "categoryManagement", "contactManagement", "ngRoute"]);
+    var app = angular.module("app", ["userManagement", "formManagement", "categoryManagement", "contactManagement", "ngRoute", "ngclipboard"]);
 
     app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
      

@@ -4,14 +4,22 @@
 
 body {
     color: #2F3E47;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .list-group {
     margin-bottom: 0;
 }
+
 .alert {
     text-align: center;
 }
+
 .navbar {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
@@ -33,7 +41,7 @@ body {
 
 .groupPerPagePanel {
     float: none;
-    padding-bottom: 10%;
+    padding-bottom: 80px;
 }
 
 #sidebar-wrapper {
@@ -148,7 +156,7 @@ textarea {
 @media only screen and (max-width : 800px) {
 
     .groupPerPagePanel {
-        padding-bottom: 15%;
+        padding-bottom: 25px;
     }
 
     img {

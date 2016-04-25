@@ -2,7 +2,7 @@
     "use strict";
     angular
         .module("formManagement")
-        .controller("FormUserController", ["formResource", "$cookies", "$rootScope", FormUserController]);
+        .controller("FormUserController", ["formResource", "$cookies", "$rootScope",FormUserController]);
 
     function FormUserController(formResource, $cookies, $rootScope) {
         var vm = this;
