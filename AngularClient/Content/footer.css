@@ -10,3 +10,7 @@
     .footer a {
         color: #2F3E47;
     }
+
+    .footer .navbar-default {
+        border: none;
+    }
