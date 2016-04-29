@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         /// <summary>
         /// delete unverified accounts and set to closed outdated forms
         /// </summary>
-       [RequirePasswordForScheduler]
+     //  [RequirePasswordForScheduler]
         public HttpResponseMessage Get()
         {
             UsersModel model = new UsersModel();

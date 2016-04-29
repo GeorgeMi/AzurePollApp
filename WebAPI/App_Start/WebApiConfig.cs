@@ -31,7 +31,7 @@ namespace WebAPI
 
             //activeaza cross origin
              var cors = new EnableCorsAttribute("*", "*", "*");
-           //var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
+          // var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
             config.EnableCors(cors);
         }
     }

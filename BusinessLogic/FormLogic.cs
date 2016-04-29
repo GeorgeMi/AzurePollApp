@@ -277,13 +277,16 @@ namespace BusinessLogic
                 }
                 catch
                 {
-                    //daca userul a votat sondajul deja, nu il va mai putea vota
-                    formDTO.Voted = false;
+                    //daca userul a votat sondajul deja sau sondajul este inchis, nu il va mai putea vota
+                    if (formDTO.State != "closed")
+                    {
+                        formDTO.Voted = false;
+                    }
                 }
 
                 formDtoList.Add(formDTO);
             }
-            //inversa lista pentru a fi primele cele mai noi
+
             return formDtoList.ToList();
 
         }
@@ -466,7 +469,12 @@ namespace BusinessLogic
                     _dataAccess.VotedFormsRepository.FindAllBy(
                         votedForm => votedForm.FormID == formID && votedForm.UserID == userID).ToList().Count > 0)
                 {
-                    throw new Exception("Poll already voted!");
+                    throw new Exception("Poll already voted");
+                }
+
+                if (_dataAccess.FormRepository.FindFirstBy((form => form.FormID == formID)).State == "closed")
+                {
+                    throw new Exception("Closed polls cannot be voted");
                 }
                 //incrementez numarul de voturi pentru fiecare intrebare si raspuns
 
@@ -520,3 +528,4 @@ namespace BusinessLogic
 
     }
 }
+
