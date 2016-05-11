@@ -13,7 +13,8 @@
 using AzureDataAccess;
 using Entities;
 using System;
-
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BusinessLogic
 {
@@ -36,7 +37,12 @@ namespace BusinessLogic
             //verifica daca in baza de date exista un tuplu ce corespunde cu datele introduse
             try
             {
-                return _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username) && user.Password.Equals(password) && user.Verified == "yes").UserID;
+                //creez token string
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] textToHash = Encoding.Default.GetBytes(password);
+                byte[] result = md5.ComputeHash(textToHash);
+                string passHash =  BitConverter.ToString(result);
+                return _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(username) && user.Password.Equals(passHash) && user.Verified == "yes").UserID;
             }
             catch (Exception ex)
             {
@@ -93,8 +99,14 @@ namespace BusinessLogic
             //verifica disponibilitatea numelui si introduce un nou user in baza de date
             try
             {
+                //creez token string
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] textToHash = Encoding.Default.GetBytes(password);
+                byte[] result = md5.ComputeHash(textToHash);
+                string passHash = BitConverter.ToString(result);
+
                 //incearca sa adauga un nou user
-                User user = new User() { Username = username, Password = password, Email = email, Role = "user" };
+                User user = new User() { Username = username, Password = passHash, Email = email, Role = "user" };
                 _dataAccess.UserRepository.Add(user);
             }
             catch
