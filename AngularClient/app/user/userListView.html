@@ -31,7 +31,7 @@
                     <tr >
                         <td class="mobileHidden">ID</td>
                         <td>Username</td>
-                        <td class="mobileHidden">Password</td>
+                        <!-- <td class="mobileHidden">Password</td> -->
                         <td class="mobileHidden">Email</td>
                         <td>Role</td>
                         <td>Actions</td>
@@ -41,7 +41,7 @@
                     <tr ng-repeat="user in ctrl.users  | filter:searchText">
                         <td class="mobileHidden">{{ user.UserID}}</td>
                         <td>{{ user.Username }}</td>
-                        <td class="mobileHidden">{{ user.Password }}</td>
+                       <!-- <td class="mobileHidden">{{ user.Password }}</td> -->
                         <td class="mobileHidden">{{ user.Email }}</td>
                         <td>{{ user.Role }}</td>
                         <td>

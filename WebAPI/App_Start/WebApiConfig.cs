@@ -30,8 +30,8 @@ namespace WebAPI
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
             //activeaza cross origin
-             var cors = new EnableCorsAttribute("*", "*", "*");
-          // var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*");
+           //var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
             config.EnableCors(cors);
         }
     }
