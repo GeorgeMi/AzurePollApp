@@ -26,7 +26,7 @@ namespace WebAPI.ActionFilters
             }
             else
             {
-                if (header.Value.ToArray()[0].Equals("Irm@ge0mi"))
+                if (header.Value.ToArray()[0].Equals("pollWebApi123"))
                 {
                     valid = true;
                 }

@@ -23,6 +23,7 @@ namespace DataTransferObject
         public string Deadline { get; set; }
         public string State { get; set; }
         public int Id { get; set; }
+        public decimal NrVotes { get; set; }
         public List<QuestionDTO> Questions { get; set; }
     }
 }

@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>{{ctrl.detailedForm.Title}}</h3>
-            <h5 ng-if="ctrl.showResults">{{ctrl.results.Questions[0].QuestionNrVotes}} people have voted</h5>
+            <h5 ng-if="ctrl.showResults">{{ctrl.results.NrVotes}} people have voted</h5>
         </div>
         <div class="panel-body">
             <div ng-if="ctrl.voted && !ctrl.showResults" class="alert alert-success" role="alert">{{ctrl.messageForm}}</div>

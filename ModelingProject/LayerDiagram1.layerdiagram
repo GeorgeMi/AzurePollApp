@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="68efa5a1-7cd9-4f0e-a129-84effa4f6ad2" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <comments>
+    <comment Id="371ff85e-f382-4196-90bf-7ff6349aadce" name="Comment1">
+      <body> Post(UserDTO user)
+</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="35b0e5db-3b6e-41b1-b427-35274ea4a9e4" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="6ec5a076-ac48-4b37-b78d-b54ded448350" name="Comment2">
+      <body>Authenticate(string username, string password)</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="9fdddbff-8d86-4d79-86df-4cefcdebb8e4" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="edd3a46d-7d7b-43fe-9e0b-363e6e82c661" name="Comment3">
+      <body>Validate(string username, string password)</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="06adc5a5-bca1-47f8-a979-be81b89422db" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+  </comments>
+  <layers>
+    <layer Id="35b0e5db-3b6e-41b1-b427-35274ea4a9e4" name="AuthController&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="45c4a682-71be-4503-821f-38677fc26660" direction="Forward">
+          <layerMoniker Id="9fdddbff-8d86-4d79-86df-4cefcdebb8e4" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="9fdddbff-8d86-4d79-86df-4cefcdebb8e4" name="AuthModel&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="7125228c-a929-4070-af3c-ef973bc69f17" direction="Forward">
+          <layerMoniker Id="06adc5a5-bca1-47f8-a979-be81b89422db" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="06adc5a5-bca1-47f8-a979-be81b89422db" name="AuthLogic&#xD;&#xA;" />
+  </layers>
+</layerModel>

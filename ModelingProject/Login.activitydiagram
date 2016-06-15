@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="aca3533c-e879-4fe1-9021-936762f40e37" name="Activity1" linkedPackageId="f1d81e98-85f3-4d9c-9859-1af6afbafd63" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="2a9d9efa-c2af-4962-9f59-7f6f902ec4cd">
+      <elementDefinition Id="d92639fc-1768-451a-9641-195c78c3cc28" />
+      <body>Verificare
+daca userul si parola se afla in baza de date</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="2841c4c0-ac08-4f82-92f7-5c6743b87541" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="1e75bdda-c1dc-40c9-945c-ed6804d09aea">
+      <elementDefinition Id="29d6226f-b4d3-4eb7-b110-e62450c9ed87" />
+      <body>Analizare raspuns primit de la server
+</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="947de462-ee97-495d-9c6c-8fccb45fad4f" LastKnownName="Decision11" />
+      </annotatedElements>
+    </comment>
+    <comment Id="ddb2307e-0a6a-4028-9a6f-ee0b95bcc586">
+      <elementDefinition Id="20d62a20-8a78-43ba-995b-6a8b905e2a35" />
+      <body>Analizare existență token</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="374bea30-b51d-4031-a434-5f5aa19d7c7d" LastKnownName="Decision111" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="11f3a9fd-1866-4063-a6f4-00fbeb0c917a">
+      <profileInstance Id="0913f5a8-96cc-4726-9d8b-c22a882ed7e0" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="828f89f1-bc7d-4f7c-8643-ab61647cb4e4">
+      <profileInstance Id="31b0ed96-674b-4970-8949-6a76beba88e3" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="4d6bbe9f-3fda-49c3-a75d-c61a1ebf8408" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="0f0ef166-2f7a-4e93-b914-bf835d1e8397" />
+        <nodes>
+          <initialNode Id="d01f7bdd-1445-4379-9419-e3219f5629ab" name="Initial1" isLeaf="false">
+            <elementDefinition Id="91ab9e7b-a808-4a1a-9f99-10db64a01d56" />
+            <flowNodeTargets>
+              <controlFlow Id="1c425797-697e-4958-b2e2-bf8e8d436816" isLeaf="false">
+                <opaqueActionMoniker Id="407a6c5a-e943-46b6-b003-e2465d793c07" LastKnownName="Trimitere username  si parola catre server" />
+                <elementDefinition Id="89332aa1-1bc6-4975-95ba-06567e71dade" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="407a6c5a-e943-46b6-b003-e2465d793c07" name="Trimitere username  si parola catre server" isLeaf="false">
+            <elementDefinition Id="2182d5aa-cbcf-4793-a4df-cc4e9b541801" />
+            <flowNodeTargets>
+              <controlFlow Id="2d43429e-d35c-43af-b329-99a5dd70bec7" isLeaf="false">
+                <decisionNodeMoniker Id="2841c4c0-ac08-4f82-92f7-5c6743b87541" LastKnownName="Decision1" />
+                <elementDefinition Id="4935115d-88ab-4e5b-8c00-2b807134b65f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="2841c4c0-ac08-4f82-92f7-5c6743b87541" name="Decision1" isLeaf="false">
+            <elementDefinition Id="1db35351-5147-43e0-8e0d-fd7dd4614345" />
+            <flowNodeTargets>
+              <controlFlow Id="6bdea4cc-a030-449b-908e-923b28b1bf4d" isLeaf="false">
+                <opaqueActionMoniker Id="fb3e2343-256e-4629-93d9-52c152b09902" LastKnownName="Eroare" />
+                <elementDefinition Id="2c05b03a-1e10-4390-a248-80c01a615703" />
+              </controlFlow>
+              <controlFlow Id="53cfe50f-1fa2-4682-b37d-ed1ff81e31d3" name="ADASDAS" isLeaf="false">
+                <opaqueActionMoniker Id="5974e39e-2a58-45cb-a1e8-3d175fc5bfed" LastKnownName="Creare token" />
+                <description>ASDASD</description>
+                <elementDefinition Id="d334dd41-8917-44a5-bfc2-889ab8276519" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="fb3e2343-256e-4629-93d9-52c152b09902" name="Eroare" isLeaf="false">
+            <elementDefinition Id="4732ab79-7b47-4853-b6bd-f8f293bea288" />
+            <flowNodeTargets>
+              <controlFlow Id="286405ee-3d31-46e3-8794-0a631d562332" isLeaf="false">
+                <opaqueActionMoniker Id="c2162442-0d9f-4ab7-adf3-7c37362b225c" LastKnownName="Trimitere raspuns catre client" />
+                <elementDefinition Id="f026cea1-2aa5-4441-9070-b34a07367f26" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="5974e39e-2a58-45cb-a1e8-3d175fc5bfed" name="Creare token" isLeaf="false">
+            <elementDefinition Id="c5898327-fee6-42c4-b1c7-aa63972b865e" />
+            <flowNodeTargets>
+              <controlFlow Id="c95760a6-fa61-4a53-b327-cd6c07989374" isLeaf="false">
+                <opaqueActionMoniker Id="addcb3fa-8815-4da7-94ea-6806859cbaae" LastKnownName="Preluare rol utilizator" />
+                <elementDefinition Id="35a007d3-ef9a-45d5-9acd-16b2d3770471" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="addcb3fa-8815-4da7-94ea-6806859cbaae" name="Preluare rol utilizator" isLeaf="false">
+            <elementDefinition Id="3c3dc584-f6a3-402d-954b-124793f54315" />
+            <flowNodeTargets>
+              <controlFlow Id="8882622a-072e-41a9-be1c-8e7fb834df2d" isLeaf="false">
+                <opaqueActionMoniker Id="c2162442-0d9f-4ab7-adf3-7c37362b225c" LastKnownName="Trimitere raspuns catre client" />
+                <elementDefinition Id="8f6512ec-045b-4a53-990c-3d465ecb7221" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c2162442-0d9f-4ab7-adf3-7c37362b225c" name="Trimitere raspuns catre client" isLeaf="false">
+            <elementDefinition Id="4d9f3007-2dea-4c0c-9a85-fc641f31361c" />
+            <flowNodeTargets>
+              <controlFlow Id="6a861e00-f64d-4f60-a639-3bb5916466b6" isLeaf="false">
+                <activityFinalNodeMoniker Id="004c1646-1684-4fa6-9952-9ff1f56c31ed" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="78a9300b-3eb0-44e8-bc41-f45cc4f16ef5" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="947de462-ee97-495d-9c6c-8fccb45fad4f" name="Decision11" isLeaf="false">
+            <elementDefinition Id="fcee3f39-b34d-47e4-b97a-83023b70cf45" />
+            <flowNodeTargets>
+              <controlFlow Id="cabf1b42-8856-4639-8693-b1cecc17e9a4" isLeaf="false">
+                <opaqueActionMoniker Id="ebea5a1e-d728-4164-bf9a-0bb5053b42b2" LastKnownName="Stocare token si rol in cookie" />
+                <elementDefinition Id="32f341e1-0528-48ef-9624-7ac161aef6a8" />
+              </controlFlow>
+              <controlFlow Id="dcf1c26e-62b9-41ec-92b4-4865c862e36b" isLeaf="false">
+                <opaqueActionMoniker Id="42a3885b-6686-4a01-9c9a-3e8c6d91d621" LastKnownName="Creare cerere conținând username și parola " />
+                <elementDefinition Id="135cb68f-cd4d-4f2c-9e28-8c63ccdad2c9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="ebea5a1e-d728-4164-bf9a-0bb5053b42b2" name="Stocare token si rol in cookie" isLeaf="false">
+            <elementDefinition Id="566b87b0-5ec7-42d3-a33f-1805d8df1f42" />
+            <flowNodeTargets>
+              <controlFlow Id="898b1360-2c60-4d6d-8048-f774004077b8" isLeaf="false">
+                <activityFinalNodeMoniker Id="0ff01e35-b0b1-44a8-abf4-494c60d2e6a5" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="9d3514c1-d637-4c1d-a1b9-8c2fec8b005c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="004c1646-1684-4fa6-9952-9ff1f56c31ed" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="8bf4c80d-29b9-4f3d-b6fe-0057f6ecbd53" />
+          </activityFinalNode>
+          <initialNode Id="86671b2b-1987-476d-82a2-29b3dcd19809" name="Initial2" isLeaf="false">
+            <elementDefinition Id="b27063ac-549d-4318-93ef-df3e30db547c" />
+            <flowNodeTargets>
+              <controlFlow Id="21d3f072-9769-4f6b-8e55-ddae4277905b" isLeaf="false">
+                <opaqueActionMoniker Id="8b754b7b-0753-48e8-b9c1-54f06f860f95" LastKnownName="Acțiune dorită" />
+                <elementDefinition Id="52532c5f-078a-4c70-8159-5ce8e1ce7834" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="42a3885b-6686-4a01-9c9a-3e8c6d91d621" name="Creare cerere conținând username și parola " isLeaf="false">
+            <elementDefinition Id="c4cb60ed-b517-4e1a-85b2-800b82d7c694" />
+            <flowNodeTargets>
+              <controlFlow Id="f20c882a-7bac-47e7-a9c1-d54b726d100c" isLeaf="false">
+                <opaqueActionMoniker Id="f7e62feb-69ef-4c6c-8a8f-ac17aff6e429" LastKnownName="Trimitere cerere catre server" />
+                <elementDefinition Id="efc3c5e9-2f7c-4766-8fdb-23ada16265c0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="374bea30-b51d-4031-a434-5f5aa19d7c7d" name="Decision111" isLeaf="false">
+            <elementDefinition Id="c2b0bc76-f306-4c4f-8b48-f1570e997ec2" />
+            <flowNodeTargets>
+              <controlFlow Id="4b1210fa-6c70-40f3-8a4c-ac39c949bf49" isLeaf="false">
+                <opaqueActionMoniker Id="42a3885b-6686-4a01-9c9a-3e8c6d91d621" LastKnownName="Creare cerere conținând username și parola " />
+                <elementDefinition Id="2ccebb44-5244-4006-b860-aeb811d080b9" />
+              </controlFlow>
+              <controlFlow Id="506a5c71-f508-4541-b2b9-d9d08b9306e3" isLeaf="false">
+                <opaqueActionMoniker Id="7f1a16d4-e748-4919-a9be-54f2538a09ab" LastKnownName="Creare cerere conținând token" />
+                <elementDefinition Id="a2cf2b9c-37b4-42c0-b051-0187daf2933d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="7f1a16d4-e748-4919-a9be-54f2538a09ab" name="Creare cerere conținând token" isLeaf="false">
+            <elementDefinition Id="8de0579f-44d7-45fc-a1cc-bd872f491969" />
+            <flowNodeTargets>
+              <controlFlow Id="f1146c9f-39c3-472a-98f1-2a640b49f7b8" isLeaf="false">
+                <opaqueActionMoniker Id="f7e62feb-69ef-4c6c-8a8f-ac17aff6e429" LastKnownName="Trimitere cerere catre server" />
+                <elementDefinition Id="a98e97e3-8745-4f84-9233-742ccb8dac42" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="f7e62feb-69ef-4c6c-8a8f-ac17aff6e429" name="Trimitere cerere catre server" isLeaf="false">
+            <elementDefinition Id="0f2441a3-7289-45ef-84fd-8c1cf6139dc9" />
+            <flowNodeTargets>
+              <controlFlow Id="f38fd9c1-3eaf-4096-9bff-42b4156a736d" isLeaf="false">
+                <decisionNodeMoniker Id="947de462-ee97-495d-9c6c-8fccb45fad4f" LastKnownName="Decision11" />
+                <elementDefinition Id="4adfd971-e8e5-4e6c-a1d8-a6e6ee7a8a89" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8b754b7b-0753-48e8-b9c1-54f06f860f95" name="Acțiune dorită" isLeaf="false">
+            <elementDefinition Id="4d4e887e-9387-4966-b3bb-c8189f16e081" />
+            <flowNodeTargets>
+              <controlFlow Id="d2064601-565e-4c8d-84ca-232031e07da5" isLeaf="false">
+                <decisionNodeMoniker Id="374bea30-b51d-4031-a434-5f5aa19d7c7d" LastKnownName="Decision111" />
+                <elementDefinition Id="3dbdf12b-0f3d-40e0-989a-5d5725084dcc" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="0ff01e35-b0b1-44a8-abf4-494c60d2e6a5" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="7ca99f3e-7b0b-47c6-b9d2-b4851aca430f" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="f1d81e98-85f3-4d9c-9859-1af6afbafd63" name="ModelingProject">
+    <elementDefinition Id="eefad6ee-e573-4f1e-9b0a-14a57ffde34e" />
+  </package>
+</activityRootModel>

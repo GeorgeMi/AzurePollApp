@@ -51,6 +51,7 @@ namespace BusinessLogic
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
+                formDTO.NrVotes = f.NrVotes;
                 formDtoList.Add(formDTO);
             }
 
@@ -85,7 +86,7 @@ namespace BusinessLogic
                     questionDTO.Answers.Add(answerDTO);
                 }
 
-                voteResult.NrVotes = Decimal.ToInt32(q.NrVotes);
+                voteResult.NrVotes = _dataAccess.FormRepository.FindFirstBy(f => f.FormID == q.FormID).NrVotes;
                 voteResult.Questions.Add(questionDTO);
             }
 
@@ -103,15 +104,14 @@ namespace BusinessLogic
             if (state == "all")
             {
                 formList = _dataAccess.FormRepository.GetAll().Where(form => form.Category.Name.Contains(searchedName) ||
-               form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).OrderByDescending(form => form.CreatedDate).ToList();
-
+                form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)).OrderByDescending(form => form.CreatedDate).ToList();
             }
             else
             {
-                formList = _dataAccess.FormRepository.GetAll().Where(form => (form.Category.Name.Contains(searchedName) ||
+               formList = _dataAccess.FormRepository.GetAll().Where(form => (form.Category.Name.Contains(searchedName) ||
                form.User.Username.Contains(searchedName) || form.Title.Contains(searchedName)) && form.State.Equals(state)).OrderByDescending(form => form.CreatedDate).ToList();
-
             }
+
             formList = formList.Skip(page_nr * per_page).Take(per_page).ToList();
 
             userID = _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID;
@@ -126,6 +126,7 @@ namespace BusinessLogic
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
+                formDTO.NrVotes = f.NrVotes;
                 formDTO.Voted = true;
 
                 try
@@ -175,6 +176,7 @@ namespace BusinessLogic
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
+                formDTO.NrVotes = f.NrVotes;
                 formDTO.Voted = true;
 
                 try
@@ -229,6 +231,7 @@ namespace BusinessLogic
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
+                formDTO.NrVotes = f.NrVotes;
                 formDTO.Voted = true;
 
                 formDtoList.Add(formDTO);
@@ -269,6 +272,7 @@ namespace BusinessLogic
                 formDTO.Category = _dataAccess.CategoryRepository.FindFirstBy(category => category.CategoryID == f.CategoryID).Name;
                 formDTO.Username = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == f.UserID).Username;
                 formDTO.Id = f.FormID;
+                formDTO.NrVotes = f.NrVotes;
                 formDTO.Voted = true;
 
                 try
@@ -304,6 +308,7 @@ namespace BusinessLogic
             formDTO.Questions = GetAllQuestionFromForm(id);
             formDTO.Username = GetUsername(f.UserID);
             formDTO.Id = f.FormID;
+            formDTO.NrVotes = f.NrVotes;
             return formDTO;
 
         }
@@ -325,9 +330,7 @@ namespace BusinessLogic
                 questionDTO.QuestionID = q.QuestionID;
                 questionDTO.Answers = GetAllAnswerFromQuestion(q.QuestionID);
 
-
                 questionDTOList.Add(questionDTO);
-
             }
             return questionDTOList;
         }
@@ -349,7 +352,6 @@ namespace BusinessLogic
             }
             return answerDTOList;
         }
-
 
         public string GetCategory(int id)
         {
@@ -390,6 +392,7 @@ namespace BusinessLogic
             Answer a;
             form.CategoryID = GetCategoryID(formDTO.Category);
             form.UserID = GetUserID(formDTO.Username);
+            form.NrVotes = 0;
 
             _dataAccess.FormRepository.Add(form);
 
@@ -401,8 +404,7 @@ namespace BusinessLogic
                 q = new Question();
                 q.FormID = form.FormID;
                 q.Content = questionDTO.Question;
-                q.NrVotes = 0;
-
+               
                 _dataAccess.QuestionRepository.Add(q);
 
                 //add answer
@@ -455,7 +457,7 @@ namespace BusinessLogic
         public VoteResultDTO Vote(VoteListDTO voteListDTO, string token)
         {
             int userID = _dataAccess.UserRepository.FindFirstBy(user => user.Username.Equals(voteListDTO.Username)).UserID;
-            int questionID;
+            int questionID, formID;
 
             //testeaza daca tokenul si userul care a votat coincid
             if (userID == _dataAccess.TokenRepository.FindFirstBy(user => user.TokenString.Equals(token)).UserID)
@@ -463,7 +465,7 @@ namespace BusinessLogic
                
                 questionID = voteListDTO.Answers[0].Question;
 
-                int formID = _dataAccess.QuestionRepository.FindFirstBy(question => question.QuestionID == questionID).FormID;
+                formID = _dataAccess.QuestionRepository.FindFirstBy(question => question.QuestionID == questionID).FormID;
 
                 if (
                     _dataAccess.VotedFormsRepository.FindAllBy(
@@ -481,7 +483,7 @@ namespace BusinessLogic
                 foreach (VoteDTO voteDTO in voteListDTO.Answers)
                 {
                     _dataAccess.AnswerRepository.AddVote(voteDTO.Answer);
-                    _dataAccess.QuestionRepository.AddVote(voteDTO.Question);
+                    _dataAccess.FormRepository.AddVote(formID);
                 }
 
                 //preiau rezultatele din baza de date pentru fiecare intrebare si raspuns
@@ -497,9 +499,8 @@ namespace BusinessLogic
                     listAnswer = _dataAccess.AnswerRepository.FindAllBy(answer => answer.QuestionID == voteDTO.Question).ToList();
                     voteQuestionResult = new VoteQuestionResultDTO();
 
-                    //id-ul si nr voturi intrebare
+                    //id-ul intrebare
                     voteQuestionResult.QuestionID = voteDTO.Question;
-                    voteQuestionResult.QuestionNrVotes = Decimal.ToInt32(_dataAccess.QuestionRepository.FindFirstBy(question => question.QuestionID == voteDTO.Question).NrVotes);
                     voteQuestionResult.Answers = new List<VoteAnswerResultDTO>();
 
                     foreach (Answer a in listAnswer)
@@ -510,7 +511,7 @@ namespace BusinessLogic
 
                         voteQuestionResult.Answers.Add(voteAnswerResult);
                     }
-
+                    voteResult.NrVotes= Decimal.ToInt32(_dataAccess.FormRepository.FindFirstBy(form => form.FormID == formID).NrVotes);
                     voteResult.Questions.Add(voteQuestionResult);
                 }
 

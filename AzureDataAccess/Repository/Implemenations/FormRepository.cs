@@ -26,5 +26,12 @@ namespace AzureDataAccess.Repository.Implementations
 
             Context.Database.ExecuteSqlCommand("update [dbo].[Form] set State = 'closed' where Deadline < SYSDATETIME()");
         }
+        public void AddVote(int id)
+        {
+            Form f = Context.Forms.Find(id);
+            f.NrVotes = f.NrVotes + 1;
+
+            Context.SaveChanges();
+        }
     }
 }

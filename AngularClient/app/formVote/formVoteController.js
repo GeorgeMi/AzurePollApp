@@ -93,13 +93,13 @@
 
             }
         }
-
+        
         vm.viewResults = function () {
 
             vm.showResults = true;
             var i, j, k;
-            //   alert(vm.detailedForm.Questions[2].Question);
-
+            alert(vm.results.NrVotes);
+           
             vm.chartResult = [];
             //prelucrare pentru afisare statistica
             for (i = 0; i < vm.results.Questions.length; i++) {

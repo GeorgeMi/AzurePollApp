@@ -22,6 +22,7 @@ namespace DataTransferObject
         public string Username { get; set; }
         public int Id { get; set; }
         public bool Voted { get; set; }
+        public decimal NrVotes { get; set; }
 
     }
 }

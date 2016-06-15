@@ -27,10 +27,8 @@ namespace BusinessLogic
         {
             //primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
             //unity are grija de dependency injection
-
             _dataAccess = objDataAccess;
             TokenLogic = new TokenLogic(_dataAccess);
-
         }
         private int Validate(string username, string password)
         {

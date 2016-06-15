@@ -29,9 +29,10 @@ namespace AzureDataAccess.Mapping
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.State).HasColumnName("State");
             this.Property(t => t.Deadline).HasColumnName("Deadline");
+            this.Property(t => t.NrVotes).HasColumnName("NrVotes");
 
             // Relationships
-           this.HasRequired(t => t.Category)
+            this.HasRequired(t => t.Category)
                 .WithMany(t => t.Forms)
                 .HasForeignKey(d => d.CategoryID);
             this.HasRequired(t => t.User)

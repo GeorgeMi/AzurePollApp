@@ -16,6 +16,7 @@ namespace Entities
         public int CategoryID { get; set; }
         public string Title { get; set; }
         public string State { get; set; }
+        public int NrVotes { get; set; }
         public System.DateTime Deadline { get; set; }
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }

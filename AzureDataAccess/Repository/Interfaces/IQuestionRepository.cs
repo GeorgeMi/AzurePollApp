@@ -12,6 +12,5 @@ namespace AzureDataAccess.Repository.Interfaces
 {
     public interface IQuestionRepository : IGenericRepository<Question>
     {
-        void AddVote(int id);
     }
 }

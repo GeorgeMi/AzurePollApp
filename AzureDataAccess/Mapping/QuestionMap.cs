@@ -15,7 +15,6 @@ namespace AzureDataAccess.Mapping
             this.ToTable("Question");
             this.Property(t => t.QuestionID).HasColumnName("QuestionID");
             this.Property(t => t.FormID).HasColumnName("FormID");
-            this.Property(t => t.NrVotes).HasColumnName("NrVotes");
             this.Property(t => t.Content).HasColumnName("Content");
 
             // Relationships

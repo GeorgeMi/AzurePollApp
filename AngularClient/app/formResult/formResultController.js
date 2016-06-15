@@ -15,7 +15,7 @@
 
                 $cookies.remove('my_poll_result');
                 vm.results = response;
-
+                
                 var i, j, k;
                 vm.chartResult = [];
 
@@ -31,11 +31,9 @@
                         vm.chartResult[i].chartLabels.push(vm.results.Questions[i].Answers[j].Answer);
                         vm.chartResult[i].chartData.push(vm.results.Questions[i].Answers[j].AnswerNrVotes);
                     }
-
                 }
 
                 $rootScope.isLoading = false;
-
             },
              function (error) {
                  vm.message = error.data.message;
