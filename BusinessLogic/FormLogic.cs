@@ -312,11 +312,13 @@ namespace BusinessLogic
             return formDTO;
 
         }
+
         public string GetUsername(int id)
         {
             //cauta numele userului dupa id
             return _dataAccess.UserRepository.FindFirstBy(user => user.UserID == id).Username;
         }
+
         public List<QuestionDTO> GetAllQuestionFromForm(int id)
         {
             List<QuestionDTO> questionDTOList = new List<QuestionDTO>();
@@ -420,7 +422,6 @@ namespace BusinessLogic
                 }
             }
         }
-
         public Form GetForm(int id)
         {
             //returneaza form dupa id
@@ -483,9 +484,9 @@ namespace BusinessLogic
                 foreach (VoteDTO voteDTO in voteListDTO.Answers)
                 {
                     _dataAccess.AnswerRepository.AddVote(voteDTO.Answer);
-                    _dataAccess.FormRepository.AddVote(formID);
                 }
 
+                _dataAccess.FormRepository.AddVote(formID);
                 //preiau rezultatele din baza de date pentru fiecare intrebare si raspuns
                 VoteResultDTO voteResult = new VoteResultDTO();
                 voteResult.Questions = new List<VoteQuestionResultDTO>();
@@ -524,9 +525,7 @@ namespace BusinessLogic
                 return voteResult;
             }
             else throw new Exception("Something bad happened");
-
         }
-
     }
 }
 

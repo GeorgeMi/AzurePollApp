@@ -6,7 +6,8 @@
 
 
 
-    function MainController(userAccount,formResource, $cookies, $routeParams, $location, $rootScope) {
+    function MainController(userAccount, formResource, $cookies, $routeParams, $location, $rootScope)
+    {
 
         var vm = this;
 
@@ -163,7 +164,7 @@
         vm.registerToken = function () {
 
             userAccount.tokenRegistration.registerToken(
-                function (data) {
+                function(data) {
 
                     if (data.error) {
                         //token invalid
@@ -176,7 +177,7 @@
 
                         //always load on home page
                         if (!vm.isQuery) {
-                             vm.changePage('home');
+                            vm.changePage('home');
                         }
 
                         var expireDate = new Date();
@@ -186,11 +187,8 @@
                         $cookies.put("token", vm.tokenDataRegistration, { 'expires': expireDate });
                         $cookies.put("username", vm.userData.username, { 'expires': expireDate });
                         $cookies.put("role", vm.role, { 'expires': expireDate });
-
                     }
-
-                })
-
+                });
         }
 
         //------------------logout-----------------------
@@ -217,7 +215,6 @@
             vm.pages.search_polls = false;
             vm.pages.contact_admin = false;
             vm.pages.contact_admin_redirect = false;
-
         }
 
         //------------------change page-----------------------
@@ -309,12 +306,10 @@
             if (vm.ok == 1) {
                 vm.pagesArray.last = vm.pagesArray.current;
                 vm.pagesArray.current = mypage;
-
             }
             else {
                 vm.pagesArray.last = vm.pagesArray.current;
             }
-
         }
         vm.changePage('home');
 
@@ -324,7 +319,6 @@
             temp = vm.pagesArray.last;
             vm.pagesArray.last = vm.pagesArray.current;
             vm.pagesArray.current = temp;
-
         }
 
         vm.changeID = function (id) {
@@ -346,7 +340,6 @@
                       //validarea a avut succes
                       vm.messageSuccessRegistration = response.data.message;
                       vm.messageFailedRegistration = '';
-
                   },
 
                    function () {
@@ -361,18 +354,10 @@
         else if ($location.search().poll) {
             vm.isQuery = true;
             vm.changePage(vm.changeID($location.search().poll));
-
         }
             //change page using url
         else if ($location.url()) {
             vm.changePage($location.url());
         }
-
-
-
-       
-
-
-
     };
 })();

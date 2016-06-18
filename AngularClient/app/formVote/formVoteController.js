@@ -98,7 +98,7 @@
 
             vm.showResults = true;
             var i, j, k;
-            alert(vm.results.NrVotes);
+           // alert(vm.results.NrVotes);
            
             vm.chartResult = [];
             //prelucrare pentru afisare statistica

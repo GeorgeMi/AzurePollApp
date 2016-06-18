@@ -15,7 +15,6 @@ using Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System;
 
 namespace BusinessLogic
 {
@@ -69,12 +68,9 @@ namespace BusinessLogic
                 //adauga un user
                 User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user", Verified = "no" };
                 _dataAccess.UserRepository.Add(user);
-
-
+                
                 return _dataAccess.UserRepository.FindFirstBy(u => u.Username.Equals(userDTO.Username)).UserID;
-
             }
-
         }
 
         public List<UsernameDTO> GetAllUsernames()
@@ -167,20 +163,13 @@ namespace BusinessLogic
             SmtpServer.EnableSsl = true;
 
             SmtpServer.Send(mail);
-
         }
-
 
         public void ScheduledJobs()
         {
             _dataAccess.UserRepository.ScheduleDeleteUsers();
             _dataAccess.FormRepository.ScheduleUpdateForms();
         }
-
-
-
-
-
-
+        
     }
 }

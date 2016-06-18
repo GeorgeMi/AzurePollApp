@@ -18,7 +18,7 @@ namespace AzureDataAccess.Repository.Interfaces
     public interface IGenericRepository<T> where T : class
     {
         IQueryable<T> GetAll();
-        void Add(T entity);
+        T Add(T entity);
         void Delete(T entity);
         void Delete(IQueryable<T> entities);
         void Update(T entity);

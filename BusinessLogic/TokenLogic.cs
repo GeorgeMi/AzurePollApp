@@ -12,7 +12,6 @@
 using AzureDataAccess;
 using Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
@@ -77,7 +76,7 @@ namespace BusinessLogic
                 // preiau adresa mac
                 MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
                 //creez token string
-                text = t.TokenID.ToString() + username + password + createdDate.ToString() + MAC;
+                text = t.TokenID + username + password + createdDate + MAC;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);
@@ -107,7 +106,7 @@ namespace BusinessLogic
                 t.ExpirationDate = t.CreatedDate.AddHours(3);
 
                 //creez token string
-                text = t.TokenID.ToString() + username + t.CreatedDate.ToString();
+                text = t.TokenID + username + t.CreatedDate;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);
