@@ -106,7 +106,6 @@
                         });
                 }
                 else {
-
                     vm.messageFailedRegistration = "Passwords don't match";
                 }
             }
@@ -328,28 +327,31 @@
         }
 
         //------------------verify mail---------------------
-        if ($location.search().verifymail) {
+        if ($location.search().verifymail)
+        {
             //start loading
             $rootScope.isLoadingRegister = true;
 
             var param = { user_id: $location.search().verifymail };
 
             userAccount.verifyMail.verifyMail(param,
+                function(response) {
+                    //validarea a avut succes
+                    vm.messageSuccessRegistration = response.message;
+                    vm.messageFailedRegistration = '';
 
-                  function (response) {
-                      //validarea a avut succes
-                      vm.messageSuccessRegistration = response.data.message;
-                      vm.messageFailedRegistration = '';
-                  },
+                    //stop loading
+                    $rootScope.isLoadingRegister = false;
+                },
 
-                   function () {
-                       //validarea nu a avut succes
-                       vm.messageFailedRegistration = error.data.message;
-                       vm.messageSuccessRegistration = '';
-                   });
+                function(error) {
+                    //validarea nu a avut succes
+                    vm.messageFailedRegistration = error.message;
+                    vm.messageSuccessRegistration = '';
 
-            //stop loading
-            $rootScope.isLoadingRegister = false;
+                    //stop loading
+                    $rootScope.isLoadingRegister = false;
+                });
         }
         else if ($location.search().poll) {
             vm.isQuery = true;

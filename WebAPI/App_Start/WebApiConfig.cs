@@ -25,13 +25,13 @@ namespace WebAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //raspunsurile vor fi trimise in format json, nu xml
+            // raspunsurile vor fi trimise in format json, nu xml
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            //activeaza cross origin
+            // activeaza cross origin
             var cors = new EnableCorsAttribute("*", "*", "*");
-           //var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
+            // var cors = new EnableCorsAttribute("http://votemypoll.azurewebsites.net", "*", "*");
             config.EnableCors(cors);
         }
     }

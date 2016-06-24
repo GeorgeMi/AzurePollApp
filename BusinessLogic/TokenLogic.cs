@@ -25,9 +25,8 @@ namespace BusinessLogic
 
         public TokenLogic(IAzureDataAccess objDataAccess)
         {
-            //primesc obiectul, nu e treaba TokenLogic ce dataAccess se foloseste
-            //unity are grija de dependency injection
-
+            // primesc obiectul, nu e treaba TokenLogic ce dataAccess se foloseste
+            // unity are grija de dependency injection
             _dataAccess = objDataAccess;
         }
         public void AddToken(Token token)
@@ -57,37 +56,34 @@ namespace BusinessLogic
         public string UpdateToken(int id, string username, string password)
         {
             Token t;
-            DateTime expirationDate;
-            DateTime createdDate;
             string text;
             MD5 md5;
             byte[] textToHash;
             byte[] result;
-            string MAC;
 
             try
             {
-                //daca exista un token pentru user preiau obiectul
+                // daca exista un token pentru user preiau obiectul
                 t = GetTokenByUserID(id);
-
-                createdDate = DateTime.Now;
-                expirationDate = DateTime.Now.AddHours(1);
+                var createdDate = DateTime.Now;
+                var expirationDate = DateTime.Now.AddHours(3);
 
                 // preiau adresa mac
-                MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
-                //creez token string
+                var MAC = NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+              
+                // creez token string
                 text = t.TokenID + username + password + createdDate + MAC;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);
                 result = md5.ComputeHash(textToHash);
 
-                //Convert result back to string.
+                // conversie la string 
                 text = BitConverter.ToString(result);
 
                 try
                 {
-                    //verificare update
+                    // verificare update
                     _dataAccess.TokenRepository.UpdateToken(t.TokenID, createdDate, expirationDate, text);
                 }
                 catch (Exception ex)
@@ -105,19 +101,19 @@ namespace BusinessLogic
                 t.CreatedDate = DateTime.Now;
                 t.ExpirationDate = t.CreatedDate.AddHours(3);
 
-                //creez token string
+                // creez token string
                 text = t.TokenID + username + t.CreatedDate;
 
                 md5 = new MD5CryptoServiceProvider();
                 textToHash = Encoding.Default.GetBytes(text);
                 result = md5.ComputeHash(textToHash);
 
-                //Convert result back to string.
+                // conversie la string 
                 t.TokenString = BitConverter.ToString(result);
 
                 try
                 {
-                    //verificare inserare
+                    // verificare inserare
                     _dataAccess.TokenRepository.Add(t);
                 }
                 catch (Exception ex)
@@ -138,6 +134,5 @@ namespace BusinessLogic
             int id = GetTokenID(tokenString);
             _dataAccess.TokenRepository.UpdateExpirationDate(id, DateTime.Now.AddHours(3));
         }
-
     }
 }

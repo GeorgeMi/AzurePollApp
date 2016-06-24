@@ -65,6 +65,7 @@ namespace WebAPI.Models
         {
             return bl.AuthLogic.VerifyAdminToken(token);
         }
+
         /// <summary>
         ///  ask business logic to verify token from mail
         /// </summary>

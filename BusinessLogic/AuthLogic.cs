@@ -25,17 +25,17 @@ namespace BusinessLogic
 
         public AuthLogic(IAzureDataAccess objDataAccess)
         {
-            //primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
-            //unity are grija de dependency injection
+            // primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
+            // unity are grija de dependency injection
             _dataAccess = objDataAccess;
             TokenLogic = new TokenLogic(_dataAccess);
         }
         private int Validate(string username, string password)
         {
-            //verifica daca in baza de date exista un tuplu ce corespunde cu datele introduse
+            // verifica daca in baza de date exista un tuplu ce corespunde cu datele introduse
             try
             {
-                //creez token string
+                // creez token string
                 MD5 md5 = new MD5CryptoServiceProvider();
                 byte[] textToHash = Encoding.Default.GetBytes(password);
                 byte[] result = md5.ComputeHash(textToHash);
@@ -50,7 +50,7 @@ namespace BusinessLogic
 
         public string Authenticate(string username, string password)
         {
-            //daca userul si pass carespund se updateaza tokenul in baza de date si se intoarce stringul updatat
+            // daca userul si pass carespund se updateaza tokenul in baza de date si se intoarce stringul updatat
             int userID = Validate(username, password);
 
             if (userID == -1)
@@ -68,21 +68,21 @@ namespace BusinessLogic
         {
             int userID;
             
-            //verifica daca tokenul corespunde cu cel trimis prin mail
+            // verifica daca tokenul corespunde cu cel trimis prin mail
             try
             {
                 bool verify = VerifyTokenDate(token);
 
                 if (verify)
                 {
-                    //se updateaza contul userului, verified => true
+                    // se updateaza contul userului, verified => true
                     userID = _dataAccess.TokenRepository.FindFirstBy(t => t.TokenString.Equals(token)).UserID;
                     _dataAccess.UserRepository.Verified(userID);
                     return true;
                 }
                 else
                 {
-                    //tokenul nu corespunde
+                    // tokenul nu corespunde
                     return false;
                 }
             }
@@ -94,26 +94,26 @@ namespace BusinessLogic
 
         public string Register(string username, string password, string email)
         {
-            //verifica disponibilitatea numelui si introduce un nou user in baza de date
+            // verifica disponibilitatea numelui si introduce un nou user in baza de date
             try
             {
-                //creez token string
+                // creez token string
                 MD5 md5 = new MD5CryptoServiceProvider();
                 byte[] textToHash = Encoding.Default.GetBytes(password);
                 byte[] result = md5.ComputeHash(textToHash);
                 string passHash = BitConverter.ToString(result);
 
-                //incearca sa adauga un nou user
+                // incearca sa adauga un nou user
                 User user = new User() { Username = username, Password = passHash, Email = email, Role = "user" };
                 _dataAccess.UserRepository.Add(user);
             }
             catch
             {
-                //numele exista deja in baza de date
+                // numele exista deja in baza de date
                 return "Name already exists";
             }
 
-            int userID = Validate(username, password);
+            var userID = Validate(username, password);
             if (userID == -1)
             {
                 return "register failed";
@@ -126,14 +126,14 @@ namespace BusinessLogic
 
         public bool VerifyTokenDate(string tokenString)
         {
-            //verifica tokenul din baza de date. Daca nu exista sau este expirat->eroare. 
-            //Altfel se updateaza data de expirare si se intoarce ok
+            // verifica tokenul din baza de date. Daca nu exista sau este expirat->eroare. 
+            // Altfel se updateaza data de expirare si se intoarce ok
             try
             {
                 DateTime expirationDate = TokenLogic.GetTokenExpirationDate(tokenString);
                 if (expirationDate.CompareTo(DateTime.Now) != 1)
                 {
-                    //token-ul este expirat
+                    // token-ul este expirat
                     return false;
                 }
                 else
@@ -144,37 +144,34 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                //token-ul nu exista in baza de date
+                // token-ul nu exista in baza de date
                 return false;
             }
         }
 
         public bool VerifyAdminToken(string tokenString)
         {
-            //verifica daca userul cu tokenul tokenString este sau  nu admin
+            // verifica daca userul cu tokenul tokenString este sau  nu admin
             try
             {
                 string role = TokenLogic.GetRoleByToken(tokenString);
 
                 if (role == "admin")
                 {
-                    //userul este admin
+                    // userul este admin
                     return true;
                 }
                 else
                 {
-                    //userul nu este admin
+                    // userul nu este admin
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                //userul nu exista
+                // userul nu exista
                 return false;
             }
         }
-
-
-
     }
 }

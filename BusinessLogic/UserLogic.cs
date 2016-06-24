@@ -12,9 +12,12 @@
 using AzureDataAccess;
 using DataTransferObject;
 using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BusinessLogic
 {
@@ -66,7 +69,12 @@ namespace BusinessLogic
             else
             {
                 //adauga un user
-                User user = new User() { Username = userDTO.Username, Password = userDTO.Password, Email = userDTO.Email, Role = "user", Verified = "no" };
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] textToHash = Encoding.Default.GetBytes(userDTO.Password);
+                byte[] result = md5.ComputeHash(textToHash);
+                string passHash = BitConverter.ToString(result);
+
+                User user = new User() { Username = userDTO.Username, Password = passHash, Email = userDTO.Email, Role = "user", Verified = "no" };
                 _dataAccess.UserRepository.Add(user);
                 
                 return _dataAccess.UserRepository.FindFirstBy(u => u.Username.Equals(userDTO.Username)).UserID;
@@ -108,8 +116,12 @@ namespace BusinessLogic
         }
         public void DeleteUser(int id)
         {
-            //sterge user dupa id
-            User u = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == id);
+            //sterge user dupa id, dar care difera de contul de admin "Admin" care nu poate fi sters niciodata
+            User u = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == id && user.Username != "Admin" );
+            if (null == u)
+            {
+                throw new Exception("'Admin' cannot be deleted");
+            }
             _dataAccess.UserRepository.Delete(u);
         }
         public void DeleteUser(UserDetailDTO userDTO)
@@ -139,7 +151,11 @@ namespace BusinessLogic
         public void DemoteUser(int id)
         {
             //admin devine user
-            User u = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == id);
+            User u = _dataAccess.UserRepository.FindFirstBy(user => user.UserID == id && user.Username != "Admin");
+            if (null == u)
+            {
+                throw new Exception("'Admin' cannot be demote");
+            }
             _dataAccess.UserRepository.ChangeRole(id, "user");
         }
 
