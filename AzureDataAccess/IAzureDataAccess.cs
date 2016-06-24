@@ -20,6 +20,5 @@ namespace AzureDataAccess
         IAnswerRepository AnswerRepository { get; set; }
         IFormRepository FormRepository { get; set; }
         IVotedFormsRepository VotedFormsRepository { get; set; }
-
     }
 }

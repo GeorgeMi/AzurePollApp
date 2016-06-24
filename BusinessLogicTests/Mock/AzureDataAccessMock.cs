@@ -206,38 +206,34 @@ namespace BookLogicTest
              *
              */
 
-            formRepositoryMock.Setup(m => m.Add(It.IsAny<Form>())).Returns(new Func<Form, Form>(f => {
+            formRepositoryMock.Setup(x => x.Add(It.IsAny<Form>())).Callback(new Action<Form>(f =>
+            {
                 f.FormID = formsList.Last().FormID + 1;
                 formsList.Add(f);
-                return formsList.Last();
             }));
 
-            questionRepositoryMock.Setup(m => m.Add(It.IsAny<Question>())).Returns(new Func<Question, Question>(f => {
+            questionRepositoryMock.Setup(m => m.Add(It.IsAny<Question>())).Callback(new Action<Question>(f =>
+            {
                 f.QuestionID = questionsList.Last().QuestionID + 1 ;
                 questionsList.Add(f);
-                return questionsList.Last();
             }));
 
-            answerRepositoryMock.Setup(m => m.Add(It.IsAny<Answer>())).Returns(new Func<Answer, Answer>(f => {
+            answerRepositoryMock.Setup(m => m.Add(It.IsAny<Answer>())).Callback(new Action<Answer> (f => {
                 f.AnswerID = answersList.Last().AnswerID + 1;
                 answersList.Add(f);
-                return answersList.Last();
             }));
 
-            categoryRepositoryMock.Setup(m => m.Add(It.IsAny<Category>())).Returns(new Func<Category, Category>(f => {
+            categoryRepositoryMock.Setup(m => m.Add(It.IsAny<Category>())).Callback(new Action<Category> (f => {
                 categoriesList.Add(f);
-                return categoriesList.Last();
             }));
 
-            tokenRepositoryMock.Setup(m => m.Add(It.IsAny<Token>())).Returns(new Func<Token, Token>(f => {
+            tokenRepositoryMock.Setup(m => m.Add(It.IsAny<Token>())).Callback(new Action<Token> (f => {
                 tokensList.Add(f);
-                return tokensList.Last();
             }));
 
-            userRepositoryMock.Setup(m => m.Add(It.IsAny<User>())).Returns(new Func<User, User>(f => {
+            userRepositoryMock.Setup(m => m.Add(It.IsAny<User>())).Callback(new Action<User> (f => {
                 f.UserID = usersList.Last().UserID + 1;
                 usersList.Add(f);
-                return usersList.Last();
             }));
 
             /* 

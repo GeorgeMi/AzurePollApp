@@ -32,11 +32,10 @@ namespace AzureDataAccess.Repository.Implementations
         #endregion
 
         #region Public Methods
-        public T Add(T entity)
+        public void Add(T entity)
         {
             Context.Set<T>().Add(entity);
             Context.SaveChanges();
-            return entity;
         }
 
         public int Count()
