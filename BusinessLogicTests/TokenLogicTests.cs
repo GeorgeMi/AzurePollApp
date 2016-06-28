@@ -1,13 +1,10 @@
 ﻿using System;
 using BusinessLogic;
-using DataTransferObject;
-using System.Collections.Generic;
 using AzureDataAccess;
 using BookLogicTest;
 using Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
 namespace BusinessLogicTests
 {

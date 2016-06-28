@@ -3,12 +3,9 @@
     angular
         .module("app")
         .controller("MainController", ["userAccount","formResource", "$cookies", "$routeParams", "$location", "$rootScope", MainController])
-
-
-
+    
     function MainController(userAccount, formResource, $cookies, $routeParams, $location, $rootScope)
     {
-
         var vm = this;
 
         vm.isLoggedIn = false;
@@ -59,9 +56,7 @@
         };
 
         vm.confirm_password = '';
-
         vm.tokenDataRegistration = $cookies.get('token');
-
 
         //------------------register-----------------------
         vm.registerUser = function () {
@@ -92,7 +87,6 @@
                             vm.userData.username = vm.userDataRegistration.username;
                             vm.userData.password = vm.userDataRegistration.password;
                             //  vm.login();
-
                             $rootScope.isLoadingRegister = false;
                         },
 
@@ -102,7 +96,6 @@
                             $rootScope.isLoadingRegister = false;
                             vm.messageSuccessRegistration = '';
                             vm.messageFailedRegistration = error.data.message;
-
                         });
                 }
                 else {
@@ -140,7 +133,6 @@
                         $cookies.put("token", vm.token, { 'expires': expireDate });
                         $cookies.put("username", vm.userData.username, { 'expires': expireDate });
                         $cookies.put("role", vm.role, { 'expires': expireDate });
-
 
                         //stop loading
                         $rootScope.isLoadingRegister = false;

@@ -43,8 +43,7 @@
                        vm.sent = error.data.status;
                        $rootScope.isLoading = false;
                    });
-
-               
+             
             }
         }
 
