@@ -3,8 +3,8 @@
  * Proprietary and confidential
  * Written by Miron George <george.miron2003@gmail.com>, 2016
  */
+
 using DataTransferObject;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +18,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP contact requests
+    /// Gestionare cereri HTTP pentru sondaje
     /// </summary>
     public class FormController : ApiController
     {
         FormModel formModel = new FormModel();
 
         /// <summary>
-        /// get all forms from database
+        /// Preluarea tuturor sondajelor 
         /// </summary>
         [RequireToken]
         public HttpResponseMessage Get()
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get all users's forms from database
+        /// Preluarea tuturor sondajelor unui utilizator
         /// </summary>
         /// <param name="id">username</param>
         [RequireToken]
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get result of specific form
+        /// Preluarea rezultatelor unui sondaj
         /// </summary>
         /// <param name="id">form ID</param>
         [RequireToken]
@@ -113,7 +113,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get content of specific form
+        /// Preluarea continutului unui sondaj
         /// </summary>
         /// <param name="id">form ID</param>
         [RequireToken]
@@ -139,7 +139,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get list of all polls voted by a specific user
+        /// Preluarea tuturor sondajelor votate de catre un utilizator
         /// </summary>
         /// <param name="id">username</param>
         [RequireToken]
@@ -172,7 +172,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get list of all polls from a specific category
+        /// Preluarea tuturor sondajelor care apartin unei categorii
         /// </summary>
         /// <param name="id">category ID</param>
         [RequireToken]
@@ -207,10 +207,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// add new form to database
+        /// Adaugarea unui nou sondaj 
         /// </summary>
-        /// <param name="formDTO">form detailes</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <param name="formDTO">detalii sondaj</param>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireToken]
         public HttpResponseMessage Post([FromBody] FormDetailDTO formDTO)
         {
@@ -233,10 +233,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// delete form from database
+        /// Stergere sondaj
         /// </summary>
         /// <param name="id">form ID</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireAdminTokenOrUsername]
         public HttpResponseMessage Delete(int id)
         {
@@ -259,16 +259,15 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// parse query from request and get page number and number of elements per page
+        /// Parsare query din cerere si extragerea numarului paginii si numarului de elemente de pe pagina
         /// </summary>
-        /// <returns>page number and number of elements per page</returns>
+        /// <returns> numarul paginii si numarul de elemente de pe pagina</returns>
         private int[] GetPageNumberAndElementNumber()
         {
             int[] result = new int[2];
             int page_nr = 0, per_page = 10;
             try
             {
-                //if query exists and it is valid, default page number and number of elements per page values are changing 
                 var queryString = this.Request.GetQueryNameValuePairs();
 
                 foreach (KeyValuePair<string, string> pair in queryString)
@@ -300,13 +299,16 @@ namespace WebAPI.Controllers
 
             return result;
         }
+        /// <summary>
+        /// Parsare query din cerere si extragerea starii
+        /// </summary>
+        /// <returns></returns>
         private string GetState()
         {
             string state = "open";
            
             try
             {
-                //if query exists and it is valid, default state value is changing 
                 var queryString = this.Request.GetQueryNameValuePairs();
 
                 foreach (KeyValuePair<string, string> pair in queryString)

@@ -16,14 +16,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP user requests
+    /// Gestionare cereri HTTP pentru utilizatori
     /// </summary>
     public class UserController : ApiController
     {
         UsersModel userModel = new UsersModel();
 
         /// <summary>
-        /// get list of all users'details from database
+        /// Returnarea listei tuturor utilizatorilor
         /// </summary>
         [RequireAdminToken]
         public HttpResponseMessage Get()
@@ -50,7 +50,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get list of all users' username and id from database
+        /// Returnarea listei tuturor numelor si id-urilor utilizatorilor
         /// </summary>
         [RequireAdminToken]
         [HttpGet]
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// get user detail from database
+        /// Returnarea detaliilor unui utilizator
         /// </summary>
         /// <param name="id">user ID</param>
         [RequireToken]
@@ -101,7 +101,7 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// delete user from database
+        /// Stergerea unui utilizator
         /// </summary>
         /// <param name="id">user ID</param>
         /// <returns>http status code OK or ExpectationFailed</returns>
@@ -127,10 +127,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// change user's role to admin
+        /// Promovarea unui utilizator
         /// </summary>
         /// <param name="id">user ID</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireAdminToken]
         [HttpGet]
         [ActionName("promote")]
@@ -155,10 +155,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// change user's role to user
+        /// Schimbarea rolului unui utilizator
         /// </summary>
         /// <param name="id">user ID</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireAdminToken]
         [HttpGet]
         [ActionName("demote")]

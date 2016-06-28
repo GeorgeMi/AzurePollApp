@@ -3,6 +3,7 @@
  * Proprietary and confidential
  * Written by Miron George <george.miron2003@gmail.com>, 2016
  */
+
 using System.Linq;
 using System.Web.Http;
 using WebAPI.ActionFilters;
@@ -12,15 +13,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP index requests
+    /// Gestionare cereri HTTP pentru index
     /// </summary>
     public class IndexController:ApiController
     {
-       
         /// <summary>
-        /// get token from request and returns user's role
+        /// Primire token si returnare rol user
         /// </summary>
-        /// <returns>string: user or admin</returns>
+        /// <returns>string: user sau admin</returns>
         [RequireToken]
         public RoleMessage Get()
         {
@@ -40,7 +40,6 @@ namespace WebAPI.Controllers
                 msg = new RoleMessage("user");
                 return msg;
             }
-            
         }
     }
 }

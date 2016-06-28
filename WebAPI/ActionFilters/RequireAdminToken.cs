@@ -10,8 +10,8 @@ namespace WebAPI.ActionFilters
 {
     public class RequireAdminToken : ActionFilterAttribute
     {
-         /// <summary>
-        /// Public default Constructor
+        /// <summary>
+        /// Constructor
         /// </summary>
         public override void OnActionExecuting(HttpActionContext context)
         {
@@ -27,10 +27,10 @@ namespace WebAPI.ActionFilters
             }
             else
             {
-                //tokenul apartine unui admin
+                // Tokenul apartine unui admin
                 isAdmin = authModel.VerifyAdminToken(header.Value.First());
 
-                //tokenul este valid
+                // Tokenul este valid
                 okDate = authModel.VerifyToken(header.Value.First());
 
                 valid = isAdmin && okDate;
@@ -41,7 +41,6 @@ namespace WebAPI.ActionFilters
                 json = new JSendMessage("fail", "Invalid Authorization Key");
                 context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
-
         }
     }
 }

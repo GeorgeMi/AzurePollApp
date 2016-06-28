@@ -15,11 +15,16 @@ using AzureDataAccess.Context;
 
 namespace AzureDataAccess.Repository.Implementations
 {
+    /// <summary>
+    /// Repository implementare interfata "IQuestionRepository"
+    /// </summary>
     public class QuestionRepository : GenericRepository<Question>, IQuestionRepository
     {
+        /// <summary>
+        /// Constructor
+        /// </summary> 
         public QuestionRepository(AzurePollAppDBContext context) : base(context)
         {
-
         }
     }
 }

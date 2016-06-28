@@ -15,11 +15,16 @@ using AzureDataAccess.Context;
 
 namespace AzureDataAccess.Repository.Implementations
 {
+    /// <summary>
+    /// Repository implementare interfata "ICategoryRepository"
+    /// </summary>
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CategoryRepository(AzurePollAppDBContext context) : base(context)
         {
-
         }
     }
 }

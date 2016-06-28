@@ -11,6 +11,9 @@ using AzureDataAccess.Repository.Interfaces;
 
 namespace AzureDataAccess
 {
+    /// <summary>
+    /// Interfata nivelului de date
+    /// </summary>
     public interface IAzureDataAccess
     {
         IUserRepository UserRepository { get; set; }

@@ -12,12 +12,12 @@ namespace WebAPI.Models
     public class ContactModel
     {
         /// <summary>
-        /// encapsulate contact model
+        /// Modelul pentru gestionarea contactarii
         /// </summary>
         private BusinessLogic.BusinessLogic bl;
 
         /// <summary>
-        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// Constructor. Initializeaza Unity container si injecteaza dependenta in BLL si DAL 
         /// </summary>
         public ContactModel()
         {
@@ -28,11 +28,11 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to send message from user
+        /// Cere BLL sa trimita mesaj primit de la utilizator
         /// </summary>
         /// <param name="token">token string</param>
         /// <param name="contactMessageDTO"></param>
-        /// <returns>true or false</returns>
+        /// <returns>true sau false</returns>
         public bool SendMessage(string token, ContactMessageDTO contactMessageDTO)
         {
             try

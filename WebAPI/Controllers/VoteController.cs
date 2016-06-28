@@ -15,17 +15,17 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// store votes in database
+    /// Gestionare cereri HTTP pentru votare
     /// </summary>
     public class VoteController : ApiController
     {
         FormModel formModel = new FormModel();
 
         /// <summary>
-        /// store vote in database
+        /// Votare
         /// </summary>
-        /// <param name="voteDTO">username and answers</param>
-        /// <returns>form's results</returns>
+        /// <param name="voteDTO">username si raspunsuri</param>
+        /// <returns>rezultatele sondajului</returns>
         [RequireToken]
         public HttpResponseMessage Post([FromBody] VoteListDTO voteDTO)
         {
@@ -46,6 +46,5 @@ namespace WebAPI.Controllers
 
             return responseMessage;
         }
-
     }
 }

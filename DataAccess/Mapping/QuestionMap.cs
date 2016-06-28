@@ -19,8 +19,7 @@ namespace DataAccess.Mapping
             this.Property(t => t.QuestionID).HasColumnName("QuestionID");
             this.Property(t => t.FormID).HasColumnName("FormID");
             this.Property(t => t.Content).HasColumnName("Content");
-            this.Property(t => t.NrVotes).HasColumnName("NrVotes");
-
+           
             // Relationships
             this.HasRequired(t => t.Form)
                 .WithMany(t => t.Questions)

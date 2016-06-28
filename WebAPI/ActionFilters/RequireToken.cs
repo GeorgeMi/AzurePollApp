@@ -11,7 +11,7 @@ namespace WebAPI.ActionFilters
     public class RequireToken : ActionFilterAttribute
     {
         /// <summary>
-        /// Public default Constructor
+        /// Constructor
         /// </summary>
         public override void OnActionExecuting(HttpActionContext context)
         {
@@ -32,11 +32,10 @@ namespace WebAPI.ActionFilters
 
             if (!valid)
             {
-                //Invalid Authorization Key
+                // Token invalid
                 json = new JSendMessage("fail", "Invalid Authorization Key");
                 context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
-
         }
     }
 }

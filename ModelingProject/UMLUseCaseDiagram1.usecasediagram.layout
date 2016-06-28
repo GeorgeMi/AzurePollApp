@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.875, 8.5" name="UMLUseCaseDiagram1">
+  <useCaseModelRootMoniker Id="4f80aaba-f911-40c4-80d4-05d86ed66c04" />
+  <nestedChildShapes>
+    <actorShape Id="6673f1ab-9151-4104-a68d-b037fe62fee9" absoluteBounds="3.5, 1.375, 1.25, 1.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="a06c650f-899b-4acb-ace7-3e1b7fa458b4" LastKnownName="User" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="2bac9433-5534-41d4-bc89-0cffda4a2060" absoluteBounds="0.75, 0.75, 1.75, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="a1588ede-a22f-4462-b645-4194985d5963" LastKnownName="Vizualizare sondaje" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.5 : 1.859375); (2.1879250827723 : 1.30174316017823)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="9696fdb1-0487-4661-89c0-fb99255953e3" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="2bac9433-5534-41d4-bc89-0cffda4a2060" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="97aa4a7f-f4cf-460b-8476-7d1809d13260" absoluteBounds="5.625, 0.75, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="c8146f2d-4de0-4d5f-bb8f-580337f187ab" LastKnownName="Stergere sondaje proprii" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(4.75 : 1.8525641025641); (5.99301552415238 : 1.31073682280537)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="902053d4-3bcd-44af-a30f-359953653365" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="97aa4a7f-f4cf-460b-8476-7d1809d13260" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="91f99524-fb4c-4d7a-8dc1-3d43bbf31291" absoluteBounds="0.75, 1.875, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="c8977a51-0564-4557-9699-265c36c91e59" LastKnownName="Votare sondaje" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.5 : 2.14102564102564); (2.62223858015774 : 2.16353234409852)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="90999492-7771-46ee-87af-51cc68d81e03" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="91f99524-fb4c-4d7a-8dc1-3d43bbf31291" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="b9484e1e-4f26-4cb9-9bc9-2e7f9ecf8d88" absoluteBounds="2, 3.875, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="267e60b8-9b95-4305-89b4-876e7374c64c" LastKnownName="Vizualizare rezultate sondaje" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.69318181818182 : 2.875); (3.11419948432098 : 3.88060089565304)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="a4ed6c8f-0f8c-49aa-97f3-161c34325475" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="b9484e1e-4f26-4cb9-9bc9-2e7f9ecf8d88" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="62e2fe43-0db2-490b-8338-d6c50a880fd7" absoluteBounds="5.375, 2.875, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="1439416a-7983-4f95-adc0-16ee5fcce2ec" LastKnownName="Vizualizare categorii" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(4.75 : 2.42857142857143); (5.78202265914461 : 2.92983957729881)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="c7f619a6-18f4-414f-ad7d-b06d95a545bb" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="62e2fe43-0db2-490b-8338-d6c50a880fd7" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="fcbe3987-92f2-4a4f-a2f7-e2f8162880dc" absoluteBounds="5.625, 1.875, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="435cf58d-7792-4a81-ad53-e2b1113be99d" LastKnownName="Cautare sondaje" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(4.75 : 2.14102564102564); (5.62776141984226 : 2.16353234409852)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="cb738854-434c-4ced-b2f5-44f9a928508c" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="fcbe3987-92f2-4a4f-a2f7-e2f8162880dc" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="1947a28d-6cf1-409b-a5c6-ed2ecd81484f" absoluteBounds="4.25, 3.875, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="ea4709a3-d8b1-4332-9906-86125a8ef312" LastKnownName="Trimitere mesaje catre administratori" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(4.51136363636364 : 2.875); (5.02883738250837 : 3.8795078601633)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="afadffba-00bb-488f-9b41-902cdd793053" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="1947a28d-6cf1-409b-a5c6-ed2ecd81484f" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="2798ae11-4b6d-4c19-81fa-658c1214733d" absoluteBounds="0.875, 3, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="9be7dae4-6422-493e-831f-2f74e4bc78e3" LastKnownName="Adaugare sondaj" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(3.5 : 2.44594594594595); (2.3229415704557 : 3.05038135571194)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="864473b9-9cac-49cc-ae0d-8b4cf034c8e1" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="6673f1ab-9151-4104-a68d-b037fe62fee9" />
+        <useCaseShapeMoniker Id="2798ae11-4b6d-4c19-81fa-658c1214733d" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <actorShape Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" absoluteBounds="12.125, 3.75, 1.25, 1.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="2ea5e34e-722e-4e8c-8d6a-573e780b0247" LastKnownName="Administrator" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseShape Id="ca6732d7-ab3c-4adc-b36b-126fee56fb12" absoluteBounds="13.75, 3.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="db3fb333-0a11-404e-b801-a4319469d756" LastKnownName="Drepturi utilizator" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(13.375 : 4.19758064516129); (14.1556513410142 : 3.8198461253157)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="184dd5c0-1a40-4ed8-b024-8c1ecc063f2c" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="ca6732d7-ab3c-4adc-b36b-126fee56fb12" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="d8e885e6-a161-48cc-94d3-2cf9b4999822" absoluteBounds="13.75, 4.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="be64ace2-3de9-49bc-bc41-a6f19b27e6de" LastKnownName="Stergere utilizatori" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(13.375 : 4.52016129032258); (13.7543593622919 : 4.53239868910619)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="cb1b1fa1-8182-4f95-9d0b-8eb2297f7eee" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="d8e885e6-a161-48cc-94d3-2cf9b4999822" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="7188defe-82d2-43c2-8e51-c4a7a8465b7c" absoluteBounds="13.75, 5.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="347f6e13-d491-47e7-8add-3347d463123d" LastKnownName="Stergere sondaje" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(13.375 : 4.84274193548387); (14.2005481583527 : 5.29546189329021)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="d20ae192-da75-41f1-89fd-534058f74fea" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="7188defe-82d2-43c2-8e51-c4a7a8465b7c" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="188c9470-d65d-479f-9d2e-bbe3a62fbc54" absoluteBounds="9.75, 3.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="1f0b5b5a-e47f-4a36-98e6-29e7961425a6" LastKnownName="Adaugare categorii" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(12.125 : 4.21590909090909); (11.2419034346508 : 3.81450156120491)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="3e084b24-819c-4bf7-b913-01abdcefc094" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="188c9470-d65d-479f-9d2e-bbe3a62fbc54" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="0a5aa180-e4b8-4f52-8fa0-f6d81a0c6df4" absoluteBounds="9.75, 4.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="ae8855cf-5a35-460b-8afd-06a925596004" LastKnownName="Stergere categorii" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(12.125 : 4.51893939393939); (11.6211498810635 : 4.53420757936171)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="900e46de-1f13-4ab6-acbf-db099e7938a6" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="0a5aa180-e4b8-4f52-8fa0-f6d81a0c6df4" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <useCaseShape Id="11e90dd2-ad40-410d-b134-93e62e65ea26" absoluteBounds="9.75, 5.25, 1.875, 0.625" customColor="238, 237, 131" heightOffset="0">
+      <useCaseMoniker Id="794e8623-425d-4520-a13b-28b2cd05ad98" LastKnownName="Promovare/retrogradare utilizatori" />
+      <relativeChildShapes />
+    </useCaseShape>
+    <useCaseAssociationConnector edgePoints="[(12.125 : 4.8219696969697); (11.1967980732724 : 5.30013432588995)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="d4feb363-10cb-44c2-9263-d87380f66d79" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="49106e4d-56f1-4392-a2d3-de4f28e34b50" />
+        <useCaseShapeMoniker Id="11e90dd2-ad40-410d-b134-93e62e65ea26" />
+      </nodes>
+    </useCaseAssociationConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

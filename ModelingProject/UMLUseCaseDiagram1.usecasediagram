@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm12="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="4f80aaba-f911-40c4-80d4-05d86ed66c04" name="UMLUseCaseDiagram1" linkedPackageId="b234fac4-ae51-4813-938c-1fc4660dfc77" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="97cd98f2-2652-4a4e-860d-f0b6cd94dd2a">
+      <profileInstance Id="a7508508-e888-4d43-8b2b-1f08bd4b7a56" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="20913ae8-5b9f-4a89-9767-39b74c3d6a91">
+      <profileInstance Id="6e5a89d2-99be-4e6d-8d60-4946d13bc3c2" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a06c650f-899b-4acb-ace7-3e1b7fa458b4" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7eb85656-f0b9-4e57-af3f-410154013c7f" />
+        <targetEnds>
+          <association Id="902053d4-3bcd-44af-a30f-359953653365" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Stergere sondaje proprii" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c8146f2d-4de0-4d5f-bb8f-580337f187ab" LastKnownName="Stergere sondaje proprii" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="acb60101-ff88-4746-be13-fbdc25d64942" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a305fb60-b8a3-4624-8d4b-de229f310866" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8a2c7e3b-de52-487f-ac4e-cbcbd3fb96df" name="Stergere sondaje proprii" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9d69881f-053d-4f11-9730-c594cabb7ade" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="91037fcc-8b96-4d0b-a42c-3eacd644a77f" />
+          </association>
+          <association Id="cb738854-434c-4ced-b2f5-44f9a928508c" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Cautare sondaje" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="435cf58d-7792-4a81-ad53-e2b1113be99d" LastKnownName="Cautare sondaje" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="05d7ac29-af77-4b87-83ea-c0bbf7c4a1f6" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6dc4450c-02db-4843-bf39-9845ad2e96d8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="aa7e6ff8-ce82-439c-8e20-33cead6ab34e" name="Cautare sondaje" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4d6ef75a-649d-40b0-93a4-b4a089a14184" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fa98e573-457b-4f46-816d-99fd86efba89" />
+          </association>
+          <association Id="c7f619a6-18f4-414f-ad7d-b06d95a545bb" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Vizualizare categorii" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1439416a-7983-4f95-adc0-16ee5fcce2ec" LastKnownName="Vizualizare categorii" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ed9008ab-4778-45c9-8d4a-f632a7b16c18" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="44eb1e41-9b56-488a-86fa-224ac798886c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="81a7b667-1020-4686-9b7f-aceaafe5c1bc" name="Vizualizare categorii" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="839b7ced-27aa-4fc1-8160-0809141ac05e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9cae338a-f25c-4b27-8a04-897f614d6bcf" />
+          </association>
+          <association Id="afadffba-00bb-488f-9b41-902cdd793053" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Trimitere mesaje catre administratori" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ea4709a3-d8b1-4332-9906-86125a8ef312" LastKnownName="Trimitere mesaje catre administratori" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="148279c8-337f-438a-a27d-e45b9f38ee82" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a3ce9128-3e2d-4727-8579-238f915b1f29" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9af29e31-9c6f-455d-9511-a56c287dc7d7" name="Trimitere mesaje catre administratori" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a332fb81-6856-43c7-94b1-b357a269da1e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fdfd9ae1-e957-42ba-8187-84d0f14abf2f" />
+          </association>
+          <association Id="a4ed6c8f-0f8c-49aa-97f3-161c34325475" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Vizualizare rezultate sondaje" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="267e60b8-9b95-4305-89b4-876e7374c64c" LastKnownName="Vizualizare rezultate sondaje" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8243e84a-4615-4d61-9ada-5e82b220a49e" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e24066da-d321-422a-bc41-4a9a137cd023" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="247cb8ab-a39f-4c98-adc4-aaac123dcf1f" name="Vizualizare rezultate sondaje" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="28a515df-61ff-4aaf-bb29-ca0ba63486ff" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f03afdf0-9095-48a8-a81d-2996ff0f4981" />
+          </association>
+          <association Id="864473b9-9cac-49cc-ae0d-8b4cf034c8e1" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Adaugare sondaj" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9be7dae4-6422-493e-831f-2f74e4bc78e3" LastKnownName="Adaugare sondaj" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="17bd32ae-4a3b-4110-8b4d-4f3cc3d04483" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b5af7e7f-31ac-4ff5-96ef-cad3329c7caa" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="da44b217-834c-4f43-94c6-3e23500e4cc3" name="Adaugare sondaj" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5dc9be42-4ef4-4f3a-92d2-4a0c6c80ddce" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="43540585-0655-470a-a652-c8290b622fea" />
+          </association>
+          <association Id="90999492-7771-46ee-87af-51cc68d81e03" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Votare sondaje" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c8977a51-0564-4557-9699-265c36c91e59" LastKnownName="Votare sondaje" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c47cab38-6723-40b4-91e5-b56a5f3485b9" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5eae3981-16ea-4e40-b48c-59c14557c619" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="007291f1-1cb2-4f61-adbb-2c2179129125" name="Votare sondaje" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="bdd0b71c-3267-49c6-b722-bf3421962170" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ae189c08-cc43-4030-bc04-6345b481b156" />
+          </association>
+          <association Id="9696fdb1-0487-4661-89c0-fb99255953e3" isDerived="false" sourceEndRoleName="Actor1" targetEndRoleName="Vizualizare sondaje" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a1588ede-a22f-4462-b645-4194985d5963" LastKnownName="Vizualizare sondaje" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dd608695-bc08-4c26-ab42-37fe764f4114" name="Actor1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bf3010ef-f497-4925-805e-42091734d9e3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0de2f52e-2d03-4b77-9ac8-e951b5d9e4d4" name="Vizualizare sondaje" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="fb073a78-44f0-4dbc-8f9b-193d8aea283f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7fff0401-0316-45da-82f6-958658f67c49" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a1588ede-a22f-4462-b645-4194985d5963" name="Vizualizare sondaje" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="75846641-320b-4b31-bad5-0b492983d049" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c8146f2d-4de0-4d5f-bb8f-580337f187ab" name="Stergere sondaje proprii" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ab6607ab-1096-44c9-ba3c-124ae27747ac" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c8977a51-0564-4557-9699-265c36c91e59" name="Votare sondaje" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ee007978-4788-49de-9dc9-4192c7afe762" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="267e60b8-9b95-4305-89b4-876e7374c64c" name="Vizualizare rezultate sondaje" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6ef8c56b-e1c1-464f-b2ee-3075a8610d42" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1439416a-7983-4f95-adc0-16ee5fcce2ec" name="Vizualizare categorii" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="21d99f59-922f-4f5d-bba8-19cb04857fd5" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="435cf58d-7792-4a81-ad53-e2b1113be99d" name="Cautare sondaje" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="071b2994-c360-4277-8552-c5b2b8aaa74f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ea4709a3-d8b1-4332-9906-86125a8ef312" name="Trimitere mesaje catre administratori" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3b74b65d-6a3f-4111-8427-8ca2750039b8" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9be7dae4-6422-493e-831f-2f74e4bc78e3" name="Adaugare sondaj" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e7c4139e-05d4-4c6e-b67d-805855a85578" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="2ea5e34e-722e-4e8c-8d6a-573e780b0247" name="Administrator" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fe34a201-2322-4bf7-a9c8-1f898eada848" />
+        <targetEnds>
+          <association Id="184dd5c0-1a40-4ed8-b024-8c1ecc063f2c" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Drepturi utilizator" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="db3fb333-0a11-404e-b801-a4319469d756" LastKnownName="Drepturi utilizator" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d6114f3d-ac8e-4907-aea9-a025791c83ed" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7652c9b1-7051-4afa-b5e1-5efb53080c70" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="64188ef8-04ba-419b-bfbf-4480fe073702" name="Drepturi utilizator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b3b14b6c-6d6f-42c2-adab-09b7bbee838d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d9700429-a2e2-4bb6-b6cb-0bc7df895868" />
+          </association>
+          <association Id="cb1b1fa1-8182-4f95-9d0b-8eb2297f7eee" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Stergere utilizatori" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="be64ace2-3de9-49bc-bc41-a6f19b27e6de" LastKnownName="Stergere utilizatori" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b7c712c6-66b9-4af6-887c-638c13e94ff2" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bc55d80d-6dd5-42c6-9f5e-c7c6cae6bc34" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7fbc8aab-3e1f-4b4e-ae82-6e5d5aa24755" name="Stergere utilizatori" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b897b6db-89dc-4a6c-bbd0-356f9d8c8044" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bcccee3f-0a06-4ebb-bccc-4aeed060809f" />
+          </association>
+          <association Id="d20ae192-da75-41f1-89fd-534058f74fea" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Stergere sondaje" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="347f6e13-d491-47e7-8add-3347d463123d" LastKnownName="Stergere sondaje" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b25d9625-57f6-4fa0-b07a-0c492f5280e3" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="45149963-57e5-4916-91f0-166844381be3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="38dc1516-3e42-475b-b7b4-ca881658d7c5" name="Stergere sondaje" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4fb580c6-9441-4a4c-93eb-eb6b2bfdd3e4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d71195f9-281a-40d6-9b65-aa4484d8ac36" />
+          </association>
+          <association Id="3e084b24-819c-4bf7-b913-01abdcefc094" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Adaugare categorii" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1f0b5b5a-e47f-4a36-98e6-29e7961425a6" LastKnownName="Adaugare categorii" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="552cf475-711e-43cf-be1e-2cf2499f0b34" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="762d115e-5bf7-4097-9868-c00d25b8266e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="85a4d150-1501-45f8-9fc1-ab64081cf961" name="Adaugare categorii" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="05aced4e-ce66-41ac-93c6-8e7a87937e45" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="393eb240-2ef4-4e1d-a059-6dbf3ba6e17c" />
+          </association>
+          <association Id="900e46de-1f13-4ab6-acbf-db099e7938a6" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Stergere categorii" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ae8855cf-5a35-460b-8afd-06a925596004" LastKnownName="Stergere categorii" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1045c486-8abe-4965-a8d5-ef290e192e34" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b517866f-f05e-448e-a981-28d6751068b0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="bd64869f-6f72-4076-be6b-6cae21152d66" name="Stergere categorii" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b76c26b4-830d-432a-90f5-f31507268c9d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7943a714-87c8-49fb-b821-fb0a49c7bd6b" />
+          </association>
+          <association Id="d4feb363-10cb-44c2-9263-d87380f66d79" isDerived="false" sourceEndRoleName="Administrator" targetEndRoleName="Promovare/retrogradare utilizatori" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="794e8623-425d-4520-a13b-28b2cd05ad98" LastKnownName="Promovare/retrogradare utilizatori" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="56ad0072-b8e7-4973-a526-1b508c940b56" name="Administrator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a693af36-51f6-4cbb-b2b6-d3d81bf5af94" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b995eec0-ce26-4595-b2d8-82263150f367" name="Promovare/retrogradare utilizatori" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1d603f66-c040-4e62-b64c-2de4aed79681" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="848cbfac-e7fb-4f00-97c4-5d8366630a45" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="db3fb333-0a11-404e-b801-a4319469d756" name="Drepturi utilizator" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9ba65d1c-4918-40fd-b81b-f5d932c2babf" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="be64ace2-3de9-49bc-bc41-a6f19b27e6de" name="Stergere utilizatori" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="72a4a6fc-7e8e-413f-b23e-ac6ecf759e2a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="347f6e13-d491-47e7-8add-3347d463123d" name="Stergere sondaje" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2a8963ac-d130-4d93-9d37-f0f119894e38" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1f0b5b5a-e47f-4a36-98e6-29e7961425a6" name="Adaugare categorii" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="de7e55c0-c29f-4cab-80db-3746c9107673" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ae8855cf-5a35-460b-8afd-06a925596004" name="Stergere categorii" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e1cc0715-166a-4987-b4a7-e14ddaf7396a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="794e8623-425d-4520-a13b-28b2cd05ad98" name="Promovare/retrogradare utilizatori" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="43a1d7e6-e695-498b-9df2-7fe7fbd65c7a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="b234fac4-ae51-4813-938c-1fc4660dfc77" name="ModelingProject">
+    <elementDefinition Id="eefad6ee-e573-4f1e-9b0a-14a57ffde34e" />
+  </package>
+</useCaseModelRoot>

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using WebAPI.Messages;
@@ -14,7 +12,7 @@ namespace WebAPI.ActionFilters
     public class RequireAdminTokenOrUsername : ActionFilterAttribute
     {
         /// <summary>
-        /// Public default Constructor
+        /// Constructor
         /// </summary>
         public override void OnActionExecuting(HttpActionContext context)
         {
@@ -32,26 +30,25 @@ namespace WebAPI.ActionFilters
             }
             else
             {
-                //tokenul apartine unui admin
+                // Tokenul apartine unui admin
                 isAdmin = authModel.VerifyAdminToken(header.Value.First());
 
-                //tokenul este valid
+                // Tokenul este valid
                 okDate = authModel.VerifyToken(header.Value.First());
 
                 valid = isAdmin && okDate;
 
-                //tokenul si formul apartin aceluiasi user
+                // Tokenul si sondajul apartin aceluiasi user
                 formIsFromUser = formModel.FormIdCreatedbyUserId(Int32.Parse(formIdToDelete), header.Value.First());
 
             }
 
             if (!(valid || formIsFromUser))
             {
-                //Invalid Authorization Key
+                // Token invalid
                 json = new JSendMessage("fail", "Invalid Authorization Key");
                 context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
-
         }
     }
 }

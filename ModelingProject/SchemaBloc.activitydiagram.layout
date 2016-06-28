@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.25, 9.875" name="SchemaBloc">
+  <activityRootModelMoniker Id="c95deb3d-1e85-4664-9ff4-728170f02ea7" />
+  <nestedChildShapes>
+    <objectNodeShape Id="0ee40143-4312-489a-84f5-42b24a5ed2a7" absoluteBounds="10.5, 0.875, 4.125, 0.875" customColor="White">
+      <objectNodeMoniker Id="63f31320-5974-4b61-abf7-246019952cab" LastKnownName="Vote my poll" />
+    </objectNodeShape>
+    <objectNodeShape Id="0d1b611f-627b-41a4-a827-23ac11b6edad" absoluteBounds="4.625, 4.25, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="731161e3-987e-499b-806e-eda9533e9650" LastKnownName="Vizualizare sondaje" />
+    </objectNodeShape>
+    <objectNodeShape Id="80f6b02c-1c8d-4e2e-9e51-052c193ab4c8" absoluteBounds="4.625, 4.75, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="041515bc-a6db-4a36-95d2-b91692ea9126" LastKnownName="Votare" />
+    </objectNodeShape>
+    <objectNodeShape Id="1b5fa5f1-3177-4d4b-ae11-dd2e68824f8e" absoluteBounds="9.5, 4.125, 6.125, 0.5" customColor="White">
+      <objectNodeMoniker Id="d3054d9c-a99e-479b-99e6-f3d949d56c89" LastKnownName="Autentificare" />
+    </objectNodeShape>
+    <objectNodeShape Id="d47e0608-0fec-49f6-82e4-992f7e99f041" absoluteBounds="4.625, 5.25, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="55f198b0-ebea-48a5-b9cd-8a43ae1d0f3d" LastKnownName="Procesare rezultate" />
+    </objectNodeShape>
+    <rectangleShape Id="2921cb6a-e55c-44d1-b708-592455439600" absoluteBounds="9.5, 4.875, 2.625, 0.375" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <rectangleShape Id="aab227e1-9d88-411f-8765-83f5ac2c7f7b" absoluteBounds="9.5, 4.125, 6.125, 0.5" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <objectNodeShape Id="afc1a1e6-3279-49f4-85b7-ff53cd157864" absoluteBounds="9.5, 4.875, 2.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="ba853e6f-8466-449c-9b07-41377dde0c06" LastKnownName="Gestionare sondaje" />
+    </objectNodeShape>
+    <rectangleShape Id="ff320600-951e-4139-9f5f-c46830badfdd" absoluteBounds="13, 4.875, 2.625, 0.375" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <objectNodeShape Id="028df92a-7a54-4678-888b-f4235386e651" absoluteBounds="13, 4.875, 2.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="f479a715-07c2-4a0d-b286-86dbe9f7e0cf" LastKnownName="Gestionare utilizatori" />
+    </objectNodeShape>
+    <objectNodeShape Id="c0a836cb-2041-4d3d-8f7b-2f6076762565" absoluteBounds="16.25, 4.75, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="cf595fb5-eb0c-47e2-94f2-c558bd93ef45" LastKnownName="Stergere utilizatori" />
+    </objectNodeShape>
+    <objectNodeShape Id="9dff14d4-51a0-4fe1-aaf5-8b6f888a1142" absoluteBounds="16.25, 5.375, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="ab11ef4e-e882-486b-accc-e22e8604e9bf" LastKnownName="Promovare utilizatori" />
+    </objectNodeShape>
+    <objectNodeShape Id="cbe4addd-03d5-4879-b732-e59d5d51d88b" absoluteBounds="16.25, 6, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="191eff63-af44-405d-bb82-1dc76df879bb" LastKnownName="Retrogradare utilizatori" />
+    </objectNodeShape>
+    <objectNodeShape Id="cde8fc81-55fa-475d-94f9-d8fc4653cd08" absoluteBounds="4.625, 5.75, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="fb007d6d-225a-4f97-946b-9c024b285c2e" LastKnownName="Stergere sondaje" />
+    </objectNodeShape>
+    <rectangleShape Id="c3a347b0-332c-4e5d-bdc3-d9e9ed454bee" absoluteBounds="9.25, 2.5, 6.625, 3.75" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <rectangleShape Id="134aa50f-e1ff-4fb3-a5d3-acd4578e9d10" absoluteBounds="10.5, 0.875, 4.125, 0.875" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <objectNodeShape Id="d7ef9af2-f382-4dba-a48c-a41d2abb2534" absoluteBounds="6.75, 8, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="1feb2d3b-9f54-4ea6-bee7-d988159a20e1" LastKnownName="Adaugare categorii" />
+    </objectNodeShape>
+    <objectNodeShape Id="f952ba4a-7514-4ff4-82ad-f1951d999cf1" absoluteBounds="6.75, 8.625, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="a09fef39-a8c3-478b-9bc6-996bb29199da" LastKnownName="Stergere categorii" />
+    </objectNodeShape>
+    <objectNodeShape Id="82e6df57-9c58-4f7f-bb54-616c8fa2f03d" absoluteBounds="6.75, 9.25, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="6599db90-5ffc-4d8c-a0e4-54c0927c2dc3" LastKnownName="Sortare sondaje dupa categorii" />
+    </objectNodeShape>
+    <objectNodeShape Id="137164a3-4b47-40f0-bff0-bb2fe9fc7214" absoluteBounds="9.5, 5.625, 2.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="9c9c60c8-911d-499d-b228-2a0e4de18e8b" LastKnownName="Gestionare categorii" />
+    </objectNodeShape>
+    <objectNodeShape Id="f29a352f-c866-4ac2-b384-b76381551b0b" absoluteBounds="13, 5.625, 2.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="92b23698-6dcb-4f28-8fdc-904289619028" LastKnownName="Gestionare mesaje" />
+    </objectNodeShape>
+    <objectNodeShape Id="61c5e0c2-4b9b-4c8d-8e40-f093d213b68d" absoluteBounds="16.375, 8.125, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="3f45a9f8-6c6b-443b-aec9-10307677cf95" LastKnownName="Trimitere mesaje catre admin" />
+    </objectNodeShape>
+    <objectNodeShape Id="7b491bcb-bb8e-42e3-9c7d-0f1545410619" absoluteBounds="16.375, 8.875, 1.625, 0.375" customColor="White">
+      <objectNodeMoniker Id="d9f6b2e0-73aa-4516-b348-524ea63a79ad" LastKnownName="Trimitere mesaj catre utilizatori" />
+    </objectNodeShape>
+    <rectangleShape Id="394b9a86-1602-4163-8b25-78b628b5bd9f" absoluteBounds="9.5, 5.625, 2.625, 0.375" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <rectangleShape Id="7313346d-b81d-4e25-bbf8-15b8ea3f6691" absoluteBounds="13, 5.625, 2.625, 0.375" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <objectNodeShape Id="290c9282-a882-46a8-bf10-2e9a56cc9d9d" absoluteBounds="9.5, 3.375, 6.125, 0.5" customColor="White">
+      <objectNodeMoniker Id="3c5ece4b-6775-4383-ad70-d36ff3f0e20e" LastKnownName="Inregistrare" />
+    </objectNodeShape>
+    <rectangleShape Id="50411916-03f7-4df8-b76a-9675ed296392" absoluteBounds="9.5, 3.375, 6.125, 0.5" outlineColor="83, 134, 191" outlineThickness="0.03125" />
+    <objectFlowConnector edgePoints="[(11.4507929104478 : 1.75); (11.4507929104478 : 3.375)]" fixedFrom="Caller" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="f6b3320b-2b65-43d2-9bd1-931602f3caf4" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="0ee40143-4312-489a-84f5-42b24a5ed2a7" />
+        <objectNodeShapeMoniker Id="290c9282-a882-46a8-bf10-2e9a56cc9d9d" />
+      </nodes>
+    </objectFlowConnector>
+    <objectFlowConnector edgePoints="[(13.65625 : 3.375); (13.65625 : 1.75)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <objectFlowMoniker Id="3a2670b3-0569-4da2-bcde-876b354effbb" />
+      <relativeChildShapes />
+      <nodes>
+        <objectNodeShapeMoniker Id="290c9282-a882-46a8-bf10-2e9a56cc9d9d" />
+        <objectNodeShapeMoniker Id="0ee40143-4312-489a-84f5-42b24a5ed2a7" />
+      </nodes>
+    </objectFlowConnector>
+  </nestedChildShapes>
+</activityDiagram>

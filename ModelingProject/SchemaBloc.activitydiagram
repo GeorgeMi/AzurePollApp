@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="c95deb3d-1e85-4664-9ff4-728170f02ea7" name="SchemaBloc" linkedPackageId="871c10a7-783a-4996-b299-0c97f2720c73" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="3ee7d115-c8cf-4b31-be0a-d0cce4fa89b0" name="SchemaBloc" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="40f40b20-acd6-47be-8f23-bc8e56bbf45a" />
+        <nodes>
+          <objectNode Id="63f31320-5974-4b61-abf7-246019952cab" name="Vote my poll" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="9c93966c-a7ff-49da-91f5-cec8ab0d70b8" />
+            <objectFlowTargets>
+              <objectFlow Id="f6b3320b-2b65-43d2-9bd1-931602f3caf4" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="3c5ece4b-6775-4383-ad70-d36ff3f0e20e" LastKnownName="Inregistrare" />
+                <elementDefinition Id="220cba8b-c2f3-4cfb-a834-54f1f614895d" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="dd8d32df-9f92-4310-8215-b47e5fe8aba8" name="2147483647" value="2147483647">
+                <elementDefinition Id="2c6e7e05-dce8-4ede-b036-d11524a37a87" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="731161e3-987e-499b-806e-eda9533e9650" name="Vizualizare sondaje" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="d542d25c-fa6a-4738-beb0-51bd72fe53a4" />
+            <upperBound>
+              <literalInteger Id="4fd09a89-1f17-4d95-9457-f206d7a39610" name="2147483647" value="2147483647">
+                <elementDefinition Id="9e197b96-f76a-4192-8019-79cdd6db2467" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="041515bc-a6db-4a36-95d2-b91692ea9126" name="Votare" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="5f99d8f3-4ef3-42d7-a368-f99f24365675" />
+            <upperBound>
+              <literalInteger Id="3ad6d71a-7c2c-410d-900f-047ad987820e" name="2147483647" value="2147483647">
+                <elementDefinition Id="fc65c6b2-8890-4583-ae6f-d5895aa4ae24" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="d3054d9c-a99e-479b-99e6-f3d949d56c89" name="Autentificare" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="2c262ef5-e418-4024-a892-9ddbe52e00be" />
+            <upperBound>
+              <literalInteger Id="9d4aa92d-ec84-4166-8b6a-9ee8c62dca1c" name="2147483647" value="2147483647">
+                <elementDefinition Id="4ccc7259-26d4-42ab-8c70-3215cf9f5ee6" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="55f198b0-ebea-48a5-b9cd-8a43ae1d0f3d" name="Procesare rezultate" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="7ed8f25c-8970-480c-85b7-78e422de4912" />
+            <upperBound>
+              <literalInteger Id="fda4e188-480b-45fc-a181-374aa920b70f" name="2147483647" value="2147483647">
+                <elementDefinition Id="8727efce-47a5-4167-87db-462bba5ae49e" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="ba853e6f-8466-449c-9b07-41377dde0c06" name="Gestionare sondaje" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="ba37baf5-97a7-4e2f-abe9-53ee2dc88ea1" />
+            <upperBound>
+              <literalInteger Id="463af60c-c4c4-4e03-8331-4c0d2d589cbd" name="2147483647" value="2147483647">
+                <elementDefinition Id="bf12b118-2d69-459e-b2f6-3997b0657eef" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="f479a715-07c2-4a0d-b286-86dbe9f7e0cf" name="Gestionare utilizatori" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0bccae79-2c97-4b5d-81df-3cb03ebe4320" />
+            <upperBound>
+              <literalInteger Id="d7db44a4-e858-4a0c-a3d3-e1b8626e0254" name="2147483647" value="2147483647">
+                <elementDefinition Id="7a3a8d92-9937-4c3a-86f3-e9c834accdec" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="cf595fb5-eb0c-47e2-94f2-c558bd93ef45" name="Stergere utilizatori" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="98c3805e-f0eb-409b-8ca3-5dbccdf738f5" />
+            <upperBound>
+              <literalInteger Id="ec917961-8bc0-4948-bf3c-d3b2d954f2ac" name="2147483647" value="2147483647">
+                <elementDefinition Id="53d5fbdd-cf19-4052-9556-05f2345974eb" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="ab11ef4e-e882-486b-accc-e22e8604e9bf" name="Promovare utilizatori" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="b8bb9b32-c491-43f1-a52c-0d8c35424bb6" />
+            <upperBound>
+              <literalInteger Id="f3e4b1ef-6e47-4590-8a1b-6533f387bc2b" name="2147483647" value="2147483647">
+                <elementDefinition Id="6cefe80e-244a-42a3-a48b-d244e6ae25b3" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="191eff63-af44-405d-bb82-1dc76df879bb" name="Retrogradare utilizatori" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="1fa6ae89-ddfb-4a31-9eb7-f6b05b2a7cf2" />
+            <upperBound>
+              <literalInteger Id="e70e3f4f-336d-47d7-b337-b24d758d1ab0" name="2147483647" value="2147483647">
+                <elementDefinition Id="61ce4651-100c-4bb9-9bbb-94b4cd6b707a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="fb007d6d-225a-4f97-946b-9c024b285c2e" name="Stergere sondaje" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="d6074bce-639d-435e-b7af-262cc2b7a297" />
+            <upperBound>
+              <literalInteger Id="c1279958-3442-4dcc-9572-920965f4fbdd" name="2147483647" value="2147483647">
+                <elementDefinition Id="0c4c6915-2574-4c95-991a-cd5c5b3dca43" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="1feb2d3b-9f54-4ea6-bee7-d988159a20e1" name="Adaugare categorii" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="d36a9882-8d85-4423-8df6-f5d3351d591a" />
+            <upperBound>
+              <literalInteger Id="5f3bd6c1-5e75-456e-a83a-313732ffcde7" name="2147483647" value="2147483647">
+                <elementDefinition Id="e8ff15e8-7462-4183-9419-6f37148fd91c" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="a09fef39-a8c3-478b-9bc6-996bb29199da" name="Stergere categorii" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="92576321-5d93-4669-93f5-53f933d1dfe2" />
+            <upperBound>
+              <literalInteger Id="47be2d84-dfb3-4961-bbe8-18b42f428db8" name="2147483647" value="2147483647">
+                <elementDefinition Id="60a7a75d-fa4a-4c71-b5c0-eb743db010d6" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="6599db90-5ffc-4d8c-a0e4-54c0927c2dc3" name="Sortare sondaje dupa categorii" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f1957a7b-9633-49e2-97c6-d2c8ec14a892" />
+            <upperBound>
+              <literalInteger Id="0073fa96-6b32-48f0-bd2a-956b702bef9d" name="2147483647" value="2147483647">
+                <elementDefinition Id="c7e9f49c-a8d8-4b22-9c00-3ee4aeeda848" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="9c9c60c8-911d-499d-b228-2a0e4de18e8b" name="Gestionare categorii" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="31a81af9-4c14-4798-a130-435f4ccfb563" />
+            <upperBound>
+              <literalInteger Id="b32d5b3f-36fc-4381-948a-7e5d8129f7fd" name="2147483647" value="2147483647">
+                <elementDefinition Id="cb05347e-d360-4220-9bb8-142046c6611e" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="92b23698-6dcb-4f28-8fdc-904289619028" name="Gestionare mesaje" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="9397638f-2490-4dab-a25f-68b8d709a731" />
+            <upperBound>
+              <literalInteger Id="ca3bb3af-9bb2-400b-8430-b1f4c7a39cfb" name="2147483647" value="2147483647">
+                <elementDefinition Id="b1f19d22-d209-4b61-bfe2-a55c2207c323" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="3f45a9f8-6c6b-443b-aec9-10307677cf95" name="Trimitere mesaje catre admin" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="86f3f251-ca02-412d-b90d-fe7784523daa" />
+            <upperBound>
+              <literalInteger Id="401ad6f8-ef1c-44dc-87d7-744649e08e2b" name="2147483647" value="2147483647">
+                <elementDefinition Id="cf5244ee-e9c2-4cbd-b085-d00f54976ee8" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="d9f6b2e0-73aa-4516-b348-524ea63a79ad" name="Trimitere mesaj catre utilizatori" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="3d771604-48c5-42f9-8cc3-472a08e5a5ed" />
+            <upperBound>
+              <literalInteger Id="0c07eba0-c016-40c8-b5f6-3db13b3fabbb" name="2147483647" value="2147483647">
+                <elementDefinition Id="af02cf5e-4892-4e17-bb25-76abe8375234" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="3c5ece4b-6775-4383-ad70-d36ff3f0e20e" name="Inregistrare" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="f70d07df-bd25-461f-8974-3b9d3ddacd0f" />
+            <objectFlowTargets>
+              <objectFlow Id="3a2670b3-0569-4da2-bcde-876b354effbb" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="63f31320-5974-4b61-abf7-246019952cab" LastKnownName="Vote my poll" />
+                <elementDefinition Id="f821b468-9bef-4ae6-ae15-a51b8a719c11" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="af5f5b6c-4586-4812-97e4-fb527852e70a" name="2147483647" value="2147483647">
+                <elementDefinition Id="62ab9eee-d268-44e7-93a3-afa45972cd69" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="871c10a7-783a-4996-b299-0c97f2720c73" name="ModelingProject">
+    <elementDefinition Id="eefad6ee-e573-4f1e-9b0a-14a57ffde34e" />
+    <profileInstances>
+      <packageHasProfileInstances Id="3f88e5aa-e0f8-47ed-ba51-9364311a8006">
+        <profileInstance Id="6cd26488-1334-42a1-9c84-2016d63afb37" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="39bd3d8d-faaa-4a92-925b-218c10895f7b">
+        <profileInstance Id="efe8a4b5-1d4c-4122-a02f-1584adb33aaa" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

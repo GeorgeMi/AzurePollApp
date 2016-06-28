@@ -10,6 +10,9 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "Category"
+    /// </summary>
     public interface ICategoryRepository : IGenericRepository<Category>
     {
     }

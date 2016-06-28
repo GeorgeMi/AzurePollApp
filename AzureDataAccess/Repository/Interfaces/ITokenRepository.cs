@@ -11,6 +11,9 @@ using System;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "Token"
+    /// </summary>
     public interface ITokenRepository : IGenericRepository<Token>
     {
         void UpdateExpirationDate(int id, DateTime expirationDate);

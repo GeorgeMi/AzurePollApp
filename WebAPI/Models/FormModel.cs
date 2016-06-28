@@ -3,6 +3,7 @@
  * Proprietary and confidential
  * Written by Miron George <george.miron2003@gmail.com>, 2016
  */
+
 using DataTransferObject;
 using Microsoft.Practices.Unity;
 using System;
@@ -13,12 +14,12 @@ namespace WebAPI.Models
     public class FormModel
     {
         /// <summary>
-        /// encapsulate form model
+        /// Modelul pentru gestionarea utilizatorilor
         /// </summary>
         private BusinessLogic.BusinessLogic bl;
 
         /// <summary>
-        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// Constructor. Initializeaza Unity container si injecteaza dependenta in BLL si DAL 
         /// </summary>
         public FormModel()
         {
@@ -29,11 +30,11 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get all forms from database
+        /// Cere BLL sa returneze toate sondajele din baza de date
         /// </summary>
         /// <param name="token">token string</param>
         /// <param name="page">page number</param>
-        /// <param name="per_page">elements per page</param>
+        /// <param name="per_page">elemente pe pagina</param>
         public List<FormDTO> GetAllForms(string token, int page, int per_page, string state)
         {
             try
@@ -47,7 +48,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get form's detailed results
+        /// Cere BLL sa returneze rezultatele unui sondaj
         /// </summary>
         /// <param name="id">form ID</param>
         public VoteResultDetailDTO GetDetailResultForm(int id)
@@ -63,11 +64,11 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get all forms from specific user
+        /// Cere BLL sa returneze toate sondajele care apartin unui anumit utilizator
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="page">page number</param>
-        /// <param name="per_page">elements per page</param>
+        /// <param name="per_page">elemente pe pagina</param>
         public List<FormDTO> GetUserForms(string username, int page, int per_page, string state)
         {
             try
@@ -81,12 +82,12 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        ///  ask business logic to get all forms that containes specific string
+        ///  Cere BLL sa returneze toate sondajele care contin o anumita secventa
         /// </summary>
         /// <param name="token">token string</param>
-        /// <param name="searchedName">string to search</param>
+        /// <param name="searchedName">secventa de cautat</param>
         /// <param name="page">page number</param>
-        /// <param name="per_page">elements per page</param>
+        /// <param name="per_page">elements pe pagina</param>
         internal List<FormDTO> GetAllForms(string token, string searched, int page_nr, int per_page, string state)
         {
             try
@@ -100,11 +101,11 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get all voted forms from specific user
+        /// Cere BLL sa returneze toate sondajele votate de un anumit utilizator
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="page">page number</param>
-        /// <param name="per_page">elements per page</param>
+        /// <param name="per_page">elemente pe pagina</param>
         public List<FormDTO> GetVotedForms(string username, int page_nr, int per_page, string state)
         {
             try
@@ -118,7 +119,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        ///  ask business logic to specific form's content
+        ///  Cere BLL sa returneze continutul unui sondaj
         /// </summary>
         /// <param name="id">form ID</param>
         /// <returns></returns>
@@ -136,12 +137,12 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get all forms from category
+        /// Cere BLL sa returneze toate sondajele care apartin unei categorii
         /// </summary>
         /// <param name="categoryID">category ID</param>
         /// <param name="token">token string</param>
         /// <param name="page_nr">page number</param>
-        /// <param name="per_page">elements per page</param>
+        /// <param name="per_page">elemente pe pagina</param>
         public List<FormDTO> GetCategoryForms(int categoryID, string token, int page_nr, int per_page, string state)
         {
             try
@@ -155,7 +156,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to add new form to database
+        /// Cere BLL sa adauge un nou sondaj 
         /// </summary>
         /// <param name="formDTO">form details</param>
         /// <returns></returns>
@@ -173,7 +174,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to delete form from database
+        /// Cere BLL sa stearga un sondaj 
         /// </summary>
         /// <param name="formID">form ID</param>
         /// <returns></returns>
@@ -191,7 +192,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to check if form's owner is user 
+        /// Cere BLL sa verifice daca tokenul apartine autorului sondajului
         /// </summary>
         /// <param name="formID">form ID</param>
         /// <param name="userToken">token string</param>
@@ -211,7 +212,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to add vote 
+        /// Cere BLL sa adauge un vot
         /// </summary>
         /// <param name="voteDTO">vote's details</param>
         /// <param name="token">token string</param>

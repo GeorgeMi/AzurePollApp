@@ -1,4 +1,10 @@
-﻿using AzureDataAccess;
+﻿/* Copyright (C) Miron George - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Miron George <george.miron2003@gmail.com>, 2016
+ */
+
+using AzureDataAccess;
 using DataTransferObject;
 using Entities;
 using System.Collections.Generic;
@@ -7,18 +13,29 @@ using System.Net.Mail;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// Logica gestionarii mesajelor
+    /// </summary>
     public class MessageLogic
     {
         private IAzureDataAccess _dataAccess;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="objDataAccess"></param>
         public MessageLogic(IAzureDataAccess objDataAccess)
         {
-            //primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
-            //unity are grija de dependency injection
-
+            // Primesc obiectul, nu e treaba UserLogic ce dataAccess se foloseste
+            // Unity are grija de dependency injection
             _dataAccess = objDataAccess;
         }
 
+        /// <summary>
+        /// Trimitere mesaj
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="contactMessageDTO"></param>
         public void SendMessage(string token, ContactMessageDTO contactMessageDTO)
         {
             if (string.IsNullOrWhiteSpace(contactMessageDTO.Category) || string.IsNullOrWhiteSpace(contactMessageDTO.Message) || contactMessageDTO.Receiver < 0)
@@ -58,6 +75,5 @@ namespace BusinessLogic
 
             SmtpServer.Send(mail);
         }
-
     }
 }

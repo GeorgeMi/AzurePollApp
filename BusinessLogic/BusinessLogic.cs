@@ -15,6 +15,9 @@ using AzureDataAccess;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// Nivelul de logica
+    /// </summary>
     public class BusinessLogic
     {
         public FormLogic FormLogic;
@@ -24,6 +27,10 @@ namespace BusinessLogic
         public CategoryLogic CategoryLogic;
         public MessageLogic MessageLogic;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="_dataAccess"></param>
         public BusinessLogic(IAzureDataAccess _dataAccess)
         {
             FormLogic = new FormLogic(_dataAccess);
@@ -33,8 +40,5 @@ namespace BusinessLogic
             CategoryLogic = new CategoryLogic(_dataAccess);
             MessageLogic = new MessageLogic(_dataAccess);
         }
-
-
-
     }
 }

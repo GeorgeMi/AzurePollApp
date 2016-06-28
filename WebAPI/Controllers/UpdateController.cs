@@ -13,14 +13,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP database update requests
+    /// Gestionare cereri HTTP pentru actualizare conturi si sondaje
     /// </summary>
     public class UpdateController : ApiController
     {
         /// <summary>
         /// delete unverified accounts and set to closed outdated forms
         /// </summary>
-     //  [RequirePasswordForScheduler]
+       [RequirePasswordForScheduler]
         public HttpResponseMessage Get()
         {
             UsersModel model = new UsersModel();

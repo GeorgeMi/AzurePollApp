@@ -13,12 +13,12 @@ namespace WebAPI.Models
     public class UsersModel
     {
         /// <summary>
-        /// encapsulate user model
+        /// Modelul pentru gestionarea utilizatorilor
         /// </summary>
         private BusinessLogic.BusinessLogic bl;
 
         /// <summary>
-        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// Constructor. Initializeaza Unity container si injecteaza dependenta in BLL si DAL 
         /// </summary>
         public UsersModel()
         {
@@ -29,7 +29,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to add new user to database
+        /// Cere BLL sa adauge un nou utilizator 
         /// </summary>
         /// <param name="userDTO">user's details</param>
         public bool AddUser(UserRegistrationDTO userDTO)
@@ -37,9 +37,9 @@ namespace WebAPI.Models
             try
             {
                 int id = bl.UserLogic.AddUser(userDTO);
-                //create new token
+                // Creare token
                 string token = bl.TokenLogic.UpdateToken(id, userDTO.Username, userDTO.Password);
-                //send verification mail
+                // Trimitere mai verificare
                 bl.UserLogic.SendAuthEmail(token, userDTO.Username, userDTO.Email);
 
                 return true;
@@ -51,7 +51,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// get list of all users' username and id from database
+        /// Cere BLL sa returneze toate id-urile si username-urile utilizatorilor 
         /// </summary>
         public List<UsernameDTO> GetAllUsernames()
         {
@@ -66,7 +66,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get username's id
+        /// Cere BLL sa returneze id-ul utilizatorului
         /// </summary>
         /// <param name="username">username</param>
         public int GetUserID(string username)
@@ -76,7 +76,7 @@ namespace WebAPI.Models
 
         public bool PromoteUser(int id)
         {
-            //avanseaza user la rol de admin
+            // Avanseaza user la rol de admin
             try
             {
                 bl.UserLogic.PromoteUser(id);
@@ -91,7 +91,7 @@ namespace WebAPI.Models
 
         public bool DemoteUser(int id)
         {
-            //user la rol de user
+            // Retrogradeaza user la rol de user
             try
             {
                 bl.UserLogic.DemoteUser(id);

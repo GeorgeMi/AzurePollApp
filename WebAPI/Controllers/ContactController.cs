@@ -15,23 +15,23 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP contact requests
+    /// Gestionare cereri HTTP pentru contactare
     /// </summary>
     public class ContactController : ApiController
     {
         ContactModel contactModel = new ContactModel();
 
         /// <summary>
-        /// receive message from user and send it to admin
+        /// Primire mesaj de la utilizator si trimitere catre admin
         /// </summary>
-        /// <param name="contactMessageDTO">message category and message string</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <param name="contactMessageDTO">detaliile mesajului</param>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireToken]
         public HttpResponseMessage Post(ContactMessageDTO contactMessageDTO)
         {
             HttpResponseMessage responseMessage;
             JSendMessage json;
-            //get token to indentify user's contact details
+            // Preluare token pentru a identifica utilizatorul
             string token = Request.Headers.SingleOrDefault(x => x.Key == "token").Value.First();
             bool response = contactModel.SendMessage(token, contactMessageDTO);
 
@@ -48,6 +48,5 @@ namespace WebAPI.Controllers
 
             return responseMessage;
         }
-
     }
 }

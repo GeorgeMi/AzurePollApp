@@ -8,14 +8,14 @@ using Microsoft.Practices.Unity;
 namespace WebAPI.Models
 {
     /// <summary>
-    /// encapsulate authentification model
+    /// Modelul pentru gestionarea autentificarii
     /// </summary>
     public class AuthModel
     {
         private BusinessLogic.BusinessLogic bl;
 
         /// <summary>
-        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// Constructor. Initializeaza Unity container si injecteaza dependenta in BLL si DAL 
         /// </summary>
         public AuthModel()
         {
@@ -26,55 +26,54 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        ///  ask business logic to validate username and password and to get updated token string
+        /// Cere BLL sa valideze user si parola si sa intoarca token-ul
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
-        /// <returns>updated token string</returns>
+        /// <returns>tokenul actualizat</returns>
         public string Authenticate(string username, string password)
         {
             return bl.AuthLogic.Authenticate(username, password);
         }
 
         /// <summary>
-        /// ask business logic to get user's role
+        ///  Cere BLL sa returneze rolul utilizatorului
         /// </summary>
         /// <param name="username">username</param>
-        /// <returns>user's role</returns>
+        /// <returns>rolul utilizatorului</returns>
         public string GetRole(string username)
         {
             return bl.UserLogic.GetUserRole(username);
         }
 
         /// <summary>
-        /// ask business logic to check if token string exists
+        /// Cere BLL sa verifice daca exista un anumit token
         /// </summary>
         /// <param name="token">token string</param>
-        /// <returns>true or false</returns>
+        /// <returns>true sau false</returns>
         public bool VerifyToken(string token)
         {
             return bl.AuthLogic.VerifyTokenDate(token);
         }
 
         /// <summary>
-        /// ask business logic to check if token's owner is admin
+        /// Cere BLL sa verifice daca tokenul apartine unui admin
         /// </summary>
         /// <param name="token">token string</param>
-        /// <returns>true or false</returns>
+        /// <returns>true sau false</returns>
         public bool VerifyAdminToken(string token)
         {
             return bl.AuthLogic.VerifyAdminToken(token);
         }
 
         /// <summary>
-        ///  ask business logic to verify token from mail
+        ///  Cere BLL sa verifice tokenul trimis prin mail
         /// </summary>
         /// <param name="token">token string</param>
-        /// <returns>true or false</returns>
+        /// <returns>true sau false</returns>
         public bool VerifyMailToken(string token)
         {
             return bl.AuthLogic.VerifyMailToken(token);
         }
-
     }
 }

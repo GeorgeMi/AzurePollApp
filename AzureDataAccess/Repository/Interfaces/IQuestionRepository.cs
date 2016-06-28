@@ -10,6 +10,9 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "Question"
+    /// </summary>
     public interface IQuestionRepository : IGenericRepository<Question>
     {
     }

@@ -10,11 +10,13 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "User"
+    /// </summary>
     public interface IUserRepository : IGenericRepository<User>
     {
         void ChangeRole(int userID, string role);
         void ScheduleDeleteUsers();
         void Verified(int userID);
-
     }
 }

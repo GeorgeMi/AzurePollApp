@@ -14,15 +14,15 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP authentification requests
+    /// Gestionare cereri HTTP de autentificare
     /// </summary>
     public class AuthController : ApiController
     {
         /// <summary>
-        /// receive username and password from user
+        /// Primire username si parola de la client
         /// </summary>
-        /// <param name="user">object that containes username and password</param>
-        /// <returns>user's token if params are valid, error message else</returns>
+        /// <param name="user">obiect care contine username si parola</param>
+        /// <returns>token</returns>
         public HttpResponseMessage Post(UserDTO user)
         {
             AuthModel auth = new AuthModel();
@@ -31,11 +31,10 @@ namespace WebAPI.Controllers
 
             if (response != null)
             {
-                //valid username and password
+                // Username si parola valide
                 string role = auth.GetRole(user.Username);
                 TokenMessage msg = new TokenMessage(response, role);
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, msg);
-
             }
             else
             {
@@ -48,10 +47,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// receive token sent in registration mail and activate account
+        /// Primire token ce a fost trimis in mailul de activare a contului
         /// </summary>
         /// <param name="id">token</param>
-        /// <returns>success message or error message </returns>
+        /// <returns>mesaj succes sau eroare</returns>
         public HttpResponseMessage Get(string id)
         {
             AuthModel auth = new AuthModel();

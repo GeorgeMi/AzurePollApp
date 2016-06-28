@@ -17,16 +17,16 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP register requests
+    /// Gestionare cereri HTTP pentru cautare
     /// </summary>
     public class SearchController: ApiController
     {
         FormModel formModel = new FormModel();
 
         /// <summary>
-        /// get list of all forms that contains specific string
+        /// Returnarea tuturor sondajelor care contin o anumita secventa
         /// </summary>
-        /// <param name="id">string to search</param>
+        /// <param name="id">secventa cautata</param>
         [RequireToken]
         public HttpResponseMessage Get(string id)
         {

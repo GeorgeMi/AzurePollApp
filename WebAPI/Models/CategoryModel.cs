@@ -11,13 +11,13 @@ namespace WebAPI.Models
 {
 
     /// <summary>
-    /// encapsulate category model
+    /// Modelul pentru gestionarea categoriilor
     /// </summary>
     public class CategoryModel
     {
         private BusinessLogic.BusinessLogic bl;
         /// <summary>
-        /// Construct. Initializes the Unity container and injects dependency into BLL and DAL classes
+        /// Constructor. Initializeaza Unity container si injecteaza dependenta in BLL si DAL 
         /// </summary>
         public CategoryModel()
         {
@@ -28,7 +28,7 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        /// ask business logic to get all categories from database
+        /// Cere BLL sa returneze toate categoriile
         /// </summary>
         public List<CategoryDTO> GetAllCategories()
         {
@@ -43,10 +43,10 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        ///  ask business logic to add new category todatabase
+        ///  Cere BLL sa adauge o noua categorie
         /// </summary>
-        /// <param name="categoryDTO">category ID and category name</param>
-        /// <returns>true or false</returns>
+        /// <param name="categoryDTO">category ID si category name</param>
+        /// <returns>true sau false</returns>
         public bool AddCategory(CategoryDTO categoryDTO)
         {
             try
@@ -61,10 +61,10 @@ namespace WebAPI.Models
         }
 
         /// <summary>
-        ///  ask business logic to delete category from database
+        ///  Cere BLL sa stearga o categorie
         /// </summary>
         /// <param name="categoryID">category ID</param>
-        /// <returns>true or false</returns>
+        /// <returns>true sau false</returns>
         public bool DeleteCategory(int categoryID)
         {
             try
@@ -77,6 +77,5 @@ namespace WebAPI.Models
                 return false;
             }
         }
-
     }
 }

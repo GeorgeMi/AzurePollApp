@@ -10,6 +10,5 @@ namespace WebAPI.Messages
         {
             this.data = data;
         }
-
     }
 }

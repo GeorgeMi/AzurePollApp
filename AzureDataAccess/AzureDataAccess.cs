@@ -13,6 +13,9 @@ using AzureDataAccess.Repository.Implementations;
 
 namespace AzureDataAccess
 {
+    /// <summary>
+    /// Implementarea nivelului de date
+    /// </summary>
     public class AzureDataAccess : IAzureDataAccess
     {
         public IUserRepository UserRepository { get; set; }
@@ -23,6 +26,9 @@ namespace AzureDataAccess
         public IFormRepository FormRepository { get; set; }
         public IVotedFormsRepository VotedFormsRepository { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AzureDataAccess()
         {
             AzurePollAppDBContext context = new AzurePollAppDBContext();
@@ -34,6 +40,5 @@ namespace AzureDataAccess
             FormRepository = new FormRepository(context);
             VotedFormsRepository = new VotedFormsRepository(context);
         }
-
     }
 }

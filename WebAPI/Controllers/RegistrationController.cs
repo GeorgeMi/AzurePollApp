@@ -13,14 +13,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP register requests
+    /// Gestionare cereri HTTP pentru inregistrare
     /// </summary>
     public class RegistrationController : ApiController
     {
         /// <summary>
-        /// get user's details, verify their uniqueness and add user to database 
+        /// Primeste delatiile utilizatorului, verificare unicitate si adaugare utilizator
         /// </summary>
-        /// <param name="user">user's details</param>
+        /// <param name="user">delatiile utilizatorului</param>
         /// <returns></returns>
         public HttpResponseMessage Post(UserRegistrationDTO user)
         {
@@ -44,10 +44,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// receive token sent in registration mail and activate account
+        /// Primire token trimis in mail si activare cont
         /// </summary>
         /// <param name="id">token</param>
-        /// <returns>success message or error message </returns>
+        /// <returns>success message sau error message </returns>
         public HttpResponseMessage Get(string id)
         {
             AuthModel auth = new AuthModel();
@@ -68,6 +68,5 @@ namespace WebAPI.Controllers
 
             return response;
         }
-
     }
 }

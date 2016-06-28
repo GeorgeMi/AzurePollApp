@@ -16,14 +16,14 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
     /// <summary>
-    /// handles HTTP categories requests
+    /// Gestionare cereri HTTP pentru categorii
     /// </summary>
     public class CategoryController : ApiController
     {
         CategoryModel categoryModel = new CategoryModel();
 
         /// <summary>
-        /// get all categories from database
+        /// Returnarea tuturor categoriilor
         /// </summary>
         [RequireToken]
         public HttpResponseMessage Get()
@@ -47,10 +47,10 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// add new category todatabase
+        /// Adaugarea unei noi categorii
         /// </summary>
-        /// <param name="categoryDTO">category ID and category name</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <param name="categoryDTO">category ID si category name</param>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireAdminToken]
         public HttpResponseMessage Post(CategoryDTO categoryDTO)
         {
@@ -70,14 +70,13 @@ namespace WebAPI.Controllers
             }
 
             return responseMessage;
-
         }
 
         /// <summary>
-        /// delete category from database
+        /// Stergerea unei categorii
         /// </summary>
         /// <param name="categoryID">category ID</param>
-        /// <returns>http status code OK or ExpectationFailed</returns>
+        /// <returns>http status code OK sau ExpectationFailed</returns>
         [RequireAdminToken]
         public HttpResponseMessage Delete(int id)
         {

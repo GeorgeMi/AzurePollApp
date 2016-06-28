@@ -15,6 +15,9 @@ using System.Linq.Expressions;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata generala 
+    /// </summary>
     public interface IGenericRepository<T> where T : class
     {
         IQueryable<T> GetAll();

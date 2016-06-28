@@ -13,6 +13,9 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "Answer"
+    /// </summary>
     public interface IAnswerRepository : IGenericRepository<Answer>
     {
         void AddVote(int id);

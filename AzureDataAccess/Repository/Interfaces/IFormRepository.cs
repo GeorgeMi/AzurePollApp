@@ -10,10 +10,12 @@ using Entities;
 
 namespace AzureDataAccess.Repository.Interfaces
 {
+    /// <summary>
+    /// Interfata repository "Form"
+    /// </summary>
     public interface IFormRepository : IGenericRepository<Form>
     {
         void ScheduleUpdateForms();
         void AddVote(int id);
-
-    }
+   }
 }

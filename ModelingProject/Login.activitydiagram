@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="aca3533c-e879-4fe1-9021-936762f40e37" name="Activity1" linkedPackageId="f1d81e98-85f3-4d9c-9859-1af6afbafd63" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="aca3533c-e879-4fe1-9021-936762f40e37" name="Activity1" linkedPackageId="f1d81e98-85f3-4d9c-9859-1af6afbafd63" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
   <ownedCommentsInternal>
     <comment Id="2a9d9efa-c2af-4962-9f59-7f6f902ec4cd">
       <elementDefinition Id="d92639fc-1768-451a-9641-195c78c3cc28" />
@@ -24,21 +24,15 @@ daca userul si parola se afla in baza de date</body>
         <decisionNodeMoniker Id="374bea30-b51d-4031-a434-5f5aa19d7c7d" LastKnownName="Decision111" />
       </annotatedElements>
     </comment>
+    <comment Id="d99d0a0b-a81c-4587-9798-cb370fdac0a7">
+      <elementDefinition Id="40413d32-2310-4b7e-8be5-d1c3e94b1f3c" />
+      <body>Verificare 
+daca mailul are formatul corespunzător, daca userul si mailul nu mai exista in baza de date și daca parola are lungimea și formatul potrivit</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="1c9a042b-2fa6-4ef4-a61d-b34449a18c60" LastKnownName="Decision12" />
+      </annotatedElements>
+    </comment>
   </ownedCommentsInternal>
-  <profileInstances>
-    <packageHasProfileInstances Id="11f3a9fd-1866-4063-a6f4-00fbeb0c917a">
-      <profileInstance Id="0913f5a8-96cc-4726-9d8b-c22a882ed7e0" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="828f89f1-bc7d-4f7c-8643-ab61647cb4e4">
-      <profileInstance Id="31b0ed96-674b-4970-8949-6a76beba88e3" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <activityRootModelHasActivity>
       <activity Id="4d6bbe9f-3fda-49c3-a75d-c61a1ebf8408" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
@@ -198,11 +192,96 @@ daca userul si parola se afla in baza de date</body>
           <activityFinalNode Id="0ff01e35-b0b1-44a8-abf4-494c60d2e6a5" name="ActivityFinal2" isLeaf="false">
             <elementDefinition Id="7ca99f3e-7b0b-47c6-b9d2-b4851aca430f" />
           </activityFinalNode>
+          <initialNode Id="9d2bf708-804f-44de-90ad-630c94f40fdc" name="Initial11" isLeaf="false">
+            <elementDefinition Id="c04eb1a4-4b55-4b02-aaf5-51d7819104ca" />
+            <flowNodeTargets>
+              <controlFlow Id="c0140db3-757d-415a-8256-86b935ca869d" isLeaf="false">
+                <opaqueActionMoniker Id="51e98c67-7d9a-4bf8-9a38-71cf91b29ccb" LastKnownName="Completare formular" />
+                <elementDefinition Id="e2b31920-4e0c-4989-8472-ac5541df4db8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="51e98c67-7d9a-4bf8-9a38-71cf91b29ccb" name="Completare formular" isLeaf="false">
+            <elementDefinition Id="67795307-37c4-486a-990e-635417f28e3a" />
+            <flowNodeTargets>
+              <controlFlow Id="17e20d0f-0f61-4a1e-a961-8e4affbe1138" isLeaf="false">
+                <decisionNodeMoniker Id="1c9a042b-2fa6-4ef4-a61d-b34449a18c60" LastKnownName="Decision12" />
+                <elementDefinition Id="b967b5cd-e7cb-4408-b723-71c0850d949a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="1c9a042b-2fa6-4ef4-a61d-b34449a18c60" name="Decision12" isLeaf="false">
+            <elementDefinition Id="6d7fb8a0-d3b2-48f0-bcd5-e854ddd75ad9" />
+            <flowNodeTargets>
+              <controlFlow Id="3bb35c0d-e056-489a-b616-9c5d50e86837" isLeaf="false">
+                <opaqueActionMoniker Id="7ec3cf1f-a2dc-4f11-8ef4-3cee18636e83" LastKnownName="Eroare" />
+                <elementDefinition Id="5125f870-0ce1-4724-8346-b942e143b5f6" />
+              </controlFlow>
+              <controlFlow Id="6505f30e-84a4-4b64-850d-a9779b7318e9" name="ADASDAS" isLeaf="false">
+                <opaqueActionMoniker Id="a1108dfa-f20c-4dc6-b5be-62fdd9a97611" LastKnownName="Trimitere username, parolă și mail către server" />
+                <description>ASDASD</description>
+                <elementDefinition Id="77c48f64-2acf-4ce1-b7d8-6a90f6e7d692" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="7ec3cf1f-a2dc-4f11-8ef4-3cee18636e83" name="Eroare" isLeaf="false">
+            <elementDefinition Id="cac0f73f-4bc2-423f-9891-c39c4dc2bd48" />
+            <flowNodeTargets>
+              <controlFlow Id="2123f035-9ab2-462c-8962-b02da5f7576e" isLeaf="false">
+                <opaqueActionMoniker Id="51e98c67-7d9a-4bf8-9a38-71cf91b29ccb" LastKnownName="Completare formular" />
+                <elementDefinition Id="8a1fab53-e351-46d3-9f11-f42bce60eb1a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a1108dfa-f20c-4dc6-b5be-62fdd9a97611" name="Trimitere username, parolă și mail către server" isLeaf="false">
+            <elementDefinition Id="7d316327-8a1e-49d6-a29e-b523d596768a" />
+            <flowNodeTargets>
+              <controlFlow Id="c4a96967-c3cd-4c17-a273-b6af791df0fe" isLeaf="false">
+                <opaqueActionMoniker Id="1134a79f-b21a-45d3-861a-1e412d5a4566" LastKnownName="Trimitere mail de confirmare" />
+                <elementDefinition Id="b8944af4-eb0b-4dc5-90d4-4027ee50e1c2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="1134a79f-b21a-45d3-861a-1e412d5a4566" name="Trimitere mail de confirmare" isLeaf="false">
+            <elementDefinition Id="543ac84c-714f-49e7-9c7d-ac6448c1ff5e" />
+            <flowNodeTargets>
+              <controlFlow Id="a4d3a42f-9e91-4f4a-affc-e0fa7b9efdf8" isLeaf="false">
+                <opaqueActionMoniker Id="adcd59ef-debf-43d3-991e-4428dced03e9" LastKnownName="Validare cont" />
+                <elementDefinition Id="33f8b975-ffdd-4fbd-8269-45ef5eec5af1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="170b377b-920c-4098-a195-491db53dcf5d" name="ActivityFinal11" isLeaf="false">
+            <elementDefinition Id="0b39ff73-188f-43ba-9a29-17becc0cd60b" />
+          </activityFinalNode>
+          <opaqueAction Id="adcd59ef-debf-43d3-991e-4428dced03e9" name="Validare cont" isLeaf="false">
+            <elementDefinition Id="724a8e34-8c65-409d-88eb-c6559ea13e5c" />
+            <flowNodeTargets>
+              <controlFlow Id="821c2b7c-9173-4949-908b-3399db4a7f9c" isLeaf="false">
+                <activityFinalNodeMoniker Id="170b377b-920c-4098-a195-491db53dcf5d" LastKnownName="ActivityFinal11" />
+                <elementDefinition Id="68e4c387-cef9-4786-917b-750cf75cb28d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
         </nodes>
       </activity>
     </activityRootModelHasActivity>
   </packagedElements>
   <package Id="f1d81e98-85f3-4d9c-9859-1af6afbafd63" name="ModelingProject">
     <elementDefinition Id="eefad6ee-e573-4f1e-9b0a-14a57ffde34e" />
+    <profileInstances>
+      <packageHasProfileInstances Id="11f3a9fd-1866-4063-a6f4-00fbeb0c917a">
+        <profileInstance Id="0913f5a8-96cc-4726-9d8b-c22a882ed7e0" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="828f89f1-bc7d-4f7c-8643-ab61647cb4e4">
+        <profileInstance Id="31b0ed96-674b-4970-8949-6a76beba88e3" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </activityRootModel>

@@ -4,15 +4,13 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using WebAPI.Messages;
-using WebAPI.Models;
-
 
 namespace WebAPI.ActionFilters
 {
     public class RequirePasswordForScheduler : ActionFilterAttribute
     {
         /// <summary>
-        /// Public default Constructor
+        /// Constructor
         /// </summary>
         public override void OnActionExecuting(HttpActionContext context)
         {
@@ -34,13 +32,10 @@ namespace WebAPI.ActionFilters
 
             if (!valid)
             {
-                //Invalid Authorization Key
+                // Token invalid 
                 json = new JSendMessage("fail", "Invalid Authorization Key");
                 context.Response = context.Request.CreateResponse(HttpStatusCode.Forbidden, json);
             }
-
-
-
         }
     }
 }
